@@ -12,6 +12,8 @@ A scalable, cloud-native application for researchers to upload and manage public
 git clone https://github.com/shrisha-rao/kg_app
 cd kg_app
 
+# Uses Emulators so we can avoid setting up GCP 
+
 docker compose build web
 docker compose up web
 
