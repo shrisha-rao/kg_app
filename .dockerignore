@@ -1,0 +1,51 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+
+# Test & coverage outputs
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Docker / compose artifacts
+*.pid
+*.swp
+*.swo
+
+# Local config & secrets
+.env
+.env.*
+
+# Git & editor junk
+.git/
+.gitignore
+.gitattributes
+.idea/
+.vscode/
+*.iml
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Large files you don’t want in builds
+data/
+datasets/
+models/

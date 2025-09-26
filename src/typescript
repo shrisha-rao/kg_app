@@ -1,0 +1,14 @@
+Script started on Wed Sep 24 15:47:49 2025
+]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src^P	Agent pid 21616
+[1m[7m%[27m[1m[0m                                                                                           ]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src]2;shrisha@Shrishas-MacBook-Pro]1;..ch-kg-app/src]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src[0m[27m[24m[J(base) [01;32m➜  [36msrc[00m [K[?1h=[?2004hscript
+[J[0mSCRIPT    [Jscript    [J[1;31mscripts[0m/[J[A[0m[27m[24m[14Cscript[Ks[?1l>[?2004l
+[J]2;scripts]1;scripts[1m[7m%[27m[1m[0m                                                                                           ]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts]2;shrisha@Shrishas-MacBook-Pro]1;..p/src/scripts]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts[0m[27m[24m[J(base) [01;32m➜  [36mscripts[00m [K[?1h=[?2004hl[?1l>[?2004l
+]2;ls -G -lah]1;ltotal 0
+drwxr-xr-x   5 shrisha  staff   160B Sep 16 17:11 [1m[36m.[39;49m[0m
+drwxr-xr-x  16 shrisha  staff   512B Sep 24 15:47 [1m[36m..[39;49m[0m
+-rw-r--r--   1 shrisha  staff     0B Sep 16 17:11 backup_vectors.py
+-rw-r--r--   1 shrisha  staff     0B Sep 16 17:11 init_graph_db.py
+-rw-r--r--   1 shrisha  staff     0B Sep 16 17:11 migrate_data.py
+[1m[7m%[27m[1m[0m                                                                                           ]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts]2;shrisha@Shrishas-MacBook-Pro]1;..p/src/scripts]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts[0m[27m[24m[J(base) [01;32m➜  [36mscripts[00m [K[?1h=[?2004hppwd[?1l>[?2004l
+]2;pwd]1;pwd/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts
+[1m[7m%[27m[1m[0m                                                                                           ]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts]2;shrisha@Shrishas-MacBook-Pro]1;..p/src/scripts]7;file://Shrishas-MacBook-Pro.local/Users/shrisha/Documents/MVPs/app/research-kg-app/src/scripts[0m[27m[24m[J(base) [01;32m➜  [36mscripts[00m [K[?1h=[?2004h
