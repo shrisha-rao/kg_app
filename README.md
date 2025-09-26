@@ -4,6 +4,23 @@
 
 A scalable, cloud-native application for researchers to upload and manage publication libraries, create knowledge graphs, and use LLMs to answer questions about their research corpus. Built with Python, FastAPI, and deployed on Google Cloud Platform (GCP).
 
+
+
+## Doker RUN 
+
+```bash
+git clone https://github.com/shrisha-rao/kg_app
+cd kg_app
+
+docker compose build web
+docker compose up web
+
+```
+### TEST APP wih API access 
+go to : http://0.0.0.0:8000/docs#/
+
+
+
 ## Current Implementation Status
 
 ### ✅ Completed Components
