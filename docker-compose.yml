@@ -1,0 +1,271 @@
+version: '3.8'
+
+services:
+  # -------------------------
+  # Firestore Emulator
+  # -------------------------
+  firestore-emulator:
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:emulators
+    container_name: firestore-emulator
+    command: gcloud beta emulators firestore start --host-port=0.0.0.0:8080
+    ports:
+      - "8080:8080"
+
+  # -------------------------
+  # Redis Emulator
+  # -------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  # -------------------------
+  # ArangoDB Graph Database
+  # -------------------------
+  arangodb:
+    image: arangodb/arangodb
+    container_name: arangodb
+    environment:
+      - ARANGO_ROOT_PASSWORD=my-secret-password
+    ports:
+      - "8529:8529"
+    healthcheck:
+      test: ["CMD", "arangosh", "--server.endpoint", "tcp://127.0.0.1:8529",
+             "--server.authentication", "true",
+             "--server.username", "root",
+             "--server.password", "my-secret-password",
+             "--javascript.execute-string", "db._version()"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # -------------------------
+  # FastAPI Web Service
+  # -------------------------
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: research-web
+    env_file:
+      - .env.local
+    environment:
+      - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
+      - REDIS_HOST=redis
+      - GCP_PROJECT_ID=dev-project      
+    volumes:
+      - .:/app:delegated
+    ports:
+      - "8000:8000"
+      - "8888:8888" # JUPYTER for dev REMOVE       
+    command: >
+      uvicorn src.main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
+    depends_on:
+      firestore-emulator:
+        condition: service_started
+      redis:
+        condition: service_started
+      arangodb:
+        condition: service_healthy
+
+  # -------------------------
+  # Jupyter Notebook
+  # -------------------------
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: research-notebook
+    env_file:
+      - .env.local
+    environment:
+      - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
+      - REDIS_HOST=redis
+      - GCP_PROJECT_ID=dev-project      
+    volumes:
+      - .:/app:delegated
+    working_dir: /app
+    ports:
+      - "8888:8888"
+    command: >
+      jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+    depends_on:
+      - firestore-emulator
+      - redis
+      - arangodb
+
+  # -------------------------
+  # Embedding Tester
+  # -------------------------
+  embedding-tester:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: embedding-tester
+    env_file:
+      - .env.local
+    volumes:
+      - .:/app:delegated
+    working_dir: /app
+    command: python -m scripts.test_embedding
+    depends_on:
+      - firestore-emulator
+      - redis
+      - arangodb
+
+  # -------------------------
+  # Init Script for ArangoDB
+  # -------------------------
+  init_with_arango:
+    build:
+      context: .
+    container_name: init-arango
+    depends_on:
+      arangodb:
+        condition: service_healthy
+    env_file:
+      - .env.local
+    command: ["python", "scripts/init_graph_db.py"]
+
+
+
+
+
+# version: '3.8'
+
+# services:
+#   arangodb:
+#     image: arangodb/arangodb
+#     environment:
+#       - ARANGO_ROOT_PASSWORD=my-secret-password
+#     ports:
+#       - "8529:8529"
+#     healthcheck:
+#       test: [
+#         "CMD", "arangosh",
+#         "--server.endpoint", "tcp://127.0.0.1:8529",
+#         "--server.authentication", "true",
+#         "--server.username", "root",
+#         "--server.password", "my-secret-password",
+#         "--javascript.execute-string", "db._version()"
+#       ]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+#       start_period: 20s
+      
+#   embedding-tester:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.test
+#     env_file:
+#       - .env
+#     volumes:
+#       - .:/app
+#     working_dir: /app
+#     command: python -m scripts.test_embedding
+
+#   init_with_arango:
+#     build: .
+#     depends_on:
+#       arangodb:
+#         condition: service_healthy
+#     environment:
+#       - ARANGODB_HOST=http://arangodb:8529
+#       - ARANGODB_USERNAME=root
+#       - ARANGODB_PASSWORD=my-secret-password
+#       - ARANGODB_DATABASE=test_graph_db
+#     command: ["python", "scripts/init_graph_db.py"]
+
+#   jupyter:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.notebook
+#     env_file:
+#       - .env
+#     volumes:
+#       - .:/app
+#     working_dir: /app
+#     ports:
+#       - "8888:8888"
+#     command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+#   web:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.dev
+#     env_file:
+#       - .env
+#     volumes:
+#       - .:/app:delegated
+#     working_dir: /app
+#     ports:
+#       - "8000:8000"
+#     command: >
+#       uvicorn src.main:app
+#       --host 0.0.0.0
+#       --port 8000
+#       --reload
+#     depends_on:
+#       arangodb:
+#         condition: service_healthy
+
+
+
+
+
+
+# # version: '3.8'
+
+# # services:
+# #   arangodb:
+# #     image: arangodb/arangodb
+# #     environment:
+# #       - ARANGO_ROOT_PASSWORD=my-secret-password
+# #     ports:
+# #       - "8529:8529"
+      
+# #   embedding-tester:
+# #     build:
+# #       context: .
+# #       dockerfile: Dockerfile.test
+# #     env_file:
+# #       - .env
+# #     volumes:
+# #       - .:/app
+# #     working_dir: /app
+# #     command: python -m scripts.test_embedding
+
+# #   init_with_arango:
+# #     build: .
+# #     depends_on:
+# #       - arangodb
+# #     environment:
+# #       - ARANGODB_HOST=http://arangodb:8529
+# #       - ARANGODB_USERNAME=root
+# #       - ARANGODB_PASSWORD=my-secret-password
+# #       - ARANGODB_DATABASE=_system
+# #     command: ["python", "scripts/init_graph_db.py"]
+
+
+# #   jupyter:
+# #     build:
+# #       context: .
+# #       dockerfile: Dockerfile.notebook
+# #     env_file:
+# #       - .env
+# #     volumes:
+# #       - .:/app
+# #     working_dir: /app
+# #     ports:
+# #       - "8888:8888"  # Expose Jupyter Notebook port
+# #     command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+
+# # # docker-compose build jupyter
+# # # docker-compose up jupyter
