@@ -194,223 +194,242 @@ class FileProcessingService:
                                                 metadata={"title": filename},
                                                 is_public=is_public)
 
-    def _sanitize_key_part(self, text: str) -> str:
-        """Sanitize text to be a valid ArangoDB document key (_key)"""
-        if not text or text.strip() == "":
-            return "empty"
+    def _generate_arango_key(self, prefix: str = "") -> str:
+        """Generate a guaranteed-safe ArangoDB key using only alphanumeric characters"""
+        # Use UUID without any special characters
+        safe_key = uuid.uuid4().hex.lower()
 
-        # Convert to lowercase and strip
-        text = text.lower().strip()
-
-        # More aggressive replacement - only allow alphanumeric, underscore, hyphen
-        sanitized = re.sub(r'[^a-z0-9_-]', '_', text)
-
-        # Remove consecutive special characters
-        sanitized = re.sub(r'[_\-]{2,}', '_', sanitized)
-
-        # Strip leading/trailing special characters
-        sanitized = sanitized.strip('_-')
-
-        # Ensure it doesn't start with a number or special character
-        if sanitized and (sanitized[0].isdigit() or sanitized[0] in '_-'):
-            sanitized = 'key_' + sanitized
-
-        # If empty after sanitization
-        if not sanitized:
-            sanitized = 'default_key'
-
-        # Truncate if too long
-        if len(sanitized) > 150:
-            # Use hash for consistency
-            digest = hashlib.md5(sanitized.encode()).hexdigest()
-            sanitized = sanitized[:50] + '_' + digest[:8]
-
-        return sanitized
-
-    def _generate_safe_key(self, prefix: str = "") -> str:
-        """Generate a UUID-based key that's guaranteed to be safe"""
-        key = str(uuid.uuid4()).replace('-', '')[:16]
         if prefix:
-            return f"{prefix}_{key}"
-        return key
+            # Sanitize prefix to be only alphanumeric
+            clean_prefix = re.sub(r'[^a-zA-Z0-9]', '', prefix)
+            if clean_prefix:
+                safe_key = f"{clean_prefix}_{safe_key}"
 
-    def _build_entity_key(self,
-                          entity_type: str,
-                          entity_text: str,
-                          user_id: str = None) -> str:
-        """Build a safe key for entities using UUID with type prefix"""
-        # Use UUID for the key part, but keep type information in properties
-        if user_id:
-            # Private entity - include user ID in the key structure
-            safe_user = self._sanitize_key_part(user_id)[:20]
-            safe_type = self._sanitize_key_part(entity_type)[:10]
-            return f"user_{safe_user}_{safe_type}_{uuid.uuid4().hex[:8]}"
-        else:
-            # Public entity
-            safe_type = self._sanitize_key_part(entity_type)[:10]
-            return f"pub_{safe_type}_{uuid.uuid4().hex[:8]}"
+        return safe_key
+
+    def _build_safe_document_id(self, collection_name: str) -> str:
+        """Build a safe document ID with collection name and UUID key"""
+        # Sanitize collection name
+        clean_collection = re.sub(r'[^a-zA-Z0-9]', '', collection_name)
+        if not clean_collection:
+            clean_collection = "documents"
+
+        safe_key = self._generate_arango_key()
+        return f"{clean_collection}/{safe_key}"
+
+    def _build_safe_edge_id(self, source_key: str, target_key: str,
+                            relationship: str) -> str:
+        """Build a safe edge ID using hashing"""
+        # Extract just the key part (after collection/)
+        source_part = source_key.split(
+            '/')[-1] if '/' in source_key else source_key
+        target_part = target_key.split(
+            '/')[-1] if '/' in target_key else target_key
+
+        # Create a unique identifier and hash it
+        unique_str = f"{source_part}_{relationship}_{target_part}"
+        hash_digest = hashlib.md5(unique_str.encode()).hexdigest()
+
+        return f"edges/{hash_digest}"
 
     async def _store_in_graph_db(
             self, user_id: str, doc_id: str, paper_data: PaperCreate,
             public_entities: List[Entity], public_relations: List[Relation],
             private_entities: List[Entity], private_relations: List[Relation],
             is_public: bool):
-        """Store paper data in the graph database with UUID-based keys"""
+        """Store paper data in the graph database with guaranteed-safe keys"""
 
-        # Create paper node with UUID-based key
-        paper_node_id = f"papers/{doc_id}"  # doc_id is already a UUID
-        paper_node = Node(
-            id=paper_node_id,
-            label=paper_data.title[:100],
-            properties={
-                "title":
-                paper_data.title,
-                "authors":
-                paper_data.authors,
-                "publication_date":
-                paper_data.publication_date.isoformat()
-                if paper_data.publication_date else None,
-                "journal":
-                paper_data.journal_or_conference,
-                "doi":
-                paper_data.doi,
-                "abstract":
-                paper_data.abstract,
-                "original_filename":
-                paper_data.title,  # Store original for display
-                "owner_id":
-                user_id,
-                "is_public":
-                is_public,
-                "is_mock":
-                self.is_mock_mode
-            },
-            type="paper")
-        await self.graph_db.upsert_node(paper_node)
-
-        # Track entity mappings for relation creation
-        entity_key_map = {}  # Maps (entity_text, is_private) to node_id
-
-        # Store public entities with UUID-based keys
-        for entity in public_entities:
-            entity_key = self._build_entity_key(entity.type, entity.text)
-            entity_node_id = f"entities/{entity_key}"
-
-            entity_node = Node(
-                id=entity_node_id,
-                label=entity.text[:100],
+        try:
+            # Create paper node with safe key
+            paper_node_id = self._build_safe_document_id("papers")
+            paper_node = Node(
+                id=paper_node_id,
+                label=paper_data.title[:100],
                 properties={
-                    "type": entity.type,
-                    "original_text": entity.text,  # Store original text
-                    "confidence": entity.confidence,
-                    "is_public": True,
-                    "is_mock": self.is_mock_mode
+                    "original_doc_id":
+                    doc_id,  # Store the original UUID for reference
+                    "title":
+                    paper_data.title,
+                    "authors":
+                    paper_data.authors,
+                    "publication_date":
+                    paper_data.publication_date.isoformat()
+                    if paper_data.publication_date else None,
+                    "journal":
+                    paper_data.journal_or_conference,
+                    "doi":
+                    paper_data.doi,
+                    "abstract":
+                    paper_data.abstract,
+                    "owner_id":
+                    user_id,
+                    "is_public":
+                    is_public,
+                    "is_mock":
+                    self.is_mock_mode
                 },
-                type=entity.type)
-            await self.graph_db.upsert_node(entity_node)
+                type="paper")
 
-            # Store mapping for relation creation
-            entity_key_map[(entity.text, False)] = entity_node_id
-
-            # Link entity to paper
-            relation_id = f"paper_entities/{uuid.uuid4().hex}"
-            relation = Edge(id=relation_id,
-                            source_id=paper_node_id,
-                            target_id=entity_node_id,
-                            label="contains",
-                            properties={
-                                "confidence": entity.confidence,
-                                "is_public": True,
-                                "relation_type": "paper_contains_entity"
-                            },
-                            type="contains")
-            await self.graph_db.upsert_edge(relation)
-
-        # Store private entities with UUID-based keys
-        for entity in private_entities:
-            entity_key = self._build_entity_key(entity.type, entity.text,
-                                                user_id)
-            entity_node_id = f"entities/{entity_key}"
-
-            entity_node = Node(id=entity_node_id,
-                               label=entity.text[:100],
-                               properties={
-                                   "type": entity.type,
-                                   "original_text": entity.text,
-                                   "confidence": entity.confidence,
-                                   "owner_id": user_id,
-                                   "is_public": False,
-                                   "is_mock": self.is_mock_mode
-                               },
-                               type=entity.type)
-            await self.graph_db.upsert_node(entity_node)
-
-            # Store mapping for relation creation
-            entity_key_map[(entity.text, True)] = entity_node_id
-
-            # Link entity to paper
-            relation_id = f"paper_entities/{uuid.uuid4().hex}"
-            relation = Edge(id=relation_id,
-                            source_id=paper_node_id,
-                            target_id=entity_node_id,
-                            label="contains",
-                            properties={
-                                "confidence": entity.confidence,
-                                "owner_id": user_id,
-                                "is_public": False,
-                                "relation_type": "paper_contains_entity"
-                            },
-                            type="contains")
-            await self.graph_db.upsert_edge(relation)
-
-        # Store relations between entities using UUID-based edge keys
-        all_relations = public_relations + private_relations
-        for relation in all_relations:
-            is_private = relation in private_relations
-
-            # Find the entity node IDs using our mapping
-            source_key = (relation.source_entity.text, is_private)
-            target_key = (relation.target_entity.text, is_private)
-
-            source_id = entity_key_map.get(source_key)
-            target_id = entity_key_map.get(target_key)
-
-            if not source_id or not target_id:
-                logger.warning(
-                    f"Could not find entity nodes for relation: {relation}")
-                continue
-
-            # Create relation edge with UUID key
-            relation_id = f"entity_relations/{uuid.uuid4().hex}"
-            relation_edge = Edge(
-                id=relation_id,
-                source_id=source_id,
-                target_id=target_id,
-                label=relation.relationship[:50],  # Truncate long labels
-                properties={
-                    "confidence": relation.confidence,
-                    "is_public": not is_private,
-                    "original_relationship": relation.relationship
-                },
-                type=relation.relationship[:50])
-            await self.graph_db.upsert_edge(relation_edge)
-
-        if self.is_mock_mode:
             logger.info(
-                f"Mock: Stored {len(public_entities)} public and {len(private_entities)} private entities in graph DB"
+                f"Attempting to upsert paper node with ID: {paper_node_id}")
+            await self.graph_db.upsert_node(paper_node)
+            logger.info("Successfully upserted paper node")
+
+            # Track entity mappings for relation creation
+            entity_key_map = {}
+
+            # Store public entities
+            for i, entity in enumerate(public_entities):
+                entity_node_id = self._build_safe_document_id("entities")
+
+                entity_node = Node(id=entity_node_id,
+                                   label=entity.text[:100],
+                                   properties={
+                                       "type": entity.type,
+                                       "original_text": entity.text,
+                                       "confidence": entity.confidence,
+                                       "is_public": True,
+                                       "is_mock": self.is_mock_mode,
+                                       "entity_index": i
+                                   },
+                                   type=entity.type)
+
+                logger.info(f"Upserting public entity {i}: {entity_node_id}")
+                await self.graph_db.upsert_node(entity_node)
+                entity_key_map[(entity.text, False, i)] = entity_node_id
+
+                # Link entity to paper
+                edge_id = self._build_safe_edge_id(paper_node_id,
+                                                   entity_node_id, "contains")
+                relation = Edge(id=edge_id,
+                                source_id=paper_node_id,
+                                target_id=entity_node_id,
+                                label="contains",
+                                properties={
+                                    "confidence": entity.confidence,
+                                    "is_public": True,
+                                    "relation_type": "paper_contains_entity"
+                                },
+                                type="contains")
+
+                logger.info(f"Creating edge from paper to entity: {edge_id}")
+                await self.graph_db.upsert_edge(relation)
+
+            # Store private entities
+            for i, entity in enumerate(private_entities):
+                entity_node_id = self._build_safe_document_id("entities")
+
+                entity_node = Node(
+                    id=entity_node_id,
+                    label=entity.text[:100],
+                    properties={
+                        "type": entity.type,
+                        "original_text": entity.text,
+                        "confidence": entity.confidence,
+                        "owner_id": user_id,
+                        "is_public": False,
+                        "is_mock": self.is_mock_mode,
+                        "entity_index":
+                        i + len(public_entities)  # Offset index
+                    },
+                    type=entity.type)
+
+                logger.info(f"Upserting private entity {i}: {entity_node_id}")
+                await self.graph_db.upsert_node(entity_node)
+                entity_key_map[(entity.text, True, i)] = entity_node_id
+
+                # Link entity to paper
+                edge_id = self._build_safe_edge_id(paper_node_id,
+                                                   entity_node_id, "contains")
+                relation = Edge(id=edge_id,
+                                source_id=paper_node_id,
+                                target_id=entity_node_id,
+                                label="contains",
+                                properties={
+                                    "confidence": entity.confidence,
+                                    "owner_id": user_id,
+                                    "is_public": False,
+                                    "relation_type": "paper_contains_entity"
+                                },
+                                type="contains")
+
+                logger.info(
+                    f"Creating edge from paper to private entity: {edge_id}")
+                await self.graph_db.upsert_edge(relation)
+
+            # Store relations between entities
+            all_relations = public_relations + private_relations
+            for i, relation in enumerate(all_relations):
+                is_private = relation in private_relations
+
+                # Find source and target entities
+                source_found = False
+                target_found = False
+                source_id = None
+                target_id = None
+
+                # Look for source entity
+                for (text, priv, idx), node_id in entity_key_map.items():
+                    if text == relation.source_entity.text and priv == is_private:
+                        source_id = node_id
+                        source_found = True
+                        break
+
+                # Look for target entity
+                for (text, priv, idx), node_id in entity_key_map.items():
+                    if text == relation.target_entity.text and priv == is_private:
+                        target_id = node_id
+                        target_found = True
+                        break
+
+                if not source_found or not target_found:
+                    logger.warning(
+                        f"Could not find entity nodes for relation {i}: {relation}"
+                    )
+                    continue
+
+                # Create relation edge
+                edge_id = self._build_safe_edge_id(source_id, target_id,
+                                                   relation.relationship)
+                relation_edge = Edge(id=edge_id,
+                                     source_id=source_id,
+                                     target_id=target_id,
+                                     label=relation.relationship[:50],
+                                     properties={
+                                         "confidence": relation.confidence,
+                                         "is_public": not is_private,
+                                         "original_relationship":
+                                         relation.relationship,
+                                         "relation_index": i
+                                     },
+                                     type=relation.relationship[:50])
+
+                logger.info(f"Creating entity relation edge {i}: {edge_id}")
+                await self.graph_db.upsert_edge(relation_edge)
+
+            logger.info(
+                f"Successfully stored paper {doc_id} with {len(entity_key_map)} entities and {len(all_relations)} relations"
             )
 
-        logger.info(
-            f"Successfully stored paper {doc_id} with {len(entity_key_map)} entities and {len(all_relations)} relations"
-        )
+        except Exception as e:
+            logger.error(f"Error storing in graph DB: {str(e)}", exc_info=True)
+            raise
+
+    def _debug_key_generation(self, original_text: str, generated_key: str):
+        """Debug method to log key generation"""
+        logger.debug(
+            f"Key generation: '{original_text[:50]}...' -> '{generated_key}'")
+
+        # Validate the key
+        if not self._validate_arango_key(generated_key.split('/')[-1]):
+            logger.warning(f"Generated key may be invalid: {generated_key}")
 
     def _validate_arango_key(self, key: str) -> bool:
-        """Validate if a key is acceptable for ArangoDB"""
+        """Validate if a key part is acceptable for ArangoDB"""
         if not key or len(key) > 254:
             return False
 
-        # Check for illegal characters - ArangoDB is actually quite permissive
-        # but avoids: /, ?, #, [, ], @, !, $, &, ', (, ), *, +, ,, ;, =, spaces, control chars
+        # ArangoDB key rules: no /, ?, #, [, ], @, !, $, &, ', (, ), *, +, ,, ;, =, spaces, control chars
         if re.search(r'[/?#\[\]@!$&\'()*+,;=\s]', key):
             return False
 
@@ -419,19 +438,6 @@ class FileProcessingService:
             return False
 
         return True
-
-    def _debug_key_issues(self, original_text: str, sanitized_key: str):
-        """Debug method to identify key sanitization issues"""
-        if not self._validate_arango_key(sanitized_key):
-            logger.warning(
-                f"Key sanitization issue: '{original_text}' -> '{sanitized_key}'"
-            )
-            # Test individual parts
-            for char in sanitized_key:
-                if not self._validate_arango_key(char):
-                    logger.warning(
-                        f"Problematic character in key: '{char}' (ASCII: {ord(char)})"
-                    )
 
     # async def _store_in_graph_db(
     #         self, user_id: str, doc_id: str, paper_data: PaperCreate,

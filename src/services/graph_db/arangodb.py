@@ -100,10 +100,6 @@ class ArangoDBService(GraphDBService):
         try:
             collection_name = f"nodes_{node.type}"
 
-            # Ensure the collection exists
-            # print('+-' * 25)
-            # print(collection_name)
-            # print('+-' * 25)
             if not self.db.has_collection(collection_name):
                 self.db.create_collection(collection_name)
 
@@ -111,7 +107,7 @@ class ArangoDBService(GraphDBService):
 
             # Prepare document
             document = {
-                "_key": node.id,
+                "_key": node.id.split("/")[-1],
                 "label": node.label,
                 **node.properties, "created_at": datetime.utcnow().isoformat(),
                 "updated_at": datetime.utcnow().isoformat()
@@ -149,7 +145,7 @@ class ArangoDBService(GraphDBService):
 
             # Prepare edge document
             document = {
-                "_key": edge.id,
+                "_key": edge.id.split("/")[-1],
                 "_from": edge.source_id,
                 "_to": edge.target_id,
                 "label": edge.label,
