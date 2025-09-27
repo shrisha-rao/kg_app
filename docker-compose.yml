@@ -72,6 +72,8 @@ services:
         condition: service_started
       arangodb:
         condition: service_healthy
+      init_with_arango:
+        condition: service_completed_successfully        
 
   # -------------------------
   # Jupyter Notebook
