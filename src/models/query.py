@@ -32,6 +32,9 @@ class Citation(BaseModel):
     text_segment: str
     confidence: float = Field(ge=0.0, le=1.0)
 
+    class Config:
+        json_encoders = {datetime: lambda v: v.isoformat()}
+
 
 class QueryBase(BaseModel):
     query_text: str = Field(...,

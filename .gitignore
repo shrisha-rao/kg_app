@@ -90,3 +90,11 @@ config/service-account-key.json
 
 *.*~
 *~
+
+# Editor temp/lint files
+flycheck_*.py
+*.pyc
+__pycache__/
+.flycheck_*
+flycheck_*.py
+
