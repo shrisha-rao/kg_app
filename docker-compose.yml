@@ -21,6 +21,15 @@ services:
       - "6379:6379"
 
   # -------------------------
+  # Local ollama
+  # -------------------------
+  ollama:
+    image: ollama/ollama
+    container_name: research-ollama
+    ports:
+      - "11434:11434"
+
+  # -------------------------
   # ArangoDB Graph Database
   # -------------------------
   arangodb:
@@ -74,7 +83,9 @@ services:
       arangodb:
         condition: service_healthy
       init_with_arango:
-        condition: service_completed_successfully        
+        condition: service_completed_successfully
+      ollama:
+        condition: service_started
 
   # -------------------------
   # Jupyter Notebook

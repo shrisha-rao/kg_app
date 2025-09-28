@@ -5,3 +5,4 @@ flake8==6.0.0
 isort==5.12.0
 pytest-mock==3.12.0
 pytesseract
+aiohttp
