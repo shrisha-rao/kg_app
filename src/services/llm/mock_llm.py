@@ -21,7 +21,8 @@ class MockLLMService(LLMService):
                                 max_tokens: int = 1024,
                                 **kwargs) -> LLMResponse:
         """Mock LLM response generation"""
-        logger.info(f"Mock: Generating response for prompt: {prompt[:100]}...")
+        logger.info(
+            f"Mock: Generating response for prompt: {prompt[:100]}... ")
 
         # Generate a mock response
         mock_response = f"Mock response to: {prompt[:50]}... This is a simulated LLM response for development purposes."
@@ -48,7 +49,13 @@ class MockLLMService(LLMService):
         # Generate a mock structured response based on the format
         mock_response = {}
         for key, value_type in response_format.items():
-            if value_type == "string":
+            if key == "suggested_follow_up_questions" or key == "questions":
+                mock_response[key] = [
+                    "What else would you like to explore?",
+                    "Any clarifying details needed?",
+                    "Related experiments to consider?"
+                ]
+            elif value_type == "string":
                 mock_response[key] = f"mock_{key}_value"
             elif value_type == "number":
                 mock_response[key] = 42.0
@@ -59,7 +66,20 @@ class MockLLMService(LLMService):
             else:
                 mock_response[key] = f"mock_{key}"
 
+        # for key, value_type in response_format.items():
+        #     if value_type == "string":
+        #         mock_response[key] = f"mock_{key}_value"
+        #     elif value_type == "number":
+        #         mock_response[key] = 42.0
+        #     elif value_type == "boolean":
+        #         mock_response[key] = True
+        #     elif value_type == "array":
+        #         mock_response[key] = ["mock_item_1", "mock_item_2"]
+        #     else:
+        #         mock_response[key] = f"mock_{key}"
+
         mock_response["is_mock"] = True
+        logger.info(f"mock_response = {mock_response}")
         return mock_response
 
     async def generate_embeddings(

@@ -9,6 +9,9 @@ from src.services.graph_db import get_graph_db_service
 from src.services.llm import get_llm_service
 from src.utils.cache import get_cache_client
 
+# logging.basicConfig(level=logging.DEBUG)
+# # or for uvicorn:
+# logging.getLogger("uvicorn").setLevel(logging.DEBUG)
 logger = logging.getLogger(__name__)
 """
 This implementation provides a comprehensive query processing service that:
@@ -114,9 +117,10 @@ class QueryProcessingService:
                 self._generate_follow_up_questions(query.query_text, answer))
 
             # Cache the response
-            await self.cache.set(cache_key,
-                                 json.dumps(response.dict()),
-                                 expire=3600)  # Cache for 1 hour
+            await self.cache.set(
+                cache_key,
+                response.json(),  # json.dumps(response.dict()),
+                ex=3600)  # Cache for 1 hour
 
             return response
 
