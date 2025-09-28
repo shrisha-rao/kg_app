@@ -66,18 +66,6 @@ class MockLLMService(LLMService):
             else:
                 mock_response[key] = f"mock_{key}"
 
-        # for key, value_type in response_format.items():
-        #     if value_type == "string":
-        #         mock_response[key] = f"mock_{key}_value"
-        #     elif value_type == "number":
-        #         mock_response[key] = 42.0
-        #     elif value_type == "boolean":
-        #         mock_response[key] = True
-        #     elif value_type == "array":
-        #         mock_response[key] = ["mock_item_1", "mock_item_2"]
-        #     else:
-        #         mock_response[key] = f"mock_{key}"
-
         mock_response["is_mock"] = True
         logger.info(f"mock_response = {mock_response}")
         return mock_response

@@ -4,6 +4,12 @@ from typing import Dict, List, Optional, Any
 from sentence_transformers import SentenceTransformer
 from .base import LLMService, LLMResponse
 
+####################################
+
+from .mock_llm import MockLLMService
+
+####################################
+
 logger = logging.getLogger(__name__)
 
 
