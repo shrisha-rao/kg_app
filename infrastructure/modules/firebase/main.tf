@@ -1,3 +1,5 @@
+#/infrastructure/modules/firebase/main.tf
+
 resource "google_firebase_project" "research_app" {
   provider = google-beta
   project  = var.project_id

@@ -1,3 +1,5 @@
+#/infrastructure/modules/vertex-ai-matching-engine/main.tf
+
 resource "google_vertex_ai_index" "research_index" {
   display_name = "research-papers-index"
   description  = "Index for research paper embeddings"
