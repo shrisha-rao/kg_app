@@ -1,5 +1,3 @@
-# 🔹 What are locals in Terraform?
-
 # locals let you define reusable constants or computed values in one place.
 # They’re great for:
 
@@ -18,3 +16,4 @@ locals {
   redis_instance_name    = "research-cache"
   vpc_connector_name     = "research-connector"
 }
+	

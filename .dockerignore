@@ -49,3 +49,8 @@ Thumbs.db
 data/
 datasets/
 models/
+
+
+
+docker-compose.yml
+Dockerfile.dev

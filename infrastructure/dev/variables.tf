@@ -27,6 +27,31 @@ variable "arangodb_instance_size" {
   default     = "small"
 }
 
+variable "arangodb_host" {
+  description = "ArangoDB host URL"
+  type        = string
+  sensitive   = true
+}
+
+variable "arangodb_username" {
+  description = "ArangoDB username"
+  type        = string
+  sensitive   = true
+}
+
+variable "arangodb_password" {
+  description = "ArangoDB password"
+  type        = string
+  sensitive   = true
+}
+
+variable "arangodb_database" {
+  description = "ArangoDB database name"
+  type        = string
+  default     = "research"
+}
+
+
 variable "redis_memory_size_gb" {
   type        = number
   default     = 1

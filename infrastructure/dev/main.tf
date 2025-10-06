@@ -11,6 +11,7 @@ terraform {
   }
 }
 
+
 # -----------------------------
 # Enable Required APIs
 # -----------------------------
@@ -62,12 +63,12 @@ resource "google_storage_bucket" "research_data" {
 # -----------------------------
 # Firestore Database
 # -----------------------------
-resource "google_firestore_database" "research_db" {
-  name        = "(default)"
-  location_id = var.region
-  type        = "FIRESTORE_NATIVE"
-  depends_on  = [time_sleep.wait_firestore]
-}
+# resource "google_firestore_database" "research_db" {
+#   name        = "(default)"
+#   location_id = var.region
+#   type        = "FIRESTORE_NATIVE"
+#   depends_on  = [time_sleep.wait_firestore]
+# }
 
 # -----------------------------
 # Vertex AI Index + Endpoint
@@ -102,19 +103,33 @@ resource "google_vertex_ai_index_endpoint" "research_index_endpoint" {
   depends_on   = [google_project_service.vertex_ai_api]
 }
 
-resource "google_vertex_ai_index_endpoint_deployed_index" "research_deployed_index" {
-  provider          = google-beta
-  index             = google_vertex_ai_index.research_index.id
-  index_endpoint    = google_vertex_ai_index_endpoint.research_index_endpoint.id
-  deployed_index_id = "research_deployed_index"   # ✅ underscore instead of hyphens
-  display_name      = "research-deployed-index"
-  depends_on        = [google_vertex_ai_index_endpoint.research_index_endpoint]
 
-  automatic_resources {
-    min_replica_count = 1
-    max_replica_count = 1
-  }
-}
+
+# resource "google_vertex_ai_index_endpoint_deployed_index" "research_deployed_index" {
+#   provider          = google-beta
+#   index             = google_vertex_ai_index.research_index.id
+#   index_endpoint    = google_vertex_ai_index_endpoint.research_index_endpoint.id
+#   deployed_index_id = "research_deployed_index"   # ✅ underscore instead of hyphens
+#   display_name      = "research-deployed-index"
+#   depends_on        = [google_vertex_ai_index_endpoint.research_index_endpoint]
+
+#   automatic_resources {
+#     min_replica_count = 1
+#     max_replica_count = 1
+#   }
+# }
+
+
+
+
+
+
+
+
+
+
+# OLD 
+# _____________________
 
 # resource "google_vertex_ai_index_endpoint_deployed_index" "research_deployed_index" {
 #   provider          = google-beta
@@ -166,8 +181,8 @@ resource "google_vpc_access_connector" "serverless_connector" {
   depends_on    = [google_project_service.vpc_access_api]
 
 
-  min_instances = 1
-  max_instances = 1
+  min_instances = 2
+  max_instances = 3
 
 
   # # ✅ must define throughput or instance scaling
@@ -211,11 +226,30 @@ resource "google_project_iam_member" "research_app_redis" {
 }
 
 # -----------------------------
+# Cloud Router & NAT for outbound internet access
+# -----------------------------
+resource "google_compute_router" "nat_router" {
+  name    = "nat-router"
+  region  = var.region
+  network = "default"
+}
+
+resource "google_compute_router_nat" "nat_config" {
+  name                               = "nat-config"
+  router                             = google_compute_router.nat_router.name
+  region                             = var.region
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+}
+
+
+# -----------------------------
 # Cloud Run (v2)
 # -----------------------------
 resource "google_cloud_run_v2_service" "research_app" {
   name     = local.cloud_run_service_name
   location = var.region
+  deletion_protection = false
   depends_on = [google_vpc_access_connector.serverless_connector]
 
   template {
@@ -224,6 +258,12 @@ resource "google_cloud_run_v2_service" "research_app" {
       ports {
         container_port = 8080
       }
+      # ADD MEMORY LIMIT:
+      resources {
+        limits = {
+          memory = "1Gi"  # Increase from 512Mi to 1Gi
+        }
+      }      
       env {
         name  = "GCP_PROJECT_ID"
         value = var.project_id
@@ -236,11 +276,36 @@ resource "google_cloud_run_v2_service" "research_app" {
         name  = "REDIS_HOST"
         value = google_redis_instance.research_cache.host
       }
+      env {
+        name  = "USE_MOCK_SERVICES"
+	  value = "false"
+      }
+      env {
+      	name  = "USE_OLLAMA" 
+	value = "false"
+      }
+      env {
+        name  = "ARANGODB_HOST"
+	value = var.arangodb_host
+      }
+      env {
+        name  = "ARANGODB_USERNAME"
+	value = var.arangodb_username
+      }
+      env {
+        name  = "ARANGODB_PASSWORD"
+	value = var.arangodb_password
+	}
+      env {
+      	name = "ARANGODB_DATABASE"
+	value = var.arangodb_database
+        }
+
     }
 
     vpc_access {
       connector = google_vpc_access_connector.serverless_connector.id
-      egress    = "ALL_TRAFFIC"
+      egress    = "PRIVATE_RANGES_ONLY" #"ALL_TRAFFIC"
     }
 
     service_account = google_service_account.research_app.email

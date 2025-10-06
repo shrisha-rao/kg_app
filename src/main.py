@@ -41,7 +41,7 @@ cache = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 app = FastAPI(title="Research Knowledge Graph API")
 
 # Initialize service instance
-# graph_db = ArangoDBService()
+graph_db = ArangoDBService()
 
 app.add_middleware(
     CORSMiddleware,
@@ -55,6 +55,20 @@ app.include_router(upload_router, prefix="/api/v1", tags=["upload"])
 app.include_router(query_router, prefix="/api/v1", tags=["query"])
 
 
+# at startup
+@app.on_event("startup")
+async def startup_event():
+    # Check if database is initialized, if not run init script
+    from src.scripts.init_graph_db import GraphDBInitializer
+    initializer = GraphDBInitializer()
+    await initializer.initialize()
+    #
+    connected = await graph_db.connect()
+    if not connected:
+        raise RuntimeError("Failed to connect to ArangoDB")
+    print("Connected to ArangoDB!")
+
+
 @app.get("/")
 async def root():
     return {"message": "Research Knowledge Graph API"}
@@ -65,17 +79,21 @@ async def health_check():
     return {"status": "healthy"}
 
 
-# @app.on_event("startup")
-# async def startup_event():
-#     connected = await graph_db.connect()
-#     if not connected:
-#         raise RuntimeError("Failed to connect to ArangoDB")
-#     print("Connected to ArangoDB!")
+@app.get("/debug/env")
+def debug_env():
+    return {
+        "ARANGODB_HOST": os.getenv("ARANGODB_HOST"),
+        "USE_MOCK_SERVICES": os.getenv("USE_MOCK_SERVICES"),
+        "ARANGODB_USERNAME": os.getenv("ARANGODB_USERNAME"),
+        "GCP_PROJECT_ID": os.getenv("GCP_PROJECT_ID")
+    }
 
-# @app.on_event("shutdown")
-# async def shutdown_event():
-#     await graph_db.disconnect()
-#     print("Disconnected from ArangoDB!")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await graph_db.disconnect()
+    print("Disconnected from ArangoDB!")
+
 
 # from fastapi import FastAPI, Depends, HTTPException, UploadFile, File, Form
 # from fastapi.middleware.cors import CORSMiddleware
