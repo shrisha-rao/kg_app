@@ -98,3 +98,4 @@ __pycache__/
 .flycheck_*
 flycheck_*.py
 
+src/typescript
