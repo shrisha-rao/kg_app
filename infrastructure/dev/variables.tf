@@ -65,6 +65,10 @@ variable "embedding_model" {
   type        = string
 }
 
+variable "vector_db_type" {
+  type        = string
+}
+
 variable "labels" {
   description = "A map of labels to apply to resources"
   type        = map(string)

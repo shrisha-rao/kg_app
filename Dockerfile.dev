@@ -1,8 +1,10 @@
 # Dockerfile.dev
 FROM python:3.9-slim
 
-# Install system dependencies needed for building some Python packages
-RUN apt-get update && apt-get install -y \
+# 1. Install Build Tools and Runtime Deps (Layer 1 - rarely changes, fully cached)
+# Use --no-install-recommends to speed up apt-get and slightly reduce size.
+# System dependencies are NOT purged because they may be needed by pip install below.
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     build-essential \
     tesseract-ocr \
@@ -10,20 +12,57 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# ✅ Copy only dependency files first to leverage caching
+# 2. Copy Requirements (Layer 2 - changes when requirements files change)
+# Copying separately ensures that the next slow install step is only broken if the files change.
 COPY requirements.txt requirements-dev.txt ./
 
-# ✅ Install dependencies — this layer is cached unless requirements*.txt change
+# 3. Install Dependencies (Layer 3 - changes when the files above change, the slowest step)
+# Keep this as one line to minimize layers.
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
 
-# ⛔ Do NOT copy your source here, so the volume mount overrides code at runtime
-# Your app code comes from the host via volumes in docker-compose.
+# ⛔ IMPORTANT: The code is NOT copied here. It is VOLUME MOUNTED at runtime.
 
 EXPOSE 8000
 
-# Default command
+# Default command - Use the --reload flag for hot-reloading with mounted code
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+
+
+
+
+
+
+
+# --------------------- 
+
+# Dockerfile.dev
+# FROM python:3.9-slim
+
+# # Install system dependencies needed for building some Python packages
+# RUN apt-get update && apt-get install -y \
+#     gcc \
+#     build-essential \
+#     tesseract-ocr \
+#     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# WORKDIR /app
+
+# # ✅ Copy only dependency files first to leverage caching
+# COPY requirements.txt requirements-dev.txt ./
+
+# # ✅ Install dependencies — this layer is cached unless requirements*.txt change
+# RUN pip install --upgrade pip && \
+#     pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
+
+# # ⛔ Do NOT copy your source here, so the volume mount overrides code at runtime
+# # Your app code comes from the host via volumes in docker-compose.
+
+# EXPOSE 8000
+
+# # Default command
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
 
 

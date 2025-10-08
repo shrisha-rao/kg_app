@@ -7,7 +7,13 @@ output "redis_host" {
   value = google_redis_instance.research_cache.host
 }
 
+output "vertex_index_id" {
+  value = google_vertex_ai_index.research_index.id
+}
 
+output "vertex_endpoint_id" {
+  value = google_vertex_ai_index_endpoint.research_index_endpoint.id
+}
 
 
 

@@ -7,12 +7,223 @@
 # CMD uvicorn src.main:app --host 0.0.0.0 --port 8080
 
 
-FROM python:3.9-slim
+# FROM python:3.9-slim
+# WORKDIR /app
+# COPY requirements.txt .
+# RUN apt-get update && apt-get install -y gcc build-essential tesseract-ocr \
+#  && pip install --no-cache-dir -r requirements.txt \
+#  && apt-get purge -y gcc build-essential && apt-get autoremove -y \
+#  && rm -rf /var/lib/apt/lists/*
+# COPY . .
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+
+
+# ------------------------------------
+# Stage 1: builder
+# ------------------------------------
+FROM python:3.11-slim AS builder
 WORKDIR /app
+
+# Install system dependencies in single layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc build-essential tesseract-ocr git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy only requirements first for better cache layer
 COPY requirements.txt .
-RUN apt-get update && apt-get install -y gcc build-essential tesseract-ocr \
- && pip install --no-cache-dir -r requirements.txt \
- && apt-get purge -y gcc build-essential && apt-get autoremove -y \
- && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+
+
+# Download models and clean caches
+# Pre-download ML models
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+
+RUN python -m spacy download en_core_web_sm \
+    && rm -rf /root/.cache/huggingface /root/.cache/torch \
+    && find /usr/local/lib/python3.11/site-packages -name "*.pyc" -delete
+
+# Copy app code
 COPY . .
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+# ------------------------------------
+# Stage 2: runtime
+# ------------------------------------
+FROM python:3.11-slim AS runtime
+WORKDIR /app
+
+# Install only runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends tesseract-ocr \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
+# Copy Python packages from builder (user site-packages)
+COPY --from=builder /root/.local /root/.local
+COPY --from=builder /app .
+
+# Make sure scripts in .local are usable
+ENV PATH=/root/.local/bin:$PATH
+
+EXPOSE 8080
+CMD ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+
+
+
+
+
+# # ------------------------------------
+# # Stage 1: builder (The key changes are in the deep cleanup below)
+# # ------------------------------------
+# FROM python:3.9-slim AS builder
+# WORKDIR /app
+
+# # 1. Install System Dependencies & Build Tools
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     gcc build-essential tesseract-ocr git \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # 2. Copy and Install Python Dependencies
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# # 3. Download Models AND Clean Caches (Kept as is)
+# RUN python -m spacy download en_core_web_sm \
+#     && rm -rf /root/.cache/huggingface \
+#     && rm -rf /root/.cache/torch \
+#     && rm -rf /usr/local/lib/python3.9/site-packages/spacy/data/*.zip
+
+# # 4. Cleanup: Purge build tools AND Deep Clean Site-Packages (FIXED)
+# # The deep clean commands are now separated with 'set +e' to ignore 'No such file' errors.
+# RUN set -e; \
+#     apt-get purge -y gcc build-essential && apt-get autoremove -y; \
+#     # Disable exit on error for the aggressive find/delete
+#     set +e; \
+#     find /usr/local/lib/python3.9/site-packages/ -depth -type d -name "__pycache__" -exec rm -rf {} +; \
+#     find /usr/local/lib/python3.9/site-packages/ -type f -name "*.pyc" -delete; \
+#     find /usr/local/lib/python3.9/site-packages/ -type d \( -name "tests" -o -name "test" -o -name "doc" -o -name "docs" -o -name "examples" \) -exec rm -rf {} +; \
+#     # Re-enable exit on error for subsequent commands
+#     set -e;
+
+# # 5. Copy your application code
+# COPY . .
+
+
+# # ------------------------------------
+# # Stage 2: runtime (Final small image)
+# # ------------------------------------
+# FROM python:3.9-slim AS runtime
+# WORKDIR /app
+
+# # Install only the runtime system dependency (tesseract-ocr)
+# RUN apt-get update && apt-get install -y --no-install-recommends tesseract-ocr \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Copy only the necessary installed packages (now cleaned) and application code from 'builder'
+# # This is the line that will now copy a much smaller set of files
+# COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+# COPY --from=builder /app .
+
+# EXPOSE 8080
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+
+
+
+
+# # ------------------------------------
+# # Stage 1: builder (Performs all the slow, heavy installs)
+# # ------------------------------------
+# FROM python:3.9-slim AS builder
+# WORKDIR /app
+
+# # 1. Install System Dependencies & Build Tools
+# # Keeping the tools here for the compilation of numpy/pymupdf
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     gcc build-essential tesseract-ocr git \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # 2. Copy and Install Python Dependencies
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# # 3. Download and Clean ML Models (The crucial step for size reduction)
+# # Download spacy model and then delete the model cache
+# # Download sentence-transformer models and delete their caches
+# # WARNING: Replace 'en_core_web_sm' with the actual model you use (e.g., '_lg')
+# RUN python -m spacy download en_core_web_sm \
+#     && rm -rf /root/.cache/huggingface \
+#     && rm -rf /root/.cache/torch \
+#     && rm -rf /usr/local/lib/python3.9/site-packages/spacy/data/*.zip
+
+# # 4. Cleanup: Purge build tools now that compilation is done
+# RUN apt-get purge -y gcc build-essential && apt-get autoremove -y
+
+# # 5. Copy your application code
+# COPY . .
+
+
+# # ------------------------------------
+# # Stage 2: runtime (Final small image)
+# # ------------------------------------
+# # Use the official python image again for a clean slate
+# FROM python:3.9-slim AS runtime
+# WORKDIR /app
+
+# # Install only the runtime system dependency (tesseract-ocr)
+# RUN apt-get update && apt-get install -y --no-install-recommends tesseract-ocr \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Copy only the necessary installed packages and application code from 'builder'
+# COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+# COPY --from=builder /app .
+
+# EXPOSE 8080
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+
+# ======================================================
+# ------------------------------------------------------
+
+
+# ------------------------------------
+# # Stage 1: builder (Fast and handles heavy lifting)
+# # ------------------------------------
+# FROM python:3.9-slim AS builder
+# WORKDIR /app
+
+# # 1. Install System Dependencies (Layer 1 - rarely changes, fully cached)
+# # This layer installs build tools and runtime system dependencies (tesseract-ocr).
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     gcc build-essential tesseract-ocr \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # 2. Copy and Install Python Dependencies (Layer 2 - changes when requirements.txt changes)
+# COPY requirements.txt .
+# # Pip install uses the build tools (gcc/build-essential) from the previous layer.
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# # 3. Copy Application Code (Layer 3 - changes often, breaks cache for subsequent layers only)
+# COPY . .
+
+# # ------------------------------------
+# # Stage 2: runtime (Small and clean final image)
+# # ------------------------------------
+# FROM python:3.9-slim AS runtime
+# WORKDIR /app
+
+# # Install ONLY runtime system dependencies. Build tools (gcc/build-essential) are omitted.
+# # Note: You may need to reinstall tesseract-ocr here if the final image doesn't need 'slim' to be too slim.
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     tesseract-ocr \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Copy installed Python packages from the builder stage (no need to reinstall/recompile)
+# COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+
+# # Copy application code and other necessary files
+# COPY --from=builder /app .
+
+# CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]

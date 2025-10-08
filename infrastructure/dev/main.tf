@@ -105,45 +105,20 @@ resource "google_vertex_ai_index_endpoint" "research_index_endpoint" {
 
 
 
-# resource "google_vertex_ai_index_endpoint_deployed_index" "research_deployed_index" {
-#   provider          = google-beta
-#   index             = google_vertex_ai_index.research_index.id
-#   index_endpoint    = google_vertex_ai_index_endpoint.research_index_endpoint.id
-#   deployed_index_id = "research_deployed_index"   # ✅ underscore instead of hyphens
-#   display_name      = "research-deployed-index"
-#   depends_on        = [google_vertex_ai_index_endpoint.research_index_endpoint]
+resource "google_vertex_ai_index_endpoint_deployed_index" "research_deployed_index" {
+  provider          = google-beta
+  index             = google_vertex_ai_index.research_index.id
+  index_endpoint    = google_vertex_ai_index_endpoint.research_index_endpoint.id
+  # deployed_index_id = "research_deployed_index"   # ✅ underscore instead of hyphens
+  deployed_index_id = local.deployed_index_id
+  display_name      = "research-deployed-index"
+  depends_on        = [google_vertex_ai_index_endpoint.research_index_endpoint]
 
-#   automatic_resources {
-#     min_replica_count = 1
-#     max_replica_count = 1
-#   }
-# }
-
-
-
-
-
-
-
-
-
-
-# OLD 
-# _____________________
-
-# resource "google_vertex_ai_index_endpoint_deployed_index" "research_deployed_index" {
-#   provider          = google-beta
-#   index             = google_vertex_ai_index.research_index.id
-#   index_endpoint    = google_vertex_ai_index_endpoint.research_index_endpoint.id
-#   deployed_index_id = "research-deployed-index-id"
-#   display_name      = "research-deployed-index"
-#   depends_on        = [google_vertex_ai_index_endpoint.research_index_endpoint]
-
-#   automatic_resources {
-#     min_replica_count = 1
-#     max_replica_count = 1
-#   }
-# }
+  automatic_resources {
+    min_replica_count = 1
+    max_replica_count = 1
+  }
+}
 
 # -----------------------------
 # Redis (Memorystore)
@@ -189,14 +164,6 @@ resource "google_vpc_access_connector" "serverless_connector" {
   # min_throughput = 200
   # max_throughput = 300
 }
-
-# resource "google_vpc_access_connector" "serverless_connector" {
-#   name          = local.vpc_connector_name
-#   region        = var.region
-#   network       = "default"
-#   ip_cidr_range = "10.8.0.0/28"
-#   depends_on    = [google_project_service.vpc_access_api]
-# }
 
 # -----------------------------
 # Service Account
@@ -258,6 +225,11 @@ resource "google_cloud_run_v2_service" "research_app" {
       ports {
         container_port = 8080
       }
+      
+      # # Override the CMD temporarily for testing
+      # command = ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+
       # ADD MEMORY LIMIT:
       resources {
         limits = {
@@ -300,6 +272,18 @@ resource "google_cloud_run_v2_service" "research_app" {
       	name = "ARANGODB_DATABASE"
 	value = var.arangodb_database
         }
+      env {
+      	name = "VECTOR_DB_TYPE"
+	value = var.vector_db_type
+        }
+      env {
+	name  = "VERTEX_AI_INDEX_ID"
+	value = google_vertex_ai_index.research_index.id
+	}
+      env {
+	name  = "VERTEX_AI_INDEX_ENDPOINT_ID" 
+	value = google_vertex_ai_index_endpoint.research_index_endpoint.id
+	}	
 
     }
 

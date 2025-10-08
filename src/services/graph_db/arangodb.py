@@ -118,9 +118,9 @@ class ArangoDBService(GraphDBService):
                 # collection.upsert({"_key": node.id}, document, return_new=False)
                 collection.insert(document, overwrite=True)
 
-                logger.debug(
-                    f"Upserted node: {node.id} in collection: {collection_name}"
-                )
+                # logger.debug(
+                #     f"Upserted node: {node.id} in collection: {collection_name}"
+                # )
                 return True
             except ArangoError as err:
                 logger.error(
@@ -158,8 +158,8 @@ class ArangoDBService(GraphDBService):
             # Use insert with overwrite=True to achieve an upsert
             collection.insert(document, overwrite=True)
 
-            logger.debug(
-                f"Upserted edge: {edge.id} in collection: {collection_name}")
+            # logger.debug(
+            #     f"Upserted edge: {edge.id} in collection: {collection_name}")
             return True
 
         except ArangoError as e:

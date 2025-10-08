@@ -45,12 +45,87 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Large files you don’t want in builds
+# Large files you don't want in builds
 data/
 datasets/
 models/
 
+# Build outputs
+dist/
+build/
+*.egg-info/
 
+# Documentation
+docs/
+*.md
 
+# Testing
+tests/
+test/
+.tox/
+
+# CI/CD
+.circleci/
+.travis.yml
+.github/
+
+# Local data and models
+*.pdf
+*.docx
+*.csv
+*.jsonl
+
+# Temporary files
+*.tmp
+*.temp
+
+# Cloud-specific
+.gcloudignore
+
+# Jupyter
+.jupyter/
+
+# macOS
+._*
+
+# Windows
+*.lnk
+
+# Large model files
+*.bin
+*.h5
+*.pkl
+*.pickle
+
+# Cache directories
+.cache/
+.mypy_cache/
+
+# Environment
+.venv*/
+env*/
+venv*/
+ENV/
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.ropeproject
+
+# VS Code
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local configuration
+local_settings.py
+local_config.py
+docker-compose.override.yml
+
+# Specific files to ignore
 docker-compose.yml
 Dockerfile.dev

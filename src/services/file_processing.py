@@ -20,6 +20,8 @@ from src.services.compliance import ComplianceFilter
 from src.models.paper import PaperCreate, Entity, Relation
 
 logger = logging.getLogger(__name__)
+#
+logging.basicConfig(level=logging.DEBUG)
 
 
 class FileProcessingService:
@@ -59,6 +61,7 @@ class FileProcessingService:
             if self.is_mock_mode:
                 logger.info(f"Mock: Storing file at {file_path}")
             else:
+                logger.info(f"Not Mock: Storing file at {file_path}")
                 await self.storage.upload_file(file_content, file_path)
 
             # Extract text from PDF
@@ -72,6 +75,9 @@ class FileProcessingService:
                 await self.storage.upload_file(text.encode('utf-8'), text_path)
 
             # Extract entities and relations
+            if self.is_mock_mode:
+                logger.info("Mock: Extracting entities and relations")
+
             entities, relations = await extract_entities_and_relations(text)
             if self.is_mock_mode:
                 logger.info(
@@ -81,11 +87,13 @@ class FileProcessingService:
             # Generate embeddings (mock or real)
             if self.is_mock_mode:
                 # Mock embedding vector
+                logger.info("Mock: Generating embedding_vector")
                 embedding_vector = [0.1] * settings.embedding_dimension
                 logger.info(
                     f"Mock: Generated embedding vector of length {len(embedding_vector)}"
                 )
             else:
+                logger.info(f"Not Mock: Generated embedding vector")
                 embeddings = await self.llm.generate_embeddings([text])
                 embedding_vector = embeddings[0] if embeddings else []
 
@@ -93,6 +101,9 @@ class FileProcessingService:
             (public_entities, public_relations, private_entities,
              private_relations) = self.compliance.filter_content(
                  entities, relations, is_public)
+
+            if self.is_mock_mode:
+                logger.info("Mock: compliance filtering done")
 
             # Prepare metadata for vector DB
             vector_metadata = {
@@ -117,6 +128,11 @@ class FileProcessingService:
                     }],
                     namespace="public")
 
+            if self.is_mock_mode:
+                logger.info("Mock: attempting to store in vector db")
+            else:
+                logger.debug("Not Mock: attempting to store in vector db")
+
             # Always add to user's private namespace
             await self.vector_db.upsert_embeddings(
                 vectors=[embedding_vector],
@@ -125,6 +141,11 @@ class FileProcessingService:
                     **vector_metadata, "namespace": user_id
                 }],
                 namespace=user_id)
+
+            if self.is_mock_mode:
+                logger.info("Mock: attempting to create Paper model")
+            else:
+                logger.debug("Not Mock: attempting to create Paper model")
 
             # Create paper model for database
             paper_data = PaperCreate(
@@ -141,13 +162,18 @@ class FileProcessingService:
                 file_hash=self._calculate_file_hash(file_content),
                 owner_id=user_id)
 
+            if self.is_mock_mode:
+                logger.info("Mock: storing in graph_db")
+            else:
+                logger.debug("Not Mock: storing in graph_db")
+
             # Store in graph DB (both public and private knowledge)
             await self._store_in_graph_db(user_id, doc_id, paper_data,
                                           public_entities, public_relations,
                                           private_entities, private_relations,
                                           is_public)
 
-            logger.info(
+            logger.debug(
                 f"Successfully processed file {filename} for user {user_id}")
 
             return {

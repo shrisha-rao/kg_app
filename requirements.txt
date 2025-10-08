@@ -1,19 +1,49 @@
+# fastapi #==0.116.1
+# uvicorn[standard] #==0.35.0
+# google-cloud-aiplatform #==1.90.0
+# google-cloud-storage #==2.57.0
+# google-cloud-firestore
+# python-arango #==8.2.2
+# redis #==5.0.1
+# pydantic #==2.11.9
+# pydantic-settings #==2.1.0
+# pydantic[email] #==3.10.0
+# spacy #==3.7.2
+# sentence-transformers #==5.1.0
+# huggingface-hub #==0.26.4
+# python-multipart #==0.0.20
+# numpy #==2.3.3
+# PyMuPDF>=1.22.0
+# Pillow>=9.0.0
+# pytesseract>=0.3.0
+
+
+
+
+
+# CORE WEB FRAMEWORK
 fastapi #==0.116.1
 uvicorn[standard] #==0.35.0
+python-multipart #==0.0.20
+
+# DATA VALIDATION (MUST CHOOSE ONE MAJOR VERSION - V2 RECOMMENDED)
+pydantic #==2.11.9
+pydantic-settings #==2.1.0
+pydantic-extra-types # to handle email validation in V2: install a separate library if needed
+pydantic[email]
+
+# DATA/ML/STORAGE
+numpy #==2.3.3
+pymupdf #==1.26.4
+Pillow>=9.0.0
+pytesseract>=0.3.0
+spacy #==3.7.2
+sentence-transformers #==5.1.0
+huggingface-hub #==0.26.4
+
+# CLOUD/DATABASE
 google-cloud-aiplatform #==1.90.0
 google-cloud-storage #==2.57.0
 google-cloud-firestore
 python-arango #==8.2.2
 redis #==5.0.1
-pydantic #==2.11.9
-pydantic-settings #==2.1.0
-pydantic[email] #==3.10.0
-pymupdf #==1.26.4
-spacy #==3.7.2
-sentence-transformers #==5.1.0
-huggingface-hub #==0.26.4
-python-multipart #==0.0.20
-numpy #==2.3.3
-PyMuPDF>=1.22.0
-Pillow>=9.0.0
-pytesseract>=0.3.0
