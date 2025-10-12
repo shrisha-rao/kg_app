@@ -83,7 +83,7 @@ resource "google_vertex_ai_index" "research_index" {
   metadata {
     contents_delta_uri     = "gs://${google_storage_bucket.research_data.name}/index/contents"
     config {
-      dimensions             = 768
+      dimensions             = 3072
       distance_measure_type  = "DOT_PRODUCT_DISTANCE"
       algorithm_config {
         tree_ah_config {
@@ -274,6 +274,10 @@ resource "google_cloud_run_v2_service" "research_app" {
       env {
       	name  = "USE_OLLAMA" 
 	value = "false"
+      }
+      env {
+        name = "VERTEX_AI_EMBEDDING_MODEL"
+	value = var.vertex_ai_embedding_model
       }
       env {
       	name = "EMBEDDING_DIMENSION"

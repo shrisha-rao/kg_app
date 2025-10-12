@@ -102,9 +102,6 @@ class QueryProcessingService:
             logger.info(
                 "Step 4: Query the knowledge graph for related entities")
             # Step 4: Query the knowledge graph for related entities
-            logger.info(f"Step 4a: query_text: {query.query_text}")
-            logger.info(f"Step 4b: query scope: {query.scope}")
-            logger.info(f"Step 4c: query user_id: {query.user_id}")
             graph_context = await self._query_knowledge_graph(
                 query.query_text, query.scope, query.user_id)
 
@@ -225,11 +222,6 @@ class QueryProcessingService:
                                      user_id: str) -> str:
         """Query the knowledge graph for entities and relationships related to the query"""
         try:
-            # FIX: Add a safety check for uninitialized graph DB
-            if self.graph_db is None:
-                logger.warning("Knowledge Graph service is not initialized.")
-                return "Knowledge Graph service is unavailable or failed to initialize."
-
             # Extract key entities from the query
             entities = await self._extract_entities_from_query(query_text)
 

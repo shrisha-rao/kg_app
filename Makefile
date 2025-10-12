@@ -1,6 +1,6 @@
 # Define Variables
 IMAGE_REPO := gcr.io/kg-app-473211/research-app
-TAG := v0.0.4 # latest
+TAG := v0.0.12 # latest
 IMAGE_TAG := $(IMAGE_REPO):$(TAG)
 DOCKERFILE := Dockerfile.cloud_dev
 TF_DIR := infrastructure/dev

@@ -75,9 +75,14 @@ variable "vector_db_type" {
   type        = string
 }
 
+variable "vertex_ai_embedding_model" {
+  type        = string
+  default = "gemini-embedding-001"
+}
+
 variable "embedding_dimension" {
   type 	      = number
-  default = 768
+  default = 3072
 }
 
 variable "my_var" {

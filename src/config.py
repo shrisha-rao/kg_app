@@ -45,7 +45,8 @@ class Settings(BaseSettings):
     arangodb_test_db: str = Field("test", env="ARANGODB_TEST_DB")
 
     # LLM
-    vertex_ai_llm_model: str = Field("text-bison@001",
+    #"text-bison@001",
+    vertex_ai_llm_model: str = Field("gemini-2.5-flash",
                                      env="VERTEX_AI_LLM_MODEL")
 
     # Redis
@@ -56,14 +57,16 @@ class Settings(BaseSettings):
     secret_key: str = Field("dev-secret-key", env="SECRET_KEY")
 
     # Embedding Configuration
-    embedding_type: str = Field("local",
+    embedding_type: str = Field("vertex_ai",
                                 env="EMBEDDING_TYPE")  # "local" or "vertex_ai"
     local_embedding_model: str = Field(
         "all-mpnet-base-v2", env="LOCAL_EMBEDDING_MODEL")  #  all-MiniLM-L6-v2
-    vertex_ai_embedding_model: str = Field("textembedding-gecko@001",
+    #"textembedding-gecko@002",
+    vertex_ai_embedding_model: str = Field("gemini-embedding-001",
                                            env="VERTEX_AI_EMBEDDING_MODEL")
-    embedding_dimension: int = Field(768, env="EMBEDDING_DIMENSION")
+    embedding_dimension: int = Field(3072, env="EMBEDDING_DIMENSION")
     # 384 for all-MiniLM-L6-v2 # 768 forall-mpnet-base-v2
+    # 3072 for gemini-embedding-001
 
     # Other Vector DB options
     pinecone_api_key: str = Field("", env="PINECONE_API_KEY")
