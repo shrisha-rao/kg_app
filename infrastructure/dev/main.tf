@@ -78,6 +78,7 @@ resource "google_vertex_ai_index" "research_index" {
   description  = "Index for research paper embeddings"
   region       = var.region
   depends_on   = [google_project_service.vertex_ai_api]
+  index_update_method = "STREAM_UPDATE"
 
   metadata {
     contents_delta_uri     = "gs://${google_storage_bucket.research_data.name}/index/contents"
@@ -210,6 +211,10 @@ resource "google_compute_router_nat" "nat_config" {
 }
 
 
+# resource "random_id" "force_update" {
+#   byte_length = 8
+# }
+
 # -----------------------------
 # Cloud Run (v2)
 # -----------------------------
@@ -221,7 +226,7 @@ resource "google_cloud_run_v2_service" "research_app" {
 
   template {
     containers {
-      image = "gcr.io/${var.project_id}/research-app:latest"
+      image = "gcr.io/${var.project_id}/research-app:${var.image_tag}"
       ports {
         container_port = 8080
       }
@@ -233,9 +238,23 @@ resource "google_cloud_run_v2_service" "research_app" {
       # ADD MEMORY LIMIT:
       resources {
         limits = {
-          memory = "1Gi"  # Increase from 512Mi to 1Gi
+          memory = "2Gi"  # Increase from 512Mi to 1Gi
+	  cpu = "1"
         }
-      }      
+      }
+
+      # env {
+      #   name  = "FORCE_UPDATE"
+      # 	value = random_id.force_update.hex
+      # }
+
+      env {
+      	 name = "my_var"
+	 value = var.my_var
+      
+      }
+     
+      
       env {
         name  = "GCP_PROJECT_ID"
         value = var.project_id
@@ -255,6 +274,10 @@ resource "google_cloud_run_v2_service" "research_app" {
       env {
       	name  = "USE_OLLAMA" 
 	value = "false"
+      }
+      env {
+      	name = "EMBEDDING_DIMENSION"
+	value = var.embedding_dimension
       }
       env {
         name  = "ARANGODB_HOST"
@@ -278,11 +301,18 @@ resource "google_cloud_run_v2_service" "research_app" {
         }
       env {
 	name  = "VERTEX_AI_INDEX_ID"
-	value = google_vertex_ai_index.research_index.id
+	# FIX: Use split and element to get the bare ID from the full resource path (.id)
+        value = element(split("/", google_vertex_ai_index.research_index.id), -1)
+	# google_vertex_ai_index.research_index.id
+	# value = google_vertex_ai_index.research_index.index_id	
 	}
       env {
 	name  = "VERTEX_AI_INDEX_ENDPOINT_ID" 
 	value = google_vertex_ai_index_endpoint.research_index_endpoint.id
+	}
+      env {
+        name  = "VERTEX_AI_DEPLOYED_INDEX_ID"
+	value = local.deployed_index_id
 	}	
 
     }

@@ -27,6 +27,11 @@ class Settings(BaseSettings):
                                              env="VERTEX_AI_INDEX_ENDPOINT_ID")
     vertex_ai_index_region: str = Field("us-central1",
                                         env="VERTEX_AI_INDEX_REGION")
+
+    vertex_ai_deployed_index_id: str = Field(
+        default="research_deployed_index_v1",
+        env="VERTEX_AI_DEPLOYED_INDEX_ID")
+
     matching_engine_batch_size: int = Field(100,
                                             env="MATCHING_ENGINE_BATCH_SIZE")
     matching_engine_rps_limit: int = Field(10, env="MATCHING_ENGINE_RPS_LIMIT")
@@ -53,12 +58,12 @@ class Settings(BaseSettings):
     # Embedding Configuration
     embedding_type: str = Field("local",
                                 env="EMBEDDING_TYPE")  # "local" or "vertex_ai"
-    local_embedding_model: str = Field("all-MiniLM-L6-v2",
-                                       env="LOCAL_EMBEDDING_MODEL")
+    local_embedding_model: str = Field(
+        "all-mpnet-base-v2", env="LOCAL_EMBEDDING_MODEL")  #  all-MiniLM-L6-v2
     vertex_ai_embedding_model: str = Field("textembedding-gecko@001",
                                            env="VERTEX_AI_EMBEDDING_MODEL")
-    embedding_dimension: int = Field(
-        384, env="EMBEDDING_DIMENSION")  # 384 for all-MiniLM-L6-v2
+    embedding_dimension: int = Field(768, env="EMBEDDING_DIMENSION")
+    # 384 for all-MiniLM-L6-v2 # 768 forall-mpnet-base-v2
 
     # Other Vector DB options
     pinecone_api_key: str = Field("", env="PINECONE_API_KEY")

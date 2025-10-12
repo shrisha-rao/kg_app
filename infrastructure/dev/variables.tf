@@ -22,6 +22,12 @@ variable "app_version" {
   type        = string
 }
 
+variable "image_tag" {
+  description = "The unique tag for the Docker image to deploy."
+  type        = string
+}
+
+
 variable "arangodb_instance_size" {
   type        = string
   default     = "small"
@@ -68,6 +74,17 @@ variable "embedding_model" {
 variable "vector_db_type" {
   type        = string
 }
+
+variable "embedding_dimension" {
+  type 	      = number
+  default = 768
+}
+
+variable "my_var" {
+  type        = string
+  
+}
+
 
 variable "labels" {
   description = "A map of labels to apply to resources"

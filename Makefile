@@ -1,6 +1,6 @@
 # Define Variables
 IMAGE_REPO := gcr.io/kg-app-473211/research-app
-TAG := latest
+TAG := v0.0.4 # latest
 IMAGE_TAG := $(IMAGE_REPO):$(TAG)
 DOCKERFILE := Dockerfile.cloud_dev
 TF_DIR := infrastructure/dev
@@ -30,7 +30,7 @@ push: build-fast
 terraform-apply:
 	@echo "Running Terraform apply..."
 	cd $(TF_DIR) && terraform init
-	cd $(TF_DIR) && terraform apply -auto-approve
+	cd $(TF_DIR) && terraform apply -auto-approve -var="image_tag=$(TAG)"
 
 # 5. Full Deployment (Build Fast -> Push -> Terraform)
 deploy: push terraform-apply

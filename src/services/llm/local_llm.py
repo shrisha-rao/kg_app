@@ -16,7 +16,8 @@ logger = logging.getLogger(__name__)
 class LocalLLMService(LLMService):
     """Local LLM service using sentence-transformers for embeddings"""
 
-    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+    def __init__(self,
+                 model_name: str = "all-mpnet-base-v2"):  #"all-MiniLM-L6-v2"):
         logger.info(f"Initializing Local LLM Service with model: {model_name}")
         self.model = SentenceTransformer(model_name)
         self.embedding_dimension = self.model.get_sentence_embedding_dimension(
@@ -72,4 +73,6 @@ class LocalLLMService(LLMService):
 
     async def get_available_models(self) -> List[str]:
         """Get available local models"""
-        return ["all-MiniLM-L6-v2", "paraphrase-MiniLM-L3-v2"]
+        return [
+            "all-MiniLM-L6-v2", "paraphrase-MiniLM-L3-v2", "all-mpnet-base-v2"
+        ]

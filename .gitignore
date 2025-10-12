@@ -35,6 +35,7 @@ research-graph-env/
 
 # Environment variables
 .env
+.env*
 
 
 # GCP

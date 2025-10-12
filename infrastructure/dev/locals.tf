@@ -9,8 +9,8 @@
 
 locals {
   # Versioned IDs
-  vertex_index_id = "research-index-v1"
-  deployed_index_id = "research_deployed_index_v1"
+  vertex_index_id = "research-index-v2"
+  deployed_index_id = "research_deployed_index_v2"
 
   # Common resource names
   cloud_run_service_name = "research-knowledge-graph-app"

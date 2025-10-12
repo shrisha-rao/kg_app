@@ -44,6 +44,9 @@ class FileProcessingService:
         """
         Process an uploaded research paper file with mock support
         """
+        logger.info(f"Using vector DB type: {settings.vector_db_type}")
+        logger.info(f"Is mock mode: {self.is_mock_mode}")
+        #
         if metadata is None:
             metadata = {}
 
@@ -128,6 +131,19 @@ class FileProcessingService:
                     }],
                     namespace="public")
 
+                # #
+                # stats = await self.vector_db.get_index_stats()
+                # logger.info(f"Vector DB stats after upsert public: {stats}")
+
+                # After the upsert_embeddings call, add:
+                try:
+                    stats = await self.vector_db.get_index_stats()
+                    logger.info(f"Vector DB stats: {stats}")
+                except Exception as e:
+                    logger.error(f"Could not get vector DB stats: {e}")
+
+            ####
+
             if self.is_mock_mode:
                 logger.info("Mock: attempting to store in vector db")
             else:
@@ -141,6 +157,9 @@ class FileProcessingService:
                     **vector_metadata, "namespace": user_id
                 }],
                 namespace=user_id)
+            #
+            stats = await self.vector_db.get_index_stats()
+            logger.info(f"Vector DB stats after private  upsert: {stats}")
 
             if self.is_mock_mode:
                 logger.info("Mock: attempting to create Paper model")
@@ -165,7 +184,7 @@ class FileProcessingService:
             if self.is_mock_mode:
                 logger.info("Mock: storing in graph_db")
             else:
-                logger.debug("Not Mock: storing in graph_db")
+                logger.info("Not Mock: storing in graph_db")
 
             # Store in graph DB (both public and private knowledge)
             await self._store_in_graph_db(user_id, doc_id, paper_data,
@@ -173,7 +192,7 @@ class FileProcessingService:
                                           private_entities, private_relations,
                                           is_public)
 
-            logger.debug(
+            logger.info(
                 f"Successfully processed file {filename} for user {user_id}")
 
             return {

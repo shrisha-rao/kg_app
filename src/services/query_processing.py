@@ -82,30 +82,40 @@ class QueryProcessingService:
                     f"Returning cached response for query: {query.query_text}")
                 return QueryResponse(**json.loads(cached_response))
 
+            logger.info("step 1: Generating query embedding")
+
             # Step 1: Generate query embedding
             query_embedding = await self._generate_query_embedding(
                 query.query_text)
+
+            logger.info("step 2: Search for relevant papers in vector DB")
 
             # Step 2: Search for relevant papers in vector DB
             relevant_papers = await self._search_relevant_papers(
                 query_embedding, query.scope, query.user_id, top_k=10)
 
+            logger.info("step 3: Extract context from relevant papers")
             # Step 3: Extract context from relevant papers
             context = await self._build_context(relevant_papers,
                                                 query.query_text)
 
+            logger.info(
+                "Step 4: Query the knowledge graph for related entities")
             # Step 4: Query the knowledge graph for related entities
             graph_context = await self._query_knowledge_graph(
                 query.query_text, query.scope, query.user_id)
 
+            logger.info("Step 5: Generate answer using LLM")
             # Step 5: Generate answer using LLM
             answer = await self._generate_answer(query.query_text, context,
                                                  graph_context,
                                                  query.query_type)
 
+            logger.info("Step 6: Extract citations from the answer")
             # Step 6: Extract citations from the answer
             citations = await self._extract_citations(answer, relevant_papers)
 
+            logger.info("Step 7: Create response")
             # Step 7: Create response
             response = QueryResponse(
                 query_id=

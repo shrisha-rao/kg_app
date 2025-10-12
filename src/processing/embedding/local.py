@@ -26,8 +26,12 @@ class LocalEmbeddingGenerator(EmbeddingGenerator):
             self.logger.error(
                 f"Failed to load model {self.model_name}: {str(e)}")
             # Fallback to a default model
-            self.logger.info("Loading default model: all-MiniLM-L6-v2")
-            return SentenceTransformer("all-MiniLM-L6-v2")
+            self.logger.info(
+                f"Loading default model: {settings.local_embedding_model}")
+            # all-MiniLM-L6-v2
+            return SentenceTransformer(settings.local_embedding_model)
+            #"all-mpnet-base-v2")
+            #"all-MiniLM-L6-v2"):
 
     def generate_embedding(self, text: str) -> List[float]:
         """Generate embedding for a single text string."""
