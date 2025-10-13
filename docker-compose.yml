@@ -54,7 +54,8 @@ services:
     environment:
       - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
       - REDIS_HOST=redis
-      - GCP_PROJECT_ID=dev-project      
+      - GCP_PROJECT_ID=dev-project
+      - NER_EXTRACTION_METHOD=kg_gen
     volumes:
       - .:/app:delegated
     ports:

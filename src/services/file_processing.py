@@ -11,7 +11,7 @@ import hashlib
 from typing import Dict, Any, List
 from src.config import settings
 from src.processing.pdf_extractor import extract_text_from_pdf
-from src.processing.ner_extractor import extract_entities_and_relations
+# from src.processing.ner_extractor import extract_entities_and_relations
 from src.services.vector_db import get_vector_db_service
 from src.services.graph_db import get_graph_db_service, Node, Edge  # Import Node and Edge
 from src.services.storage import get_storage_service
@@ -81,7 +81,24 @@ class FileProcessingService:
             if self.is_mock_mode:
                 logger.info("Mock: Extracting entities and relations")
 
-            entities, relations = await extract_entities_and_relations(text)
+            # entities, relations = await extract_entities_and_relations(text)
+            logger.info("x" * 51)
+            logger.info("=" * 51)
+            logger.info(
+                f"ner_extraction_method: {settings.ner_extraction_method} ")
+            logger.info("=" * 51)
+            logger.info("x" * 51)
+            # In file_processing.py
+            if settings.ner_extraction_method == "kg_gen":
+                from src.processing.kg_gen_extractor import extract_entities_and_relations_with_kg_gen
+                logger.info("NER using kg-gen")
+                entities, relations = await extract_entities_and_relations_with_kg_gen(
+                    text)
+            else:
+                from src.processing.ner_extractor import extract_entities_and_relations
+                entities, relations = await extract_entities_and_relations(text
+                                                                           )
+
             if self.is_mock_mode:
                 logger.info(
                     f"Mock: Extracted {len(entities)} entities and {len(relations)} relations"
@@ -158,8 +175,8 @@ class FileProcessingService:
                 }],
                 namespace=user_id)
             #
-            stats = await self.vector_db.get_index_stats()
-            logger.info(f"Vector DB stats after private  upsert: {stats}")
+            #stats = await self.vector_db.get_index_stats()
+            # logger.info(f"Vector DB stats after private  upsert: {stats}")
 
             if self.is_mock_mode:
                 logger.info("Mock: attempting to create Paper model")

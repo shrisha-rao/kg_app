@@ -86,7 +86,9 @@ def debug_env():
         "USE_MOCK_SERVICES": os.getenv("USE_MOCK_SERVICES"),
         "ARANGODB_USERNAME": os.getenv("ARANGODB_USERNAME"),
         "GCP_PROJECT_ID": os.getenv("GCP_PROJECT_ID"),
-        "VERTEX_AI_DEPLOYED_INDEX_ID": os.getenv("VERTEX_AI_DEPLOYED_INDEX_ID")
+        "VERTEX_AI_DEPLOYED_INDEX_ID":
+        os.getenv("VERTEX_AI_DEPLOYED_INDEX_ID"),
+        "NER_EXTRACTION_METHOD": os.getenv("NER_EXTRACTION_METHOD")
     }
 
 

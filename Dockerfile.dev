@@ -1,5 +1,5 @@
 # Dockerfile.dev
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # 1. Install Build Tools and Runtime Deps (Layer 1 - rarely changes, fully cached)
 # Use --no-install-recommends to speed up apt-get and slightly reduce size.
@@ -18,8 +18,7 @@ COPY requirements.txt requirements-dev.txt ./
 
 # 3. Install Dependencies (Layer 3 - changes when the files above change, the slowest step)
 # Keep this as one line to minimize layers.
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt
 
 # ⛔ IMPORTANT: The code is NOT copied here. It is VOLUME MOUNTED at runtime.
 

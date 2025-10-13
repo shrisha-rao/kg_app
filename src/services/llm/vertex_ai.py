@@ -71,41 +71,6 @@ class VertexAILLMService(LLMService):
             logger.error(f"Error generating response from Vertex AI: {e}")
             raise
 
-    # async def generate_response_OLD(self,
-    #                             prompt: str,
-    #                             context: Optional[str] = None,
-    #                             temperature: float = 0.2,
-    #                             max_tokens: int = 1024,
-    #                             **kwargs) -> LLMResponse:
-    #     """Generate a response from Vertex AI LLM"""
-    #     try:
-    #         # Combine context and prompt if context is provided
-    #         full_prompt = f"{context}\n\n{prompt}" if context else prompt
-
-    #         response = self.text_model.generate_content(
-    #             full_prompt,
-    #             temperature=temperature,
-    #             max_output_tokens=max_tokens,
-    #             **kwargs)
-
-    #         # response = self.text_model.predict(full_prompt,
-    #         #                                    temperature=temperature,
-    #         #                                    max_output_tokens=max_tokens,
-    #         #                                    **kwargs)
-
-    #         return LLMResponse(
-    #             content=response.text,
-    #             model=self.default_model,
-    #             confidence=
-    #             0.8,  # Vertex AI doesn't provide confidence scores directly
-    #             tokens_used=len(
-    #                 response.text.split())  # Approximate token count
-    #         )
-
-    #     except Exception as e:
-    #         logger.error(f"Error generating response from Vertex AI: {e}")
-    #         raise
-
     async def generate_structured_response(self,
                                            prompt: str,
                                            response_format: Dict[str, Any],
@@ -119,10 +84,15 @@ class VertexAILLMService(LLMService):
             format_instruction = f"Please respond in the following JSON format: {response_format}"
             full_prompt = f"{context}\n\n{format_instruction}\n\n{prompt}" if context else f"{format_instruction}\n\n{prompt}"
 
-            response = self.text_model.predict(full_prompt,
-                                               temperature=temperature,
-                                               max_output_tokens=max_tokens,
-                                               **kwargs)
+            config = GenerationConfig(temperature=temperature,
+                                      max_output_tokens=max_tokens)
+            response = self.text_model.generate_content(
+                full_prompt, generation_config=config, **kwargs)
+
+            # response = self.text_model.predict(full_prompt,
+            #                                    temperature=temperature,
+            #                                    max_output_tokens=max_tokens,
+            #                                    **kwargs)
 
             # In a real implementation, you would parse the JSON response here
             # For now, return a placeholder

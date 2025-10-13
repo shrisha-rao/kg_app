@@ -47,3 +47,6 @@ google-cloud-storage #==2.57.0
 google-cloud-firestore
 python-arango #==8.2.2
 redis #==5.0.1
+
+# kg-gen
+# kg-gen

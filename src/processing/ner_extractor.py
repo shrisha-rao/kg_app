@@ -20,10 +20,10 @@ from src.models.paper import Entity, Relation
 from src.config import settings
 from src.services.llm import get_llm_service
 
-import spacy
-from spacy import displacy
-from spacy.tokens import Span
-from spacy.matcher import Matcher
+# import spacy
+# from spacy import displacy
+# from spacy.tokens import Span
+# from spacy.matcher import Matcher
 
 logger = logging.getLogger(__name__)
 
@@ -47,10 +47,10 @@ class NERExtractor:
         """Extract entities and relations using spaCy"""
         try:
             # Import spacy (we'll handle the import here to avoid dependency issues if not using spacy)
-            # import spacy
-            # from spacy import displacy
-            # from spacy.tokens import Span
-            # from spacy.matcher import Matcher
+            import spacy
+            from spacy import displacy
+            from spacy.tokens import Span
+            from spacy.matcher import Matcher
 
             #pdb.set_trace()  # Set a breakpoint here
 

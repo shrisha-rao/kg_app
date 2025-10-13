@@ -35,7 +35,7 @@ RUN pip install --no-cache-dir --user -r requirements.txt
 
 # Pre-download ML models - VERIFY DOWNLOAD
 RUN python -c "from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-mpnet-base-v2'); print(f'Model downloaded: {model}')"
-RUN python -m spacy download en_core_web_sm
+# RUN python -m spacy download en_core_web_sm
 
 # Cleanup - BUT PRESERVE MODEL CACHE
 RUN rm -rf /root/.cache/torch \

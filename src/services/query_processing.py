@@ -105,8 +105,11 @@ class QueryProcessingService:
             logger.info(f"Step 4a: query_text: {query.query_text}")
             logger.info(f"Step 4b: query scope: {query.scope}")
             logger.info(f"Step 4c: query user_id: {query.user_id}")
+            logger.info(f"Step 4d: query type: {query.query_type}")
             graph_context = await self._query_knowledge_graph(
                 query.query_text, query.scope, query.user_id)
+
+            logger.info(f"Step 4e: graph_context: {graph_context}")
 
             logger.info("Step 5: Generate answer using LLM")
             # Step 5: Generate answer using LLM
