@@ -100,3 +100,7 @@ __pycache__/
 flycheck_*.py
 
 src/typescript
+
+notebooks/*.json
+*.pdf
+*.html
