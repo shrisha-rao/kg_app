@@ -24,12 +24,6 @@ logger = logging.getLogger(__name__)
 def get_llm_service():
     """Return appropriate LLM service based on environment and configuration"""
 
-    # Use mock service if we're using emulators
-    if settings.use_mock_services or settings.vector_db_type == "mock":
-        from .mock_llm import MockLLMService
-        logger.info("Using Mock LLM Service (development mode)")
-        return MockLLMService()
-
     # Use local embeddings if configured
     if settings.embedding_type == "local":
         from .local_llm import LocalLLMService
@@ -37,6 +31,12 @@ def get_llm_service():
             f"Using Local LLM Service with model: {settings.local_embedding_model}"
         )
         return LocalLLMService(model_name=settings.local_embedding_model)
+
+    # Use mock service if we're using emulators
+    if settings.use_mock_services or settings.vector_db_type == "mock":
+        from .mock_llm import MockLLMService
+        logger.info("Using Mock LLM Service (development mode)")
+        return MockLLMService()
 
     # Otherwise use the real Vertex AI service
     try:

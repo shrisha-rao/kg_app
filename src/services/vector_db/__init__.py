@@ -21,6 +21,12 @@ from src.config import settings
 
 def get_vector_db_service() -> VectorDBService:
     """Factory function to get the appropriate VectorDB service."""
+    print('x=' * 50)
+    print(settings.vector_db_type)
+    settings.vector_db_type = "mock"
+    print(f"{settings.vertex_ai_llm_model}")
+    print(settings.vector_db_type)
+    print('=x' * 50)
     if settings.vector_db_type == "vertex_ai_matching_engine":
         from .vertex_ai_matching_engine import VertexAIMatchingEngineService
         return VertexAIMatchingEngineService()

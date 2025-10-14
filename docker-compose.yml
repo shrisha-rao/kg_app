@@ -20,6 +20,16 @@ services:
     ports:
       - "6379:6379"
 
+
+  # -------------------------
+  # Local ollama
+  # -------------------------
+  ollama:
+    image: ollama/ollama
+    container_name: research-ollama
+    ports:
+      - "11434:11434"
+      
   # -------------------------
   # ArangoDB Graph Database
   # -------------------------
@@ -51,17 +61,26 @@ services:
     container_name: research-web
     env_file:
       - .env.local
+      #- .env.cloud_dev       
     environment:
       - FIRESTORE_EMULATOR_HOST=firestore-emulator:8080
       - REDIS_HOST=redis
       - GCP_PROJECT_ID=dev-project
       - NER_EXTRACTION_METHOD=kg_gen
+      - LITELLM_API_BASE=http://host.docker.internal:11434      
+      - LITELLM_MODEL=ollama/tinyllama
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
+      - USE_MOCK_SERVICES=true
+      - VECTOR_DB_TYPE="mock" #  "vertex_ai_matching_engine"  #
+      - GCP_PROJECT_ID=kg-app-473211
+      - GCP_REGION=us-central1
     volumes:
       - .:/app:delegated
+      - ${HOME}/.config/gcloud:/root/.config/gcloud:ro      
     ports:
       - "8000:8000"
       - "8888:8888" # JUPYTER for dev REMOVE       
-    command: >
+    command: > 
       uvicorn src.main:app
       --host 0.0.0.0
       --port 8000
@@ -75,8 +94,10 @@ services:
       arangodb:
         condition: service_healthy
       init_with_arango:
-        condition: service_completed_successfully        
-
+        condition: service_completed_successfully
+      # ollama:
+      #   condition: service_started
+        
   # -------------------------
   # Jupyter Notebook
   # -------------------------

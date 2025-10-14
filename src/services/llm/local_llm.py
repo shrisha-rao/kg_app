@@ -2,6 +2,7 @@
 import logging
 import os
 import aiohttp
+import json
 from typing import Dict, List, Optional, Any
 from sentence_transformers import SentenceTransformer
 from .base import LLMService, LLMResponse
@@ -20,6 +21,9 @@ class LocalLLMService(LLMService):
         )
         # Ollama config
         self.use_ollama = os.getenv("USE_OLLAMA", "false").lower() == "true"
+
+        self.use_ollama = True
+
         self.ollama_model = os.getenv("OLLAMA_MODEL", "tinyllama")
         self.ollama_host = os.getenv("OLLAMA_HOST", "http://ollama:11434")
 
@@ -159,7 +163,6 @@ class LocalLLMService(LLMService):
         logger.info(f"Ollama raw response: {response.content}")  # Add this
 
         try:
-            import json
             result = json.loads(response.content)
             logger.info(f"Parsed JSON: {result}")  # Add this
             return result

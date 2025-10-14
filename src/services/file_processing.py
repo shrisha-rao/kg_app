@@ -20,7 +20,6 @@ from src.services.compliance import ComplianceFilter
 from src.models.paper import PaperCreate, Entity, Relation
 
 logger = logging.getLogger(__name__)
-#
 logging.basicConfig(level=logging.DEBUG)
 
 

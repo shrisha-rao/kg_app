@@ -24,22 +24,27 @@ class KGGENExtractor:
         try:
             from kg_gen import KGGen
 
-            if settings.use_mock_services or settings.vector_db_type == "mock":
-                self.kg_gen = KGGen(
-                    model=f"ollama/tinyllama",
-                    temperature=0.0,  # Deterministic output
-                    api_key=
-                    None  # Set if using OpenAI, otherwise use local models
-                )
+            # if settings.use_mock_services or settings.vector_db_type == "mock":
+            #     logger.info("=" * 21)
+            #     logger.info("USING local Da LAMMA di llama === dilillama")
+            #     logger.info("=" * 21)
+            #     self.kg_gen = KGGen(
+            #         model=f"ollama/tinyllama",
+            #         temperature=0.0,  # Deterministic output
+            #         api_base="http://host.docker.internal:11434",
+            #         api_key=None)
+            #
+            # API_KEY Set if using OpenAI, otherwise use local models
 
-            else:
-                # Initialize KG-Gen with configuration
-                self.kg_gen = KGGen(
-                    model=f"vertex_ai/{settings.vertex_ai_llm_model}",
-                    temperature=0.0,  # Deterministic output
-                    api_key=
-                    None  # Set if using OpenAI, otherwise use local models
-                )
+            # else:
+            # Initialize KG-Gen with configuration
+
+            self.kg_gen = KGGen(
+                model=
+                f"vertex_ai/gemini-2.5-flash",  #"{settings.vertex_ai_llm_model}",
+                temperature=0.0,  # Deterministic output
+                api_key=None  # Set if using OpenAI, otherwise use local models
+            )
             logger.info("KG-Gen initialized successfully")
 
         except ImportError as e:
@@ -78,9 +83,97 @@ class KGGENExtractor:
     async def _run_kg_gen_extraction(self, text: str) -> dict:
         """Run the actual KG-Gen extraction pipeline"""
         try:
-            # For research papers, use appropriate context
-            context = "Scientific research paper with entities and relationships"
+            # === TEMPORARY QUICK CHECK MOCK START ===
+            # Set a flag or check for a specific keyword in the text to trigger the mock
+            if "QUICK_CHECK_MOCK_KG-GEN" in text:
+                logger.info("MOCKING KG-Gen extraction for quick check.")
 
+                # Use the triple from your failed log, plus its entities
+                mock_entities = {"NATURE", "Nature Publishing Group"}
+                mock_relations = {("NATURE", "published by",
+                                   "Nature Publishing Group")}
+
+                return {"entities": mock_entities, "relations": mock_relations}
+            # === TEMPORARY QUICK CHECK MOCK END ===
+
+            ############## ## ## ## ## ## ## ## ### #### ##### ###### ### ## ## #
+            # For research papers, use appropriate context
+            # context = "Scientific research paper with entities and relationships"
+            context = """
+            Research Paper Knowledge Graph Extraction
+
+            Extract key elements and relationships to build a 
+            comprehensive knowledge graph from academic literature.
+
+            **CORE ELEMENTS TO EXTRACT:**
+
+            1. **CONCEPTS:** Fundamental ideas, theories, frameworks, hypotheses, principles
+            2. **ENTITIES:** Key objects, subjects, or components relevant to the domain
+            3. **METHODS:** Approaches, techniques, procedures, methodologies, algorithms
+            4. **DATA:** Findings, results, measurements, observations, statistics
+            5. **CONTEXTS:** Domains, fields, systems, environments where research occurs
+            6. **AUTHORS:** Researchers, scholars, contributors (include full names and affiliations)
+            7. **ORGANIZATIONS:** Institutions, universities, companies, research centers, departments
+            8. **PUBLICATION_VENUES:** Journals, conferences, proceedings, books
+
+            **RELATIONSHIP TYPES (Edges):**
+
+            **RESEARCH CONTENT RELATIONSHIPS:**
+            1. **INVESTIGATES/EXAMINES:** (Research/Study) → (Concept/Problem/Phenomenon)
+            2. **PROPOSES/HYPOTHESIZES:** (Paper/Author) → (Theory/Concept/Framework)
+            3. **USES/EMPLOYS:** (Study/Method) → (Technique/Approach/Tool)
+            4. **PRODUCES/GENERATES:** (Method/Experiment) → (Result/Data/Finding)
+            5. **DEMONSTRATES/SHOWS:** (Evidence/Data) → (Relationship/Effect/Pattern)
+            6. **SUPPORTS/CHALLENGES:** (Finding/Result) → (Hypothesis/Theory/Claim)
+            7. **COMPARES/CONTRASTS:** (Study/Analysis) → (Approaches/Models/Results)
+            8. **EXTENDS/BUILDS_ON:** (CurrentWork) → (PreviousWork/Foundation)
+
+            **AUTHORSHIP & COLLABORATION RELATIONSHIPS:**
+            9. **AUTHORED_BY:** (Paper) → (Author)
+            10. **AFFILIATED_WITH:** (Author) → (Organization/Institution)
+            11. **COLLABORATES_WITH:** (Author/Organization) → (Author/Organization)
+            12. **LEADS/RESPONSIBLE_FOR:** (Author) → (Study/Method/Concept) [when clear from context]
+            13. **CONTRIBUTES_TO:** (Author/Organization) → (Field/Domain/Advancement)
+
+            **ORGANIZATIONAL & CONTEXTUAL RELATIONSHIPS:**
+            14. **APPLIES_TO:** (Method/Theory) → (Domain/Context/Problem)
+            15. **FUNDED_BY/SUPPORTED_BY:** (Research/Paper) → (Organization/FundingBody)
+            16. **PUBLISHED_IN:** (Paper) → (PublicationVenue)
+            17. **LOCATED_IN:** (Organization/Study) → (Location/Country/Region)
+            18. **SPECIALIZES_IN:** (Organization/Author) → (Domain/Field/Technique)
+
+            **EXTRACTION GUIDELINES:**
+
+            - Capture author full names and their organizational affiliations
+            - Note corresponding authors and leadership roles when evident
+            - Extract institutional hierarchies (department → university → country)
+            - Identify collaboration patterns between authors and organizations
+            - Include funding sources and supporting organizations
+            - Capture publication context (journal, conference, year)
+            - Prioritize relationships that reveal research networks and institutional contributions
+            - Maintain distinction between research content and authorship metadata
+
+            **OUTPUT FORMAT:**
+            You MUST respond with a single JSON object. The object MUST contain a key 
+            called "relations", which holds an array of all the extracted triple objects. 
+            Each triple object MUST have the three keys: "subject", "predicate", and "object".
+            
+            Example of the ABSOLUTELY REQUIRED output JSON format:
+            {
+                "relations": [
+                    {
+                        "subject": "Einstein",
+                        "predicate": "proposed",
+                        "object": "Theory of Relativity"
+                    },
+                    {
+                        "subject": "Paper Title",
+                        "predicate": "AUTHORED_BY",
+                        "object": "Jane Doe"
+                    }
+                ]
+            }
+            """
             # KG-Gen works better with smaller chunks for complex documents
             text_chunks = self._split_text_into_chunks(text)
             all_entities = set()
@@ -98,29 +191,6 @@ class KGGENExtractor:
         except Exception as e:
             logger.error(f"Error running KG-Gen pipeline: {e}")
             return {"entities": set(), "relations": set()}
-
-    # async def _run_kg_gen_extraction(self, text: str) -> dict:
-    #     """Run the actual KG-Gen extraction pipeline"""
-    #     try:
-    #         # For research papers, use appropriate context
-    #         context = "Scientific research paper with entities and relationships"
-
-    #         # KG-Gen works better with smaller chunks for complex documents
-    #         text_chunks = self._split_text_into_chunks(text)
-    #         all_entities = set()
-    #         all_relations = set()
-
-    #         for chunk in text_chunks:
-    #             # Extract from each chunk
-    #             graph = self.kg_gen.generate(input_data=chunk, context=context)
-    #             all_entities.update(graph.get("entities", set()))
-    #             all_relations.update(graph.get("relations", set()))
-
-    #         return {"entities": all_entities, "relations": all_relations}
-
-    #     except Exception as e:
-    #         logger.error(f"Error running KG-Gen pipeline: {e}")
-    #         return {"entities": set(), "relations": set()}
 
     def _split_text_into_chunks(self,
                                 text: str,

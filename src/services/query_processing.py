@@ -13,6 +13,7 @@ from src.utils.cache import get_cache_client
 # # or for uvicorn:
 # logging.getLogger("uvicorn").setLevel(logging.DEBUG)
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 """
 This implementation provides a comprehensive query processing service that:
 
@@ -244,7 +245,9 @@ class QueryProcessingService:
             for entity in entities[:3]:  # Limit to top 3 entities
                 # Search for nodes matching this entity
                 nodes = await self.graph_db.query_nodes(
-                    properties={"text": entity}, limit=5)
+                    properties={"original_text": entity}, limit=5)
+                # nodes = await self.graph_db.query_nodes(
+                #     properties={"text": entity}, limit=5)
 
                 if nodes:
                     graph_context_parts.append(f"Entity: {entity}")
@@ -277,6 +280,45 @@ class QueryProcessingService:
             return "Error retrieving knowledge graph information."
 
     async def _extract_entities_from_query(self, query_text: str) -> List[str]:
+        """Extract key entities from the query text using the LLM"""
+        try:
+            prompt = f"""
+            Analyze the following research question and identify the 
+            key entities (e.g., subjects, proper nouns, technical terms, or abbreviated terms) 
+            relevant to a knowledge graph.
+
+            QUESTION: {query_text}
+            
+            Return only a JSON object containing a list of strings under the key "entities". 
+            Do not include any other text or explanation.
+            
+            ENTITIES:
+            """
+
+            # Use generate_structured_response to reliably get a list of entities
+            response = await self.llm.generate_structured_response(
+                prompt,
+                # Defines the expected JSON structure
+                response_format={"entities": ["string"]},
+                temperature=0.0,
+                max_tokens=100)
+
+            # The response object is a dictionary containing the structured output
+            return response.get("entities", [])
+
+        except Exception as e:
+            logger.error(f"Error extracting entities with LLM: {e}")
+            # Optional: Keep a simple regex or return an empty list as a fallback
+            try:
+                return await self._extract_entities_from_query_SIMPLISTIC(
+                    query_text)
+            except Exception as e2:
+                logger.error(
+                    f"Error extracting entities with simplistic regex: {e}")
+            return []
+
+    async def _extract_entities_from_query_SIMPLISTIC(
+            self, query_text: str) -> List[str]:
         """Extract key entities from the query text"""
         # Use a simple approach for now - in a real implementation, you might use NER
         # This is a simplified version that looks for noun phrases
