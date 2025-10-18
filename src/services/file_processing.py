@@ -8,6 +8,7 @@ import logging
 import os
 import re
 import hashlib
+import json
 from typing import Dict, Any, List
 from src.config import settings
 from src.processing.pdf_extractor import extract_text_from_pdf
@@ -20,7 +21,7 @@ from src.services.compliance import ComplianceFilter
 from src.models.paper import PaperCreate, Entity, Relation
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 
 class FileProcessingService:
@@ -58,6 +59,13 @@ class FileProcessingService:
             # Generate unique ID for this document
             doc_id = str(uuid.uuid4())
 
+            # cache_path = "./dna_kg.json"  # f"users/{user_id}/cache/{doc_id}_kg.json"
+            if self.is_mock_mode:
+                cache_path = f"./cache/dna_kg.json"
+                os.makedirs("./cache", exist_ok=True)
+            else:
+                cache_path = f"users/{user_id}/cache/{doc_id}_kg.json"
+
             # Store raw file (mock or real)
             file_path = f"users/{user_id}/raw/{doc_id}_{filename}"
             if self.is_mock_mode:
@@ -80,6 +88,31 @@ class FileProcessingService:
             if self.is_mock_mode:
                 logger.info("Mock: Extracting entities and relations")
 
+            # Check if cached data exists (for local debugging/skipping LLM)
+            entities, relations = [], []
+            cached_data = None
+            CACHE_ENABLED = settings.kg_cache_enabled == 'true'
+            if CACHE_ENABLED:
+                try:
+                    with open(cache_path, 'r', encoding='utf-8') as f:
+                        cached_data = json.load(f)
+
+                    # Reconstruct models from cache
+                    entities = [Entity(**e) for e in cached_data['entities']]
+                    relations = [
+                        Relation(**r) for r in cached_data['relations']
+                    ]
+                    logger.info(
+                        f"✅ Loaded {len(entities)} entities and {len(relations)} relations from local cache: {cache_path}"
+                    )
+                except FileNotFoundError:
+                    logger.info("Cache miss. Running full NER extraction.")
+                except Exception as e:
+                    logger.error(
+                        f"Error reading local cache: {e}. Running full NER extraction."
+                    )
+                #
+
             # entities, relations = await extract_entities_and_relations(text)
             logger.info("x" * 51)
             logger.info("=" * 51)
@@ -87,16 +120,38 @@ class FileProcessingService:
                 f"ner_extraction_method: {settings.ner_extraction_method} ")
             logger.info("=" * 51)
             logger.info("x" * 51)
-            # In file_processing.py
-            if settings.ner_extraction_method == "kg_gen":
-                from src.processing.kg_gen_extractor import extract_entities_and_relations_with_kg_gen
-                logger.info("NER using kg-gen")
-                entities, relations = await extract_entities_and_relations_with_kg_gen(
-                    text)
-            else:
-                from src.processing.ner_extractor import extract_entities_and_relations
-                entities, relations = await extract_entities_and_relations(text
-                                                                           )
+            # Only run extraction if cache load failed
+            if not entities:
+                if settings.ner_extraction_method == "kg_gen":
+                    from src.processing.kg_gen_extractor import extract_entities_and_relations_with_kg_gen
+                    logger.info("NER using kg-gen")
+                    entities, relations = await extract_entities_and_relations_with_kg_gen(
+                        text)
+                else:
+                    from src.processing.ner_extractor import extract_entities_and_relations
+                    entities, relations = await extract_entities_and_relations(
+                        text)
+
+            if CACHE_ENABLED:
+                try:
+                    # 1. Prepare the data (A Python dictionary)
+                    cache_data_to_save = {
+                        "entities": [e.dict() for e in entities],
+                        "relations": [r.dict() for r in relations]
+                    }
+
+                    # 2. Use open() and json.dump() to write the Python dictionary to the file
+                    with open(cache_path, 'w', encoding='utf-8') as f:
+                        json.dump(cache_data_to_save, f, indent=4
+                                  )  # Pass the dictionary, not the byte string
+
+                    logger.info(
+                        f"💾 Stored extraction results to local cache: {cache_path}"
+                    )
+                except Exception as e:
+                    logger.error(
+                        f"Failed to store extraction results to local cache: {e}"
+                    )
 
             if self.is_mock_mode:
                 logger.info(
@@ -255,6 +310,34 @@ class FileProcessingService:
                                                 metadata={"title": filename},
                                                 is_public=is_public)
 
+    def _sanitize_key_part(self, text: str) -> str:
+        """Creates a basic sanitized key part (e.g., lowercase, no spaces)."""
+        return re.sub(r'[^a-zA-Z0-9]', '', text).lower()
+
+    def _generate_deterministic_entity_key(self, user_id: str,
+                                           entity_type: str, entity_text: str,
+                                           is_public: bool) -> str:
+        """
+        Generates a deterministic ArangoDB key based on user scope, type, and text.
+
+        This ensures the same entity text for the same user resolves to the same node ID.
+        """
+        # Use a unique identifier for the scope (user_id for private, "PUBLIC" for public)
+        scope_id = user_id if not is_public else "PUBLIC"
+
+        # Sanitize and combine the parts to create a unique source string
+        # We use entity_text (not sanitized) for hash stability across similar texts
+        source_str = f"{scope_id}:{entity_type}:{entity_text}"
+
+        # Use a hash function (like MD5 or SHA-256) to create a safe, short key
+        hash_digest = hashlib.md5(source_str.encode()).hexdigest()
+
+        # Prefix the hash with the entity type for clarity/debuggability
+        clean_type = self._sanitize_key_part(entity_type)
+
+        # Final key format: <sanitized_type>_<hash>
+        return f"{clean_type}_{hash_digest}"
+
     def _generate_arango_key(self, prefix: str = "") -> str:
         """Generate a guaranteed-safe ArangoDB key using only alphanumeric characters"""
         # Use UUID without any special characters
@@ -268,10 +351,20 @@ class FileProcessingService:
 
         return safe_key
 
+    # def _sanitize_label_for_db(self, text: str) -> str:
+    #     """Converts spaces to underscores and lowercases the text."""
+    #     return text.lower().replace(' ', '_').strip()
+
+    def _sanitize_for_collection_name(self, text: str) -> str:
+        """Converts text into a safe string for ArangoDB collection names
+           by replacing spaces with underscores."""
+        # Use lowercase and replace spaces to create a canonical collection name
+        return text.lower().replace(' ', '_').strip()
+
     def _build_safe_document_id(self, collection_name: str) -> str:
         """Build a safe document ID with collection name and UUID key"""
         # Sanitize collection name
-        clean_collection = re.sub(r'[^a-zA-Z0-9]', '', collection_name)
+        clean_collection = re.sub(r'[^a-zA-Z0-9_]', '', collection_name)
         if not clean_collection:
             clean_collection = "documents"
 
@@ -302,7 +395,7 @@ class FileProcessingService:
 
         try:
             # Create paper node with safe key
-            paper_node_id = self._build_safe_document_id("papers")
+            paper_node_id = self._build_safe_document_id("nodes_paper")
             paper_node = Node(
                 id=paper_node_id,
                 label=paper_data.title[:100],
@@ -341,7 +434,11 @@ class FileProcessingService:
 
             # Store public entities
             for i, entity in enumerate(public_entities):
-                entity_node_id = self._build_safe_document_id("entities")
+                # entity_node_id = self._build_safe_document_id("entities")
+                entity_key = self._generate_deterministic_entity_key(
+                    user_id, entity.type, entity.text, True)
+                # entity_node_id = f"entities/{entity_key}"
+                entity_node_id = f"nodes_{entity.type}/{entity_key}"
 
                 entity_node = Node(id=entity_node_id,
                                    label=entity.text[:100],
@@ -378,7 +475,11 @@ class FileProcessingService:
 
             # Store private entities
             for i, entity in enumerate(private_entities):
-                entity_node_id = self._build_safe_document_id("entities")
+                # entity_node_id = self._build_safe_document_id("entities")
+                entity_key = self._generate_deterministic_entity_key(
+                    user_id, entity.type, entity.text, False)
+                # entity_node_id = f"entities/{entity_key}"
+                entity_node_id = f"nodes_{entity.type}/{entity_key}"
 
                 entity_node = Node(
                     id=entity_node_id,
@@ -402,6 +503,7 @@ class FileProcessingService:
                 # Link entity to paper
                 edge_id = self._build_safe_edge_id(paper_node_id,
                                                    entity_node_id, "contains")
+                # edge_id = self._sanitize_label_for_db(edge_id)
                 relation = Edge(id=edge_id,
                                 source_id=paper_node_id,
                                 target_id=entity_node_id,
@@ -452,6 +554,10 @@ class FileProcessingService:
                 # Create relation edge
                 edge_id = self._build_safe_edge_id(source_id, target_id,
                                                    relation.relationship)
+                # edge_id = self._sanitize_label_for_db(edge_id)
+                sanitized_relationship_type = self._sanitize_for_collection_name(
+                    relation.relationship[:50])
+
                 relation_edge = Edge(id=edge_id,
                                      source_id=source_id,
                                      target_id=target_id,
@@ -463,7 +569,7 @@ class FileProcessingService:
                                          relation.relationship,
                                          "relation_index": i
                                      },
-                                     type=relation.relationship[:50])
+                                     type=sanitized_relationship_type)
 
                 logger.info(f"Creating entity relation edge {i}: {edge_id}")
                 await self.graph_db.upsert_edge(relation_edge)

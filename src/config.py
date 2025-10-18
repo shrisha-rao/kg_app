@@ -76,6 +76,7 @@ class Settings(BaseSettings):
     # NER Extraction Configuration
     ner_extraction_method: str = Field(
         "kg_gen", env="NER_EXTRACTION_METHOD")  # "spacy", "llm", or "kg_gen"
+    kg_cache_enabled: str = Field("true", env="KG_CACHE_ENABLED")
 
     # PDF Extraction Configuration
     pdf_use_ocr: bool = Field(

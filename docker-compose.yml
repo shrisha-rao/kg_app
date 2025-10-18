@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   # -------------------------
@@ -93,10 +93,11 @@ services:
         condition: service_started
       arangodb:
         condition: service_healthy
-      init_with_arango:
-        condition: service_completed_successfully
-      # ollama:
-      #   condition: service_started
+      ollama:
+        condition: service_started
+      # init_with_arango:
+      #   condition: service_completed_successfully
+        
         
   # -------------------------
   # Jupyter Notebook
@@ -147,8 +148,9 @@ services:
   # Init Script for ArangoDB
   # -------------------------
   init_with_arango:
-    build:
-      context: .
+    # ❌ Replaces 'build:' to reuse the already-built web image 
+    #    (assuming the project name is 'research-kg-app')
+    image: research-kg-app-web
     container_name: init-arango
     depends_on:
       arangodb:
@@ -159,6 +161,29 @@ services:
       - .:/app:delegated 
     working_dir: /app 
     command: ["python", "-m", "src.scripts.init_graph_db"]    
+
+
+      
+      
+
+
+
+  # # -------------------------
+  # # Init Script for ArangoDB
+  # # -------------------------
+  # init_with_arango:
+  #   build:
+  #     context: .
+  #   container_name: init-arango
+  #   depends_on:
+  #     arangodb:
+  #       condition: service_healthy
+  #   env_file:
+  #     - .env.local
+  #   volumes:
+  #     - .:/app:delegated 
+  #   working_dir: /app 
+  #   command: ["python", "-m", "src.scripts.init_graph_db"]    
 
 
 

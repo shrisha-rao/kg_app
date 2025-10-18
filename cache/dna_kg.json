@@ -1,0 +1,6723 @@
+{
+    "entities": [
+        {
+            "text": "crystallinel- 3",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "cells",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Gosling",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "communication",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "right-handed helices",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "origin",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "genetic material",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "purine position 6",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "specific pairs of bases",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Nucleic Acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "mass",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "three intertwined chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "functions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "meridional reflexion",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Jevons, W.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "equipment",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "novel features",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "one chain",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "observations",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nitrogen bases",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "J 0 2",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "12 A",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "attached base",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "radiation",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "NATURE",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Von Arx, W. S.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "bases",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "deoxypentosc nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "radius",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "bonding",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "cations",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "~-D-deoxyribofuranose residues",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "atoms",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Pauling, I.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Fibre diagram",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helical chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "tautomeric forms",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "ratio",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "paracrystalline deoxypentose nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "reflexion",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "size",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "deoxyribose",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "general nature",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "simplicity",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "fundamental frequency",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "different diameter",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Bessel functions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "three-chain structure",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "oxygen atom",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "phases of radiation",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "MOLECULAR STRUCTURE OF NUCLEIC ACIDS",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "figure",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "angle",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "remainder",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "polynucleotide chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "149",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "planes",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "configuration of the sugar",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "z-co-ordinates",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Medical Research Council Unit for the Study of the Molecular Structure of Biological Systems",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "effect",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "3',5' linkages",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "tenth layer line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Cavendish Laboratory",
+            "type": "organization",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "member of a pair",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "F. H. C. CRICK",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helix pitch",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "biological interest",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "uniform continuous helix",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "3 \u00b74-A",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "pyrimidine position 1",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "details",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nucleotide",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Young, F. B.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nth order Bessel function",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Biochim. et Biophys. Acta",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "regular spacing",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "C",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Summation",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "innermost maxima",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "737",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "officers",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nucleotides",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "X-ray diagrams",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "ribose sugar",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "A Structure for Deoxyribose Nucleic Acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "fibre length",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Wyatt. G. R.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "phosphate-sugar chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "diffraction pattern",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Phil. Mag.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Nature",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Fig. I",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Longuet-Higgins, M. S.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "0",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "amounts",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Dr. M. H. F. Wilkins",
+            "type": "person",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "fibre diagram",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "layer lines",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helix",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Randall, J. '1.'",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "density",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "1920",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "right-angles to the helix axis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "manuscript",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "phosphates",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "April 2",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Astburyl",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Dr. H. E. Franklin",
+            "type": "person",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "April 25, 1953",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "captain",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "11",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Ekman, Y. W.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "model",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "J. D.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "unpublished experimental results",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "point",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Furberg's 'standard configuration'",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "publication",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "phosphorus atom",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "residues",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "residue",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "paracrystalline material",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "cytosine",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "work",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helical structure",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "chain configuration repeat",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "other chain",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "chemical assumptions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "polynucleotide composition",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "phosphate di-ester groups",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Deoxypentose Nucleic Acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "co-ordinates",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "half of the nucleotide mass",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "meridian",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "deoxyribose nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "sugar",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "D.N.A.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "series of points",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nth layer line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "R.R.S. Discovery II",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "intensity distribution",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Astbury, W. '1.'",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "van del' Waals contact",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Fig.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "ribbons",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Chargaff, E.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "diffraction",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "straight line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "results",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "advice",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Syrnp. Soc. Exp. BioI. I",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "deoxypentose nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "effects",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "dyad",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "1950",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helix axis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "National FOlUldation for Infantile Paralysis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "X-ray data",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Fibre axis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "hydrogen-bonded",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Furberg",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Furberg's model No.1",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "shape",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "axis parallel to the helix axis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "test",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "structure",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "guanine",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Camb. Dniv. Press",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nucleotide mass",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Gerrard, H.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "6",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Arkiv. Mat. Astron. Fysik.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "pyrimidine position 6",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Dr. Jerry Donohue",
+            "type": "person",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Fig. 2",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "B. coli",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Pauling",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helices",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "sequences of the atoms",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "40",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "J. D. 'WATSON",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Acta Chem. Scand.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "equator",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "20 A",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "unit",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "thymine",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "purine position 1",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "z-direction",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "diameter",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nitrogen base ratios",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "assumptions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "longer spacings",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "purified nucleate",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "form factor",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nucleotide chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "repeat unit",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "single chain",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Woods Hole Papers in Phys. Oceanog. Meteor.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "circular symmetry",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Wilkins, M. H. :1<'",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "water content",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "keto configurations",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "interstitial water",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "purine",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "chain",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "co-workers",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Jo'urberg, S.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Dr. G. E. R. Deacon",
+            "type": "person",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "species",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "reinforcement",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "system of helices",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Nature Publishing Group",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Corey",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "stereochemical arguments",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "criticism",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Zamenhof, S.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "side-bands",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Stokes",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "element",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Helices",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "structure of deoxypentose nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Corey, R. B.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "structure B",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "material",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "adenine",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "experimental data",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "inter-atomic distances",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "internucleotide repeat",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Stockholm",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helical configuration",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "molecular configuration",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "conditions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "King's College, London",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "communications",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "pairing",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "new origin",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "second layer line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "285",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "(3)",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "regions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "No. 4356",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "acidic hydrogen atoms",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "fibre axis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "salt of deoxyribose nucleic acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "spacing",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "knowledge",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Cambridge",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "outer diameter",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Franklin",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "ref. 4",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "pyrimidine bases",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "negatively charged phosphates",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "nucleoprotein",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "physical terms",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "van del' Waals distances",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Bessel flUlction",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Brawerman, G.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "enol configurations",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "J n",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "1953",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "polynucleotide chain configuration",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Geophys. Supp.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "copying mechanism",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "squares of Bessel functions",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "J. Gen. Phys'iol.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "two helical chains",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "third layer line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Proc. U.S. Nat. Acad. Sci.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "natural state",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "first layer line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "hydrogen bonds",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "axis",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Fraser",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "experimental evidence",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "pyrimidine",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "base",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "unity",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Astbury",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "sequence of bases",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "semi-crystalline material",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "free acid",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "helical",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "1949",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Mon. Not. Roy. Astra. Soc.",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "X-ray diffraction photograph",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "Molecular Structl,lre of Deoxypentose Nucleic Acids",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "fifth layer line",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "pairs of bases",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "ideas",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "linear group",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        },
+        {
+            "text": "horizontal rods",
+            "type": "concept",
+            "confidence": 0.8,
+            "entity_id": null
+        }
+    ],
+    "relations": [
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "residues",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "repeats after",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "model",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on the outside in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "NATURE",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "737",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has page number",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Summation",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "reinforcement",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "gives",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "deoxypentose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "fibre diagram",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "ref. 4",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "cf.",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "two helical chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Molecular Structl,lre of Deoxypentose Nucleic Acids",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Deoxypentose Nucleic Acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is about",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "stereochemical arguments",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "rests on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "diffraction pattern",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "series of points",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "effects",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "size",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "angle",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "residues",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "planes",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are perpendicular to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "first layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "residues",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Jo'urberg, S.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Acta Chem. Scand.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "atoms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "sugar",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are near",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "remainder",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "radius",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "distributed along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "sequence of bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "other chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "unpublished experimental results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Dr. M. H. F. Wilkins",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "test",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "0",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted about",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Geophys. Supp.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "1949",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "unpublished experimental results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "co-workers",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "purified nucleate",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is found in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "helices",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "point",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "passing through",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "shape",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "repeat unit",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "equator",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "fibre diagram",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Fig. I",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "shown in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Dr. H. E. Franklin",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "King's College, London",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "material",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "free acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is not",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "paracrystalline deoxypentose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure B",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Geophys. Supp.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "285",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has page",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "guanine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "purine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is a",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are linked to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "adenine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "thymine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "pairs with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "oxygen atom",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "van del' Waals contact",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "would make",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "guanine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "member of a pair",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "forms",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "amounts",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "thymine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "two helical chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are coiled round",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "J. D. 'WATSON",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Medical Research Council Unit for the Study of the Molecular Structure of Biological Systems",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is affiliated with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Pauling, I.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Nature",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "unpublished experimental results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Dr. H. E. Franklin",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "spacing",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix pitch",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "corresponds to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "helical configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "side-bands",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "produces",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "acidic hydrogen atoms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "hold together",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "general nature",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "ideas",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "salt of deoxyribose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "D.N.A.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is also known as",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "X-ray data",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "deoxyribose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "base",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is from",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "meridional reflexion",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "J 0 2",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Chargaff, E.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Biochim. et Biophys. Acta",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Wilkins, M. H. :1<'",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Biochim. et Biophys. Acta",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "effects",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "diffraction pattern",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "series of points",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "regular spacing",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleotides",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "chain configuration repeat",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "diffraction",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "causes",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure B",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "communication",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "size",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "repeat unit",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "angle",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "element",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "manuscript",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "publication",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "available in advance of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Cavendish Laboratory",
+                "type": "organization",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Cambridge",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is located in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "criticism",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "inter-atomic distances",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure of deoxypentose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "deoxypentose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is a structure of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "purine position 6",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine position 6",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "bonds to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Corey, R. B.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Nature",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ribbons",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphate-sugar chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "symbolize",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "unit",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "circular symmetry",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "having",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "co-workers",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "King's College, London",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are held together by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "purine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "forms pair with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "molecular configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "simplicity",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "half of the nucleotide mass",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "20 A",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Fraser",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "three-chain structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "suggested",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "adenine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "purine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is a",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "adenine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "member of a pair",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "forms",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "system of helices",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure of deoxypentose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "corresponding to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Furberg's model No.1",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "resembles",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "nucleotides",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "thymine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can be on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ideas",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Dr. M. H. F. Wilkins",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "angle",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "purine position 1",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine position 1",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "bonds to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "element",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ideas",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "co-workers",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "communication",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Gosling",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "repeat unit",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleotide",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is also known as",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "meridional reflexion",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nth layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "form factor",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleotide",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "three intertwined chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "contains",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "conditions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Phil. Mag.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "40",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has volume",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Young, F. B.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Phil. Mag.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored publication in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "base",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "base",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is hydrogen-bonded to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Dr. G. E. R. Deacon",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "observations",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "contributed to making",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "cytosine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is a",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "purine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bonding",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is required for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "cytosine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "member of a pair",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "knowledge",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "general nature",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "details",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "layer lines",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "spacing",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "tautomeric forms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "enol configurations",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "exclude",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "amounts",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "cytosine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Dr. M. H. F. Wilkins",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "King's College, London",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "helices",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "different diameter",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "internucleotide repeat",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "F. H. C. CRICK",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Medical Research Council Unit for the Study of the Molecular Structure of Biological Systems",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is affiliated with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ratio",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "unity",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is close to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ideas",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Dr. H. E. Franklin",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "3',5' linkages",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphate di-ester groups",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are used for joining",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "J n",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nth order Bessel function",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "co-ordinates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "atoms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "layer lines",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain configuration repeat",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are due to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "hydrogen bonds",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "link",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "specific pairs of bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bonding",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can form",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleoprotein",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is found in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "guanine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "cytosine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "pairs with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "hydrogen bonds",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine position 1",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are made between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Syrnp. Soc. Exp. BioI. I",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Camb. Dniv. Press",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phosphate di-ester groups",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "~-D-deoxyribofuranose residues",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "join",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "communication",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Franklin",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phosphorus atom",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is from",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "X-ray data",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "test",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "insufficient for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "NATURE",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "April 25, 1953",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are linked to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "occur in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Astbury, W. '1.'",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Nucleic Acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "effects",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "shape",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nth layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Jevons, W.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Phil. Mag.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored publication in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Woods Hole Papers in Phys. Oceanog. Meteor.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "(3)",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has issue",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "model",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "linear group",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "semi-crystalline material",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can form",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "layer lines",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "polynucleotide composition",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are not due to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "mass",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "radius",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is proportional to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ratio",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "deoxyribose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are near",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "experimental data",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is compatible with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "nucleotide chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "density",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "have",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "regions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "longer spacings",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is determined by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "ribose sugar",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "built with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "amounts",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "guanine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Randall, J. '1.'",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Biochim. et Biophys. Acta",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "innermost maxima",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Bessel flUlction",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Von Arx, W. S.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Woods Hole Papers in Phys. Oceanog. Meteor.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored publication in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "MOLECULAR STRUCTURE OF NUCLEIC ACIDS",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is about",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "copying mechanism",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "genetic material",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "A Structure for Deoxyribose Nucleic Acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "describes",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "model",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "three intertwined chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "consists of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "negatively charged phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are near",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on the outside of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on the inside of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "cations",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "have access to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Fibre diagram",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "deoxypentosc nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Geophys. Supp.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "6",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has volume",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Zamenhof, S.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Biochim. et Biophys. Acta",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "helical structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "water content",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "influence",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Gerrard, H.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Phil. Mag.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored publication in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "new origin",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is around",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "diameter",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "radius",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "distributed along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "effect",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "reproduces",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "material",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "salt of deoxyribose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "captain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "R.R.S. Discovery II",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is part of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "dyad",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is perpendicular to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "general nature",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "unpublished experimental results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "origin",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is about",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "captain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "observations",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "contributed to making",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Nature Publishing Group",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "1953",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "copyrighted in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Brawerman, G.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Biochim. et Biophys. Acta",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "series of points",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "radius",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "tenth layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "novel features",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "biological interest",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Nature Publishing Group",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "NATURE",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "residue",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "straight line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Fig.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "may be drawn through",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "tautomeric forms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "occur in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "two helical chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "right-handed helices",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "follow",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "horizontal rods",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pairs of bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "symbolize",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "novel features",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "guanine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can be on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "side-bands",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fundamental frequency",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "diffraction pattern",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "unit",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "repeats along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "details",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "officers",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "R.R.S. Discovery II",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are part of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "linear group",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "paracrystalline material",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can form",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "NATURE",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "No. 4356",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has issue number",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Pauling",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "manuscript",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "made available",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "hydrogen bonds",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine position 6",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are made between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "one chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "other chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "determines sequence on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "planes",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "thymine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "member of a pair",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "sequence of bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "single chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "advice",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "inter-atomic distances",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "sequence of bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "one chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Dr. Jerry Donohue",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "advice",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "provides",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "nitrogen bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "along",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "officers",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "observations",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "contributed to making",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "configuration of the sugar",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Furberg's 'standard configuration'",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is close to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "density",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "interstitial water",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is higher than",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "reflexion",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "internucleotide repeat",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "corresponded to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "J n",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is proportional to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "pyrimidine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bonding",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is required for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "C",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "corresponds to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ribose sugar",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "deoxyribose",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "in place of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "longer spacings",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "polynucleotide chain configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Woods Hole Papers in Phys. Oceanog. Meteor.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "1950",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "pairs of bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "hold together",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "axis parallel to the helix axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helix axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is parallel to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Astbury, W. '1.'",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Syrnp. Soc. Exp. BioI. I",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Pauling, I.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Proc. U.S. Nat. Acad. Sci.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "half of the nucleotide mass",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nucleotide mass",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is a half of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "z-co-ordinates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "have",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "3',5' linkages",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "~-D-deoxyribofuranose residues",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are used for joining",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "communications",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "given in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "half of the nucleotide mass",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "polynucleotide chain configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helical",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Woods Hole Papers in Phys. Oceanog. Meteor.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "11",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has volume",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "cytosine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can be on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "salt of deoxyribose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "material",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "X-ray diagrams",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "gives",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "model",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are on the inside in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Phil. Mag.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "1920",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "tautomeric forms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "keto configurations",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "include",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "circular symmetry",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "axis parallel to the helix axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "about",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "second layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fifth layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "J 0 2",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nth layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "phases of radiation",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "helices",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "scattered by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "amounts",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "adenine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Mon. Not. Roy. Astra. Soc.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Geophys. Supp.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has supplement",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Wyatt. G. R.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "J. Gen. Phys'iol.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "nucleotide",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "series of points",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "consists of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "model",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Corey",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "proposed by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Phil. Mag.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "149",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has page",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is given by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "X-ray diffraction photograph",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "regions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "consists of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "paracrystalline deoxypentose nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre diagram",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "gives",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "ratio",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "amounts",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of the",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "model",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Pauling",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "proposed by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "sugar",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "attached base",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is perpendicular to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "tautomeric forms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "assumptions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are based on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "C",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Fig. 2",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "hydrogen bonds",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "purine position 6",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are made between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Corey, R. B.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Proc. U.S. Nat. Acad. Sci.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "equator",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "makes angle with",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "experimental data",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "rests on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "intensity distribution",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "nth layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "purine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are held together by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "adenine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can be on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Astburyl",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "molecular configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "shows",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "radius",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "right-angles to the helix axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "diffraction pattern",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "form factor",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is modified by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Corey",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "manuscript",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "made available",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "axis",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "fibre length",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is parallel to",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "residue",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "z-direction",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "uniform continuous helix",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "layer lines",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "gives",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Longuet-Higgins, M. S.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Mon. Not. Roy. Astra. Soc.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored publication in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "thymine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "pyrimidine",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is a",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "two helical chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "dyad",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are related by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Ekman, Y. W.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Arkiv. Mat. Astron. Fysik.",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "authored publication in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "negatively charged phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "negatively charged phosphates",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "repel",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "results",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "checked against",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Dr. Jerry Donohue",
+                "type": "person",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "criticism",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "provides",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "pairing",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "copying mechanism",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "suggests",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "communication",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "experimental evidence",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "describes",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "three intertwined chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "contains",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Nucleic Acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Camb. Dniv. Press",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "published by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "deoxypentosc nucleic acid",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "B. coli",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is from",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "water content",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "influences",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "hydrogen bonds",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "purine position 1",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are made between",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "polynucleotide chain configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "natural state",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "exists in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "species",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is the same in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "outer diameter",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted for",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "experimental evidence",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "polynucleotide chain configuration",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "supports",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "chain",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "phosphate di-ester groups",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "consists of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "structure",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "cells",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is found in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Summation",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "nucleotide",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "unit",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "consists of",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "linear group",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "crystallinel- 3",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "can form",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "mass",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "radius",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "effects",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "physical terms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are analyzed in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "outer diameter",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "12 A",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "has value",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "squares of Bessel functions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "third layer line",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are plotted on",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "Medical Research Council Unit for the Study of the Molecular Structure of Biological Systems",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "Cavendish Laboratory",
+                "type": "organization",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is located at",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "regions",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "regular spacing",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is determined by",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "hydrogen bonds",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "bases",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "link",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "sequences of the atoms",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "two helical chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "are in",
+            "confidence": 0.8,
+            "relation_id": null
+        },
+        {
+            "source_entity": {
+                "text": "linear group",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "target_entity": {
+                "text": "polynucleotide chains",
+                "type": "concept",
+                "confidence": 0.8,
+                "entity_id": null
+            },
+            "relationship": "is of",
+            "confidence": 0.8,
+            "relation_id": null
+        }
+    ]
+}

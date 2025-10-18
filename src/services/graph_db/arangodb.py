@@ -19,13 +19,8 @@ class ArangoDBService(GraphDBService):
         self.username = settings.arangodb_username
         self.password = settings.arangodb_password
         self.database_name = settings.arangodb_database
-        #test
-        #self.TEST_database_name = settings.arangodb_test_db
-        # print(self.TEST_database_name)
-
         self.client = None
         self.db = None
-
         logger.info(f"Initialized ArangoDB service with host: {self.host}")
 
     async def connect(self) -> bool:
@@ -41,7 +36,7 @@ class ArangoDBService(GraphDBService):
 
             # Check if the target database exists; if not, create it
             if not sys_db.has_database(self.database_name):
-                print('creating ')
+                #print('creating ')
                 sys_db.create_database(self.database_name)
                 logger.info(f"Created new database: {self.database_name}")
 
@@ -50,16 +45,14 @@ class ArangoDBService(GraphDBService):
                                      username=self.username,
                                      password=self.password)
 
-            # # Connect to the database
-            # self.db = self.client.db(name=self.database_name,
-            #                          username=self.username,
-            #                          password=self.password)
+            # self._initialize_graph(self.db)
 
             logger.info(
                 f"Connected to ArangoDB database: {self.database_name}")
             return True
 
         except ArangoError as e:
+            self.db = None
             logger.error(f"Error connecting to ArangoDB: {e}")
             return False
 
@@ -279,10 +272,20 @@ class ArangoDBService(GraphDBService):
                 # Build filter conditions
                 filters = []
                 if label:
-                    filters.append(f"doc.label == '{label}'")
+                    # Filter by label (assuming label is always a string and needs case-insensitive matching)
+                    filters.append(f"LOWER(doc.label) == LOWER('{label}')")
+                    # filters.append(f"doc.label == '{label}'")
                 if properties:
                     for key, value in properties.items():
-                        filters.append(f"doc.{key} == {repr(value)}")
+                        if isinstance(value, str):
+                            # Use LOWER() for case-insensitive matching in AQL for strings
+                            # repr(value) ensures the string is correctly quoted for AQL
+                            filters.append(
+                                f"LOWER(doc.{key}) == LOWER({repr(value)})")
+                        else:
+                            # For non-strings (numbers, booleans), use strict equality
+                            filters.append(f"doc.{key} == {repr(value)}")
+                        # filters.append(f"doc.{key} == {repr(value)}")
 
                 # Build AQL query
                 filter_str = " AND ".join(filters) if filters else "true"
@@ -292,7 +295,6 @@ class ArangoDBService(GraphDBService):
                 LIMIT {limit}
                 RETURN doc
                 """
-
                 cursor = self.db.aql.execute(query)
                 for doc in cursor:
                     doc_properties = {
@@ -401,6 +403,12 @@ class ArangoDBService(GraphDBService):
             {edge_filter}
             RETURN {{vertex: vertex, edge: edge}}
             """
+
+            logger.info("x" * 51)
+            logger.info("x" * 51)
+            logger.info(f"{query}")
+            logger.info("x" * 51)
+            logger.info("x" * 51)
 
             start_time = datetime.now()
             cursor = self.db.aql.execute(query)
@@ -575,3 +583,69 @@ class ArangoDBService(GraphDBService):
         except ArangoError as e:
             logger.error(f"Error executing AQL query in ArangoDB: {e}")
             return GraphQueryResult(nodes=[], edges=[], execution_time=0)
+
+    # def _initialize_graph(self, db_handler):
+    #     """Initializes or updates the ResearchGraph with all current edges_* collections."""
+    #     GRAPH_NAME = "ResearchGraph"
+
+    #     # 1. Drop the graph if it exists to ensure a clean, conflict-free recreation
+    #     if db_handler.has_graph(GRAPH_NAME):
+    #         db_handler.delete_graph(GRAPH_NAME, drop_collections=False)
+    #         logger.info(f"Existing graph '{GRAPH_NAME}' dropped successfully.")
+
+    #     # 1a. Get all collection names from the database
+    #     # Note: You'll need to check the arango.db API for the exact method to list collections.
+    #     # It's typically a synchronous call on the db_handler object.
+    #     all_collections = db_handler.collections()
+
+    #     # 2. Filter for edge collections
+    #     edge_collections = [
+    #         c['name'] for c in all_collections
+    #         if c['name'].startswith('edges_')
+    #     ]
+
+    #     # 3. Define all possible node collections for the graph structure
+    #     # (Based on your known node prefixes)
+    #     vertex_collections = [
+    #         'nodes_concept', 'nodes_location', 'nodes_methodology',
+    #         'nodes_organization', 'nodes_paper', 'nodes_person'
+    #         # Add any other nodes_* collections you might have
+    #     ]
+
+    #     # 4. Create the edge definitions list
+    #     edge_definitions = []
+    #     for edge_col in edge_collections:
+    #         # We assume any edge can connect any node type for simplicity/robustness
+    #         edge_definitions.append({
+    #             'edge_collection': edge_col,
+    #             'from_vertex_collections': vertex_collections,
+    #             'to_vertex_collections': vertex_collections
+    #         })
+
+    #     if not edge_definitions:
+    #         logger.warning(
+    #             "No edge collections found to define the graph. Skipping graph creation."
+    #         )
+    #         return
+
+    #     # 5. Create or Replace the Named Graph
+    #     if db_handler.has_graph(GRAPH_NAME):
+    #         logger.info(
+    #             f"Graph '{GRAPH_NAME}' already exists. Attempting to update definitions."
+    #         )
+    #         # Note: Updating graph definitions is complex. The safest approach is often
+    #         # to delete and recreate, or check for specific driver methods to update.
+    #         # For simplicity in this answer, we'll recreate if needed.
+
+    #         # Use the graph handler to replace its definitions
+    #         graph = db_handler.graph(GRAPH_NAME)
+    #         # The python-arango driver might have an update method, but for robust setup,
+    #         # ensuring all edges are present on first run is key.
+    #         # If you trust your initial setup, you can skip this block.
+
+    #     else:
+    #         db_handler.create_graph(GRAPH_NAME,
+    #                                 edge_definitions=edge_definitions)
+    #         logger.info(
+    #             f"Successfully created graph '{GRAPH_NAME}' with {len(edge_collections)} edge collections."
+    #         )

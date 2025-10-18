@@ -9,11 +9,13 @@ from src.services.graph_db import get_graph_db_service
 from src.services.llm import get_llm_service
 from src.utils.cache import get_cache_client
 
+from src.services.graph_db.base import GraphQueryResult, Node, Edge
+
 # logging.basicConfig(level=logging.DEBUG)
 # # or for uvicorn:
 # logging.getLogger("uvicorn").setLevel(logging.DEBUG)
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 """
 This implementation provides a comprehensive query processing service that:
 
@@ -107,11 +109,34 @@ class QueryProcessingService:
             logger.info(f"Step 4b: query scope: {query.scope}")
             logger.info(f"Step 4c: query user_id: {query.user_id}")
             logger.info(f"Step 4d: query type: {query.query_type}")
+
+            # Check connection status and attempt to connect if necessary
+            # The first time the service runs, self.graph_db.db will be None.
+            if self.graph_db.db is None:
+                logger.info("Attempting to connect to Graph DB...")
+                # CRITICAL: MUST AWAIT THE ASYNC CONNECT CALL
+                connected = await self.graph_db.connect()
+                if not connected:
+                    logger.error(
+                        "Failed to establish ArangoDB connection, skipping KG query."
+                    )
+                    # You might return an error here, or skip the KG step
+                    return self._build_error_response(
+                        query.query_text,
+                        "Failed to connect to knowledge graph.")
+
+            logger.info(f"graph db name: {self.graph_db.db}")
+
+            # COMMENTED FOR DEBUG
             graph_context = await self._query_knowledge_graph(
                 query.query_text, query.scope, query.user_id)
 
+            ##################################################
+
             logger.info(f"Step 4e: graph_context: {graph_context}")
 
+            #graph_context2 = {'entities': ['double helix', 'DNA structure']}
+            # logger.info(f"Step 4e II: graph_context: {graph_context}")
             logger.info("Step 5: Generate answer using LLM")
             # Step 5: Generate answer using LLM
             answer = await self._generate_answer(query.query_text, context,
@@ -225,8 +250,66 @@ class QueryProcessingService:
 
         return "\n".join(context_parts)
 
-    async def _query_knowledge_graph(self, query_text: str, scope: QueryScope,
-                                     user_id: str) -> str:
+    async def _query_knowledge_graph(self, query_text: Optional[str],
+                                     scope: Optional[QueryScope],
+                                     user_id: Optional[str]) -> str:
+        """
+        Queries the knowledge graph for related entities by finding seed nodes
+        and performing a graph traversal to retrieve structured context for the LLM.
+        """
+        try:
+            # 1. FIX: Add a safety check for uninitialized graph DB
+            # Attempt to connect only if necessary (connect returns True if already connected)
+            if self.graph_db is None or not await self.graph_db.connect():
+                logger.warning(
+                    "Knowledge Graph service is unavailable or failed to connect."
+                )
+                return "Knowledge Graph service is unavailable."
+
+            # 2. Extract key entities from the query (Placeholder for LLM/NLP entity extraction)
+            # entities = await self._extract_entities_from_query(query_text)
+
+            # Temporary manual list for debugging the traversal logic
+            entities_to_search = ['helix']  #, 'DNA structure']
+
+            if not entities_to_search:
+                return "No relevant entities found in the query to search."
+
+            # 3. Find the ArangoDB Node IDs for the seed entities
+            query_entity_nodes = []
+            for entity_text in entities_to_search:
+                # Search for nodes matching this entity text
+                nodes = await self.graph_db.query_nodes(
+                    # NOTE: Assuming 'nodes_concept' is the primary entity collection
+                    # collection_name="nodes_concept",
+                    properties={"original_text": entity_text},
+                    # user_id=user_id,
+                    # scope=scope,
+                    limit=1  # We only need one match to start the traversal
+                )
+
+                # query_nodes returns a list of Dict[str, Any] which includes the node '_id'
+                query_entity_nodes.extend(nodes)
+
+            if not query_entity_nodes:
+                return "No graph data found for the relevant entities."
+
+            # 4. Use the found seed nodes to traverse the graph and get structured context
+            # This method calls self.graph_db.traverse and converts the results to triples
+            graph_context = await self._get_graph_context_triples(
+                query_entity_nodes=query_entity_nodes,
+                user_id=user_id,
+                scope=scope)
+
+            return graph_context
+
+        except Exception as e:
+            logger.error(f"Error querying knowledge graph: {e}")
+            return "Error retrieving knowledge graph information."
+
+    async def _query_knowledge_graph_OLD(self, query_text: str,
+                                         scope: QueryScope,
+                                         user_id: str) -> str:
         """Query the knowledge graph for entities and relationships related to the query"""
         try:
             # FIX: Add a safety check for uninitialized graph DB
@@ -237,6 +320,12 @@ class QueryProcessingService:
             # Extract key entities from the query
             entities = await self._extract_entities_from_query(query_text)
 
+            # ======= DUBUG ==============
+            #
+            #entities = ['helix']  #, 'DNA structure', 'DNA', 'helix']
+            #
+            # ===========================
+
             if not entities:
                 return "No relevant entities found in the knowledge graph."
 
@@ -245,9 +334,9 @@ class QueryProcessingService:
             for entity in entities[:3]:  # Limit to top 3 entities
                 # Search for nodes matching this entity
                 nodes = await self.graph_db.query_nodes(
-                    properties={"original_text": entity}, limit=5)
-                # nodes = await self.graph_db.query_nodes(
-                #     properties={"text": entity}, limit=5)
+                    properties={"original_text": entity},
+                    limit=5  # Only need one match to start traversal
+                )
 
                 if nodes:
                     graph_context_parts.append(f"Entity: {entity}")
@@ -337,6 +426,128 @@ class QueryProcessingService:
             entities.update(matches)
 
         return list(entities)
+
+    def _format_triples_for_llm(self, nodes: List[Node],
+                                edges: List[Edge]) -> str:
+        """Converts graph query results into a structured list of triples (S-P-O)."""
+        if not nodes and not edges:
+            return "No structured knowledge graph context found."
+
+        # Create a mapping from full ArangoDB ID to the entity's original text
+        node_map = {
+            n.id: n.properties.get('original_text', n.label)
+            for n in nodes
+        }
+
+        # Also include the full ID in the map in case source/target are full IDs
+        node_map.update({
+            f"entities/{n.id}": n.properties.get('original_text', n.label)
+            for n in nodes
+        })
+
+        triples = set()
+        for edge in edges:
+            source_text = node_map.get(edge.source_id, edge.source_id)
+            target_text = node_map.get(edge.target_id, edge.target_id)
+
+            # Skip paper-to-entity relations; we only want entity-entity relations for LLM reasoning
+            if edge.label == 'contains':
+                continue
+
+            # Format the triple as (Source) --[Relationship]--> (Target)
+            triple_str = f"({source_text}) --[{edge.label}]--> ({target_text})"
+            triples.add(triple_str)
+
+        if not triples:
+            return "No direct entity-to-entity relationships found in the graph."
+
+        context = "Extracted Knowledge Graph Context (Structured Triples):\n"
+        context += "\n".join(triples)
+        return context
+
+    async def _get_graph_context_triples(
+            self,
+            query_entity_nodes: List[
+                Node],  # Correct type hint based on implementation
+            user_id: str,
+            scope: QueryScope) -> str:
+        """
+        Traverses the graph starting from the discovered seed entities and
+        formats the result as text triples for the LLM.
+        """
+        full_graph_context = GraphQueryResult(nodes=[],
+                                              edges=[],
+                                              execution_time=0.0)
+
+        # Set max traversal depth (e.g., 2 hops away)
+        TRAVERSAL_DEPTH = 2
+
+        # FIX: Iterate over Node objects and use dot notation (.id, .type)
+        for entity_node in query_entity_nodes:
+            # Construct the full ArangoDB ID for traversal (e.g., nodes_concept/key)
+            # We assume the collection name is based on the node's type: nodes_{type}
+            start_node_id = f"nodes_{entity_node.type}/{entity_node.id}"
+            # start_node_id = f"entities/{entity_node.id}"
+
+            logger.info(
+                f"Traversing graph starting from node: {start_node_id}")
+
+            result = await self.graph_db.traverse(start_node_id=start_node_id,
+                                                  min_depth=1,
+                                                  max_depth=TRAVERSAL_DEPTH,
+                                                  direction="any")
+
+            # Merge results for all starting nodes
+            full_graph_context.nodes.extend(result.nodes)
+            full_graph_context.edges.extend(result.edges)
+
+        # Filter out duplicates after merging
+        unique_nodes = list({n.id: n
+                             for n in full_graph_context.nodes}.values())
+        unique_edges = list({e.id: e
+                             for e in full_graph_context.edges}.values())
+
+        return self._format_triples_for_llm(unique_nodes, unique_edges)
+
+    async def _get_graph_context_triples_OLD(self, query_entity_nodes: List[
+        Dict[str, Any]], user_id: str, scope: QueryScope) -> str:
+        """
+        Traverses the graph starting from the discovered seed entities and
+        formats the result as text triples for the LLM.
+        """
+        full_graph_context = GraphQueryResult(nodes=[],
+                                              edges=[],
+                                              execution_time=0.0)
+
+        # Set max traversal depth (e.g., 2 hops away)
+        TRAVERSAL_DEPTH = 2
+
+        for entity_doc in query_entity_nodes:
+            start_node_id = entity_doc['_id']
+
+            # NOTE: We skip privacy filters here because the query_nodes already
+            # respected them by using a scope-aware AQL (which we assume is handled).
+            # The ArangoDB traverse method is simpler and just returns raw nodes/edges.
+
+            logger.info(
+                f"Traversing graph starting from node: {start_node_id}")
+
+            result = await self.graph_db.traverse(start_node_id=start_node_id,
+                                                  min_depth=1,
+                                                  max_depth=TRAVERSAL_DEPTH,
+                                                  direction="any")
+
+            # Merge results for all starting nodes
+            full_graph_context.nodes.extend(result.nodes)
+            full_graph_context.edges.extend(result.edges)
+
+        # Filter out duplicates after merging
+        unique_nodes = list({n.id: n
+                             for n in full_graph_context.nodes}.values())
+        unique_edges = list({e.id: e
+                             for e in full_graph_context.edges}.values())
+
+        return self._format_triples_for_llm(unique_nodes, unique_edges)
 
     async def _generate_answer(self, query_text: str, context: str,
                                graph_context: str,

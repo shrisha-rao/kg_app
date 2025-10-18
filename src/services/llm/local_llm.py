@@ -25,6 +25,7 @@ class LocalLLMService(LLMService):
         self.use_ollama = True
 
         self.ollama_model = os.getenv("OLLAMA_MODEL", "tinyllama")
+        # "phi3:mini")  #
         self.ollama_host = os.getenv("OLLAMA_HOST", "http://ollama:11434")
 
         if self.use_ollama:
@@ -156,12 +157,11 @@ class LocalLLMService(LLMService):
         You MUST respond with ONLY valid JSON, no other text. The JSON must have this exact structure:
         {json.dumps(response_format, indent=2)}
 
-        JSON response:"""
+        JSON response (STRICTLY NO MARKDOWN FENCES, NO PREAMBLE, AND NO CHATTER):"""
 
         response = await self._generate_ollama_response(
             structured_prompt, temperature, max_tokens)
-        logger.info(f"Ollama raw response: {response.content}")  # Add this
-
+        logger.info(f"Ollama raw response: {response.content}")
         try:
             result = json.loads(response.content)
             logger.info(f"Parsed JSON: {result}")  # Add this

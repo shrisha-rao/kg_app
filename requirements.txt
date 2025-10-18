@@ -41,12 +41,17 @@ spacy #==3.7.2
 sentence-transformers #==5.1.0
 huggingface-hub #==0.26.4
 
+#
+aiohttp
+
 # CLOUD/DATABASE
 google-cloud-aiplatform #==1.90.0
 google-cloud-storage #==2.57.0
 google-cloud-firestore
 python-arango #==8.2.2
 redis #==5.0.1
+
+
 
 # kg-gen
 # kg-gen
