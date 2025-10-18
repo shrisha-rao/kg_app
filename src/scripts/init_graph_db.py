@@ -121,127 +121,146 @@ class GraphDBInitializer:
                 logger.error(
                     f"Error creating edge collection {collection_name}: {e}")
 
+    # async def _create_knowledge_graph_OLD(self):
+    #     """Create or recreate the knowledge graph with edge definitions"""
+    #     try:
+    #         graph_name = settings.knowledge_graph_name
+
+    #         # 1. Force Deletion of Existing Graph (to clear outdated definitions)
+    #         if self.graph_db.db.has_graph(graph_name):
+    #             logger.info(
+    #                 f"Graph already exists: {graph_name}. Deleting and recreating to ensure correct definitions."
+    #             )
+    #             self.graph_db.db.delete_graph(graph_name)
+
+    #         # 2. Define edge collections for the graph (Same definitions as before)
+    #         edge_definitions = [{
+    #             "edge_collection": "edges_cites",
+    #             "from_vertex_collections": ["nodes_paper"],
+    #             "to_vertex_collections": ["nodes_paper"]
+    #         }, {
+    #             "edge_collection": "edges_authored_by",
+    #             "from_vertex_collections": ["nodes_paper"],
+    #             "to_vertex_collections": ["nodes_person"]
+    #         }, {
+    #             "edge_collection":
+    #             "edges_contains",
+    #             "from_vertex_collections": ["nodes_paper"],
+    #             "to_vertex_collections": [
+    #                 "nodes_person", "nodes_organization", "nodes_location",
+    #                 "nodes_concept", "nodes_methodology"
+    #             ]
+    #         }, {
+    #             "edge_collection":
+    #             "edges_related_to",
+    #             "from_vertex_collections": [
+    #                 "nodes_person", "nodes_organization", "nodes_location",
+    #                 "nodes_concept", "nodes_methodology"
+    #             ],
+    #             "to_vertex_collections": [
+    #                 "nodes_person", "nodes_organization", "nodes_location",
+    #                 "nodes_concept", "nodes_methodology"
+    #             ]
+    #         }, {
+    #             "edge_collection": "edges_belongs_to",
+    #             "from_vertex_collections": ["nodes_person"],
+    #             "to_vertex_collections": ["nodes_organization"]
+    #         }, {
+    #             "edge_collection":
+    #             "edges_located_at",
+    #             "from_vertex_collections":
+    #             ["nodes_person", "nodes_organization"],
+    #             "to_vertex_collections": ["nodes_location"]
+    #         }, {
+    #             "edge_collection": "edges_uses",
+    #             "from_vertex_collections": ["nodes_paper"],
+    #             "to_vertex_collections": ["nodes_methodology"]
+    #         }]
+
+    #         # 3. Create the graph
+    #         self.graph_db.db.create_graph(graph_name, edge_definitions)
+    #         logger.info(f"Created knowledge graph: {graph_name}")
+
+    #     except Exception as e:
+    #         logger.error(f"Error creating knowledge graph: {e}")
+
     async def _create_knowledge_graph(self):
-        """Create or recreate the knowledge graph with edge definitions"""
+        """Create or update the named knowledge graph with all existing edge collections."""
+        #GRAPH_NAME = 'knowledge_graph'
+        GRAPH_NAME = settings.knowledge_graph_name
+        db_handler = self.graph_db.db  # Assume self.graph_db.db is the ArangoDB handler
+
+        # 1. FORCE DELETE (MANDATORY FIX)
+        if db_handler.has_graph(GRAPH_NAME):
+            logger.info(
+                f"Graph '{GRAPH_NAME}' already exists. Attempting to delete before recreation."
+            )
         try:
-            graph_name = "knowledge_graph"
-
-            # 1. Force Deletion of Existing Graph (to clear outdated definitions)
-            if self.graph_db.db.has_graph(graph_name):
-                logger.info(
-                    f"Graph already exists: {graph_name}. Deleting and recreating to ensure correct definitions."
-                )
-                self.graph_db.db.delete_graph(graph_name)
-
-            # 2. Define edge collections for the graph (Same definitions as before)
-            edge_definitions = [{
-                "edge_collection": "edges_cites",
-                "from_vertex_collections": ["nodes_paper"],
-                "to_vertex_collections": ["nodes_paper"]
-            }, {
-                "edge_collection": "edges_authored_by",
-                "from_vertex_collections": ["nodes_paper"],
-                "to_vertex_collections": ["nodes_person"]
-            }, {
-                "edge_collection":
-                "edges_contains",
-                "from_vertex_collections": ["nodes_paper"],
-                "to_vertex_collections": [
-                    "nodes_person", "nodes_organization", "nodes_location",
-                    "nodes_concept", "nodes_methodology"
-                ]
-            }, {
-                "edge_collection":
-                "edges_related_to",
-                "from_vertex_collections": [
-                    "nodes_person", "nodes_organization", "nodes_location",
-                    "nodes_concept", "nodes_methodology"
-                ],
-                "to_vertex_collections": [
-                    "nodes_person", "nodes_organization", "nodes_location",
-                    "nodes_concept", "nodes_methodology"
-                ]
-            }, {
-                "edge_collection": "edges_belongs_to",
-                "from_vertex_collections": ["nodes_person"],
-                "to_vertex_collections": ["nodes_organization"]
-            }, {
-                "edge_collection":
-                "edges_located_at",
-                "from_vertex_collections":
-                ["nodes_person", "nodes_organization"],
-                "to_vertex_collections": ["nodes_location"]
-            }, {
-                "edge_collection": "edges_uses",
-                "from_vertex_collections": ["nodes_paper"],
-                "to_vertex_collections": ["nodes_methodology"]
-            }]
-
-            # 3. Create the graph
-            self.graph_db.db.create_graph(graph_name, edge_definitions)
-            logger.info(f"Created knowledge graph: {graph_name}")
-
+            # Drop and recreate is the safest way to update definitions
+            db_handler.delete_graph(GRAPH_NAME, ignore_missing=True)
+            logger.info(f"Deleted old graph '{GRAPH_NAME}'.")
         except Exception as e:
-            logger.error(f"Error creating knowledge graph: {e}")
+            # If deletion fails, we log the error but allow the creation to attempt,
+            # though it will likely fail with ERR 1921.
+            logger.error(
+                f"Failed to delete graph '{GRAPH_NAME}': {e}. Stopping creation."
+            )
+            # Return False to propagate the failure up to the initialize method
+            return False
 
-    # async def _create_knowledge_graph(self):
-    #     """Create or update the named knowledge graph with all existing edge collections."""
-    #     GRAPH_NAME = 'knowledge_graph'
-    #     db_handler = self.graph_db.db  # Assume self.graph_db.db is the ArangoDB handler
+        # 1. Identify all edge collections
+        edge_collections = [
+            col['name'] for col in db_handler.collections()
+            if col['name'].startswith('edges_')
+        ]
 
-    #     # 1. Identify all edge collections
-    #     edge_collections = [
-    #         col['name'] for col in db_handler.collections()
-    #         if col['name'].startswith('edges_')
-    #     ]
+        # 2. Identify all vertex collections (assuming all are potential vertices)
+        vertex_collections = [
+            col['name'] for col in db_handler.collections()
+            if col['name'].startswith('nodes_')
+            or col['name'].startswith('entities')
+            # Add 'entities' explicitly if it's used as a collection name
+        ]
 
-    #     # 2. Identify all vertex collections (assuming all are potential vertices)
-    #     vertex_collections = [
-    #         col['name'] for col in db_handler.collections()
-    #         if col['name'].startswith('nodes_')
-    #         or col['name'].startswith('entities')
-    #         # Add 'entities' explicitly if it's used as a collection name
-    #     ]
+        # 3. Build edge definitions (a definition for every edge collection)
+        edge_definitions = []
+        if edge_collections and vertex_collections:
+            for edge_col in edge_collections:
+                edge_definitions.append({
+                    'edge_collection':
+                    edge_col,
+                    'from_vertex_collections':
+                    vertex_collections,
+                    'to_vertex_collections':
+                    vertex_collections
+                })
 
-    #     # 3. Build edge definitions (a definition for every edge collection)
-    #     edge_definitions = []
-    #     if edge_collections and vertex_collections:
-    #         for edge_col in edge_collections:
-    #             edge_definitions.append({
-    #                 'edge_collection':
-    #                 edge_col,
-    #                 'from_vertex_collections':
-    #                 vertex_collections,
-    #                 'to_vertex_collections':
-    #                 vertex_collections
-    #             })
+        if not edge_definitions:
+            logger.warning(
+                "No edge collections found to define the graph. Skipping graph creation."
+            )
+            return
 
-    #     if not edge_definitions:
-    #         logger.warning(
-    #             "No edge collections found to define the graph. Skipping graph creation."
-    #         )
-    #         return
+        # 4. Create or Replace the Named Graph
+        if db_handler.has_graph(GRAPH_NAME):
+            logger.info(
+                f"Graph '{GRAPH_NAME}' already exists. Attempting to update definitions."
+            )
 
-    #     # 4. Create or Replace the Named Graph
-    #     if db_handler.has_graph(GRAPH_NAME):
-    #         logger.info(
-    #             f"Graph '{GRAPH_NAME}' already exists. Attempting to update definitions."
-    #         )
+            # The simplest way to ensure all definitions are applied is to drop and recreate.
+            # NOTE: If you have complex graph definitions, a partial update is better,
+            # but dropping is the most robust fix for missing collections.
+            try:
+                db_handler.delete_graph(GRAPH_NAME)
+                logger.info(f"Deleted old graph '{GRAPH_NAME}'.")
+            except Exception as e:
+                logger.error(f"Failed to delete graph: {e}")
+                return
 
-    #         # The simplest way to ensure all definitions are applied is to drop and recreate.
-    #         # NOTE: If you have complex graph definitions, a partial update is better,
-    #         # but dropping is the most robust fix for missing collections.
-    #         try:
-    #             db_handler.delete_graph(GRAPH_NAME)
-    #             logger.info(f"Deleted old graph '{GRAPH_NAME}'.")
-    #         except Exception as e:
-    #             logger.error(f"Failed to delete graph: {e}")
-    #             return
-
-    #     db_handler.create_graph(GRAPH_NAME, edge_definitions=edge_definitions)
-    #     logger.info(
-    #         f"Successfully created/updated graph '{GRAPH_NAME}' with {len(edge_collections)} edge collections."
-    #     )
+        db_handler.create_graph(GRAPH_NAME, edge_definitions=edge_definitions)
+        logger.info(
+            f"Successfully created/updated graph '{GRAPH_NAME}' with {len(edge_collections)} edge collections."
+        )
 
     # async def _create_knowledge_graph(self):
     #     """Create the knowledge graph with edge definitions"""

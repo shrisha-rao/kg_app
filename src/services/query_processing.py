@@ -133,7 +133,7 @@ class QueryProcessingService:
 
             ##################################################
 
-            logger.info(f"Step 4e: graph_context: {graph_context}")
+            # logger.info(f"Step 4e: graph_context: {graph_context[:250]}")
 
             #graph_context2 = {'entities': ['double helix', 'DNA structure']}
             # logger.info(f"Step 4e II: graph_context: {graph_context}")
@@ -465,15 +465,182 @@ class QueryProcessingService:
         context += "\n".join(triples)
         return context
 
-    async def _get_graph_context_triples(
-            self,
-            query_entity_nodes: List[
-                Node],  # Correct type hint based on implementation
-            user_id: str,
-            scope: QueryScope) -> str:
+    # async def _resolve_and_format_triples(self,
+    #                                       result: GraphQueryResult) -> str:
+    #     """
+    #     1. Filters duplicate nodes and edges from the result.
+    #     2. Resolves all unique Node IDs to their human-readable text.
+    #     3. Formats the edges into human-readable triples for the LLM.
+    #     """
+    #     if not result.edges:
+    #         return ""
+
+    #     # 1. Filter out duplicates
+    #     unique_nodes = list({n.id: n for n in result.nodes}.values())
+    #     unique_edges = list({e.id: e for e in result.edges}.values())
+
+    #     # 2. Build the list of FULL ArangoDB IDs (collection/key) for fetching
+    #     all_full_ids = set()
+    #     for node in unique_nodes:
+    #         # Ensure we always use the full ArangoDB ID (e.g., nodes_concept/key) for the fetch
+    #         if "/" in node.id:
+    #             full_id = node.id
+    #         else:
+    #             # Reconstruct the full ID using the standardized schema: nodes_{type}/{key}
+    #             full_id = f"nodes_{node.type}/{node.id}"
+
+    #         all_full_ids.add(full_id)
+
+    #     if not all_full_ids:
+    #         return ""
+
+    #     # 3. Fetch the full Node objects by ID
+    #     resolved_nodes = await self.graph_db.get_nodes_by_ids(
+    #         list(all_full_ids))
+
+    #     if resolved_nodes is None:
+    #         logger.warning(
+    #             "GraphDB returned None instead of a list for node resolution. Defaulting to empty list."
+    #         )
+    #         resolved_nodes = []
+
+    #     # 4. Create a map from the FULL ID (_id) to the human-readable text (label)
+    #     label_map = {}
+    #     for node in resolved_nodes:
+    #         # FIX: Prioritize the top-level 'label' attribute, which contains the human name (e.g., "Phil. Mag.")
+    #         human_readable_text = node.label
+
+    #         # Fallback 1: Check for 'original_text' in properties (since your data has it)
+    #         if not human_readable_text:
+    #             human_readable_text = node.properties.get('original_text')
+
+    #         # Fallback 2: Final fallback to the full ID if no label found
+    #         if not human_readable_text:
+    #             human_readable_text = node.id
+
+    #         # The key in the map is the full ArangoDB ID (_id)
+    #         label_map[node.id] = human_readable_text
+
+    #     # 5. Format the edges into the desired triple format
+    #     formatted_triples = []
+    #     for edge in unique_edges:  # Use unique_edges to avoid double-printing
+    #         # edge.source_id and edge.target_id are the full ArangoDB IDs
+    #         source_label = label_map.get(edge.source_id, edge.source_id)
+    #         target_label = label_map.get(edge.target_id, edge.target_id)
+
+    #         # Format: ("Source Text") --[Relationship Label]--> ("Target Text")
+    #         triple = f'("{source_label}") --[{edge.label}]--> ("{target_label}")'
+    #         formatted_triples.append(triple)
+
+    #     # 6. Cleaned up logging for verification
+    #     logger.info("--- Knowledge Graph Context Triples (Snippet) ---")
+    #     logger.info(
+    #         f"Generated {len(formatted_triples)} triples. Resolved labels for {len(resolved_nodes)} nodes."
+    #     )
+    #     for triple in formatted_triples[:3]:  # Log a few for verification
+    #         logger.info(triple)
+    #     logger.info("-------------------------------------------------")
+
+    #     return "\n".join(formatted_triples)
+
+    async def _resolve_and_format_triples(self,
+                                          result: GraphQueryResult) -> str:
         """
-        Traverses the graph starting from the discovered seed entities and
-        formats the result as text triples for the LLM.
+        1. Filters duplicate nodes and edges from the result.
+        2. Resolves all unique Node IDs to their human-readable text.
+        3. Formats the edges into human-readable triples for the LLM.
+        """
+        if not result.edges:
+            return ""
+
+        # 1. Filter out duplicates
+        unique_nodes = list({n.id: n for n in result.nodes}.values())
+        unique_edges = list({e.id: e for e in result.edges}.values())
+
+        # 2. Build the list of FULL ArangoDB IDs (collection/key) for fetching
+        all_full_ids = set()
+        for node in unique_nodes:
+            # Ensure we always use the full ArangoDB ID (e.g., nodes_concept/key) for the fetch
+            if "/" in node.id:
+                full_id = node.id
+            else:
+                # Reconstruct the full ID using the standardized schema: nodes_{type}/{key}
+                full_id = f"nodes_{node.type}/{node.id}"
+
+            all_full_ids.add(full_id)
+
+        if not all_full_ids:
+            return ""
+
+        # 3. Fetch the full Node objects by ID
+        resolved_nodes = await self.graph_db.get_nodes_by_ids(
+            list(all_full_ids))
+
+        if resolved_nodes is None:
+            logger.warning(
+                "GraphDB returned None instead of a list for node resolution. Defaulting to empty list."
+            )
+            resolved_nodes = []
+
+        # 4. Create a map from the FULL ID (_id) to the human-readable text (label)
+        label_map = {}
+        for node in resolved_nodes:
+            # FIX: Prioritize the top-level 'label' attribute, which contains the human name (e.g., "helix")
+            human_readable_text = node.label
+            # Fallback 1: Check for 'original_text' in properties
+            if not human_readable_text:
+                human_readable_text = node.properties.get('original_text')
+
+            # B. Get the correct FULL ID (_id) for the map key
+            # The node object returned from the database should have its full ID.
+            # Fallback to reconstructing the full ID if node.id is somehow the _key.
+            full_node_id = node.id
+            if "/" not in full_node_id:
+                # If node.id is the short key, reconstruct the full ID
+                full_node_id = f"nodes_{node.type}/{node.id}"
+            else:
+                # If it already contains a '/', it's a full ID (the result of the arangodb.py fix)
+                full_node_id = node.id
+
+            # C. Final fallback for label text
+            if not human_readable_text:
+                human_readable_text = full_node_id
+
+            # # Fallback 2: Final fallback to the full ID if no label found
+            # if not human_readable_text:
+            #     human_readable_text = node.id
+
+            # The key in the map is the full ArangoDB ID (_id)
+            # Note: If the ID fix in arangodb.py is applied, node.id is the full ID here
+            label_map[full_node_id] = human_readable_text
+
+        # 5. Format the edges into the desired triple format
+        formatted_triples = []
+        for edge in unique_edges:
+            source_label = label_map.get(edge.source_id, edge.source_id)
+            target_label = label_map.get(edge.target_id, edge.target_id)
+
+            # Format: ("Source Text") --[Relationship Label]--> ("Target Text")
+            triple = f'("{source_label}") --[{edge.label}]--> ("{target_label}")'
+            formatted_triples.append(triple)
+
+        # 6. Cleaned up logging for verification
+        logger.info("--- Knowledge Graph Context Triples (Snippet) ---")
+        logger.info(
+            f"Generated {len(formatted_triples)} triples. Resolved labels for {len(resolved_nodes)} nodes."
+        )
+        for triple in formatted_triples[:20]:
+            logger.info(triple)
+        logger.info("-------------------------------------------------")
+
+        return "\n".join(formatted_triples)
+
+    async def _get_graph_context_triples(self, query_entity_nodes: List[Node],
+                                         user_id: str,
+                                         scope: QueryScope) -> str:
+        """
+        Traverses the graph starting from the discovered seed entities, merges the results,
+        and formats them as human-readable text triples for the LLM.
         """
         full_graph_context = GraphQueryResult(nodes=[],
                                               edges=[],
@@ -482,32 +649,92 @@ class QueryProcessingService:
         # Set max traversal depth (e.g., 2 hops away)
         TRAVERSAL_DEPTH = 2
 
-        # FIX: Iterate over Node objects and use dot notation (.id, .type)
+        # Iterate over discovered entities and traverse the graph for each
         for entity_node in query_entity_nodes:
-            # Construct the full ArangoDB ID for traversal (e.g., nodes_concept/key)
-            # We assume the collection name is based on the node's type: nodes_{type}
-            start_node_id = f"nodes_{entity_node.type}/{entity_node.id}"
-            # start_node_id = f"entities/{entity_node.id}"
+            # Construct the full ArangoDB _id (e.g., nodes_concept/key)
+            # Ensure 'entity_node.type' is correctly set to 'concept', 'paper', etc.
+
+            logger.info(f"entity_node: {entity_node}")
+            logger.info(f"entity_node_ID: {entity_node.id}")
+            # if "/" not in entity_node:
+            #     final_start_node_id = f"nodes_{entity_node.type}/{entity_node.id}"
+            # else:
+            #     final_start_node_id = entity_node.id
+
+            final_start_node_id = entity_node.id
+
+            # if "/" in start_node_id:
+            #     # If the ID already contains a slash, it's the full ArangoDB ID.
+            #     final_start_node_id = start_node_id
+            # else:
+            #     # If it is just the short key, reconstruct the full ID.
+            #     final_start_node_id = f"nodes_{entity_node.type}/{start_node_id}"
 
             logger.info(
-                f"Traversing graph starting from node: {start_node_id}")
+                f"Traversing graph starting from node: {final_start_node_id}")
 
-            result = await self.graph_db.traverse(start_node_id=start_node_id,
-                                                  min_depth=1,
-                                                  max_depth=TRAVERSAL_DEPTH,
-                                                  direction="any")
+            try:
+                result = await self.graph_db.traverse(
+                    start_node_id=final_start_node_id,
+                    min_depth=1,
+                    max_depth=TRAVERSAL_DEPTH,
+                    direction="any")
 
-            # Merge results for all starting nodes
-            full_graph_context.nodes.extend(result.nodes)
-            full_graph_context.edges.extend(result.edges)
+                # Merge results for all starting nodes
+                full_graph_context.nodes.extend(result.nodes)
+                full_graph_context.edges.extend(result.edges)
 
-        # Filter out duplicates after merging
-        unique_nodes = list({n.id: n
-                             for n in full_graph_context.nodes}.values())
-        unique_edges = list({e.id: e
-                             for e in full_graph_context.edges}.values())
+            except Exception as e:
+                logger.error(
+                    f"Error during graph traversal from {start_node_id}: {e}")
+                # Log and continue to the next entity if one fails
 
-        return self._format_triples_for_llm(unique_nodes, unique_edges)
+        # Pass the entire merged context object to the resolver
+        return await self._resolve_and_format_triples(full_graph_context)
+
+    # async def _get_graph_context_triples(
+    #         self,
+    #         query_entity_nodes: List[
+    #             Node],  # Correct type hint based on implementation
+    #         user_id: str,
+    #         scope: QueryScope) -> str:
+    #     """
+    #     Traverses the graph starting from the discovered seed entities and
+    #     formats the result as text triples for the LLM.
+    #     """
+    #     full_graph_context = GraphQueryResult(nodes=[],
+    #                                           edges=[],
+    #                                           execution_time=0.0)
+
+    #     # Set max traversal depth (e.g., 2 hops away)
+    #     TRAVERSAL_DEPTH = 2
+
+    #     # FIX: Iterate over Node objects and use dot notation (.id, .type)
+    #     for entity_node in query_entity_nodes:
+    #         # Construct the full ArangoDB ID for traversal (e.g., nodes_concept/key)
+    #         # We assume the collection name is based on the node's type: nodes_{type}
+    #         start_node_id = f"nodes_{entity_node.type}/{entity_node.id}"
+    #         # start_node_id = f"entities/{entity_node.id}"
+
+    #         logger.info(
+    #             f"Traversing graph starting from node: {start_node_id}")
+
+    #         result = await self.graph_db.traverse(start_node_id=start_node_id,
+    #                                               min_depth=1,
+    #                                               max_depth=TRAVERSAL_DEPTH,
+    #                                               direction="any")
+
+    #         # Merge results for all starting nodes
+    #         full_graph_context.nodes.extend(result.nodes)
+    #         full_graph_context.edges.extend(result.edges)
+
+    #     # Filter out duplicates after merging
+    #     unique_nodes = list({n.id: n
+    #                          for n in full_graph_context.nodes}.values())
+    #     unique_edges = list({e.id: e
+    #                          for e in full_graph_context.edges}.values())
+
+    #     return self._format_triples_for_llm(unique_nodes, unique_edges)
 
     async def _get_graph_context_triples_OLD(self, query_entity_nodes: List[
         Dict[str, Any]], user_id: str, scope: QueryScope) -> str:

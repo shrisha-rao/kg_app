@@ -106,3 +106,8 @@ class GraphDBService(ABC):
             params: Optional[Dict[str, Any]] = None) -> GraphQueryResult:
         """Execute a custom query in the database's query language"""
         pass
+
+    @abstractmethod
+    async def get_nodes_by_ids(self, node_ids: List[str]) -> List[Node]:
+        """Retrieves full node objects for a list of node IDs."""
+        pass

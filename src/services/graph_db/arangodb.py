@@ -193,16 +193,44 @@ class ArangoDBService(GraphDBService):
                     ]
                 }
 
-                return Node(id=document['_key'],
+                return Node(id=document['_id'],
                             label=document.get('label', ''),
                             properties=properties,
                             type=node_type)
+
+                # return Node(id=document['_key'],
+                #             label=document.get('label', ''),
+                #             properties=properties,
+                #             type=node_type)
 
             return None
 
         except ArangoError as e:
             logger.error(f"Error getting node from ArangoDB: {e}")
             return None
+
+    async def get_nodes_by_ids(self, node_ids: List[str]) -> List[Node]:
+        """Retrieves full node objects for a list of node IDs."""
+        if not node_ids:
+            return []
+
+        # We use a custom AQL query to retrieve all documents by their _id
+        query = f"""
+        FOR doc_id IN @node_ids
+          LET parts = SPLIT(doc_id, '/')
+          LET collection = parts[0]
+          LET key = parts[1]
+          RETURN DOCUMENT(collection, key)
+        """
+
+        # Execute the query and map the results back to your Node model
+        # (Assuming execute_query returns raw dicts)
+        raw_results = await self.execute_query(query,
+                                               params={"node_ids": node_ids})
+
+        # You'll need logic here to convert raw ArangoDB documents to your Node model
+        # For simplicity, assume raw_results.nodes contains the hydrated Node objects
+        return raw_results.nodes
 
     async def get_edge(self, edge_id: str) -> Optional[Edge]:
         """Get an edge by ID from ArangoDB"""
@@ -238,12 +266,13 @@ class ArangoDBService(GraphDBService):
                     ]
                 }
 
-                return Edge(id=document['_key'],
-                            source_id=document['_from'],
-                            target_id=document['_to'],
-                            label=document.get('label', ''),
-                            properties=properties,
-                            type=edge_type)
+                return Edge(
+                    id=document['_id'],  #['_key'],
+                    source_id=document['_from'],
+                    target_id=document['_to'],
+                    label=document.get('label', ''),
+                    properties=properties,
+                    type=edge_type)
 
             return None
 
@@ -306,10 +335,11 @@ class ArangoDBService(GraphDBService):
                     }
 
                     results.append(
-                        Node(id=doc['_key'],
-                             label=doc.get('label', ''),
-                             properties=doc_properties,
-                             type=node_type))
+                        Node(
+                            id=doc['_id'],  #['_key'],
+                            label=doc.get('label', ''),
+                            properties=doc_properties,
+                            type=node_type))
 
             return results
 
@@ -362,12 +392,13 @@ class ArangoDBService(GraphDBService):
                     }
 
                     results.append(
-                        Edge(id=doc['_key'],
-                             source_id=doc['_from'],
-                             target_id=doc['_to'],
-                             label=doc.get('label', ''),
-                             properties=doc_properties,
-                             type=edge_type))
+                        Edge(
+                            id=doc['_id'],  #['_key'],
+                            source_id=doc['_from'],
+                            target_id=doc['_to'],
+                            label=doc.get('label', ''),
+                            properties=doc_properties,
+                            type=edge_type))
 
             return results
 
@@ -431,10 +462,11 @@ class ArangoDBService(GraphDBService):
                     }
 
                     nodes.append(
-                        Node(id=vertex['_key'],
-                             label=vertex.get('label', ''),
-                             properties=properties,
-                             type=node_type))
+                        Node(
+                            id=vertex['_id'],  #vertex['_key'],
+                            label=vertex.get('label', ''),
+                            properties=properties,
+                            type=node_type))
 
                 if 'edge' in result:
                     edge = result['edge']
@@ -448,12 +480,13 @@ class ArangoDBService(GraphDBService):
                     }
 
                     edges.append(
-                        Edge(id=edge['_key'],
-                             source_id=edge['_from'],
-                             target_id=edge['_to'],
-                             label=edge.get('label', ''),
-                             properties=properties,
-                             type=edge_type))
+                        Edge(
+                            id=edge['_id'],  #['_key'],
+                            source_id=edge['_from'],
+                            target_id=edge['_to'],
+                            label=edge.get('label', ''),
+                            properties=properties,
+                            type=edge_type))
 
             return GraphQueryResult(nodes=nodes,
                                     edges=edges,
@@ -553,10 +586,11 @@ class ArangoDBService(GraphDBService):
                     }
 
                     nodes.append(
-                        Node(id=result['_key'],
-                             label=result.get('label', ''),
-                             properties=properties,
-                             type=node_type))
+                        Node(
+                            id=result['_id'],  # result['_key'],
+                            label=result.get('label', ''),
+                            properties=properties,
+                            type=node_type))
                 elif '_id' in result and result['_id'].startswith('edges_'):
                     edge_type = result['_id'].split('/')[0].replace(
                         'edges_', '')

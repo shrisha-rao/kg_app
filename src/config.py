@@ -37,6 +37,8 @@ class Settings(BaseSettings):
     matching_engine_rps_limit: int = Field(10, env="MATCHING_ENGINE_RPS_LIMIT")
 
     # Graph DB
+    knowledge_graph_name: str = Field("knowledge_graph",
+                                      env="KNOWLEDGE_GRAPH_NAME")
     arangodb_host: str = Field("arangodb", env="ARANGODB_HOST")
     arangodb_username: str = Field("root", env="ARANGODB_USERNAME")
     arangodb_password: str = Field("my-secret-password",
