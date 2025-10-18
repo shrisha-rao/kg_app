@@ -662,6 +662,7 @@ class QueryProcessingService:
             #     final_start_node_id = entity_node.id
 
             final_start_node_id = entity_node.id
+            # @
 
             # if "/" in start_node_id:
             #     # If the ID already contains a slash, it's the full ArangoDB ID.
