@@ -71,7 +71,7 @@ services:
       - LITELLM_MODEL=ollama/tinyllama
       - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
       - USE_MOCK_SERVICES=true
-      - VECTOR_DB_TYPE="mock" #  "vertex_ai_matching_engine"  #
+      - VECTOR_DB_TYPE="local" # "mock" #  "vertex_ai_matching_engine"  #
       - GCP_PROJECT_ID=kg-app-473211
       - GCP_REGION=us-central1
     volumes:

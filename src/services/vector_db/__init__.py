@@ -39,6 +39,9 @@ def get_vector_db_service() -> VectorDBService:
     elif settings.vector_db_type == "mock":
         from .mock_vector_service import MockVectorService
         return MockVectorService()
+    elif settings.vector_db_type == "local":
+        from .local_vector_db import LocalVectorDBService
+        return LocalVectorDBService()
     else:  # Default to mock for development safety
         from .mock_vector_service import MockVectorService
         return MockVectorService()
