@@ -14,8 +14,8 @@ from src.services.graph_db.base import GraphQueryResult, Node, Edge
 # logging.basicConfig(level=logging.DEBUG)
 # # or for uvicorn:
 # logging.getLogger("uvicorn").setLevel(logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-# logging.basicConfig(level=logging.DEBUG)
 """
 This implementation provides a comprehensive query processing service that:
 
@@ -85,30 +85,31 @@ class QueryProcessingService:
                     f"Returning cached response for query: {query.query_text}")
                 return QueryResponse(**json.loads(cached_response))
 
-            logger.info("step 1: Generating query embedding")
+            logger.debug("step 1: Generating query embedding")
 
             # Step 1: Generate query embedding
             query_embedding = await self._generate_query_embedding(
                 query.query_text)
 
-            logger.info("step 2: Search for relevant papers in vector DB")
+            logger.debug("step 2: Search for relevant papers in vector DB")
+            # logger.debug(f"step 2a: qs: {query.scope} \n id: {query.user_id}")
 
             # Step 2: Search for relevant papers in vector DB
             relevant_papers = await self._search_relevant_papers(
                 query_embedding, query.scope, query.user_id, top_k=10)
 
-            logger.info("step 3: Extract context from relevant papers")
+            logger.debug("step 3: Extract context from relevant papers")
             # Step 3: Extract context from relevant papers
             context = await self._build_context(relevant_papers,
                                                 query.query_text)
 
-            logger.info(
+            logger.debug(
                 "Step 4: Query the knowledge graph for related entities")
             # Step 4: Query the knowledge graph for related entities
-            logger.info(f"Step 4a: query_text: {query.query_text}")
-            logger.info(f"Step 4b: query scope: {query.scope}")
-            logger.info(f"Step 4c: query user_id: {query.user_id}")
-            logger.info(f"Step 4d: query type: {query.query_type}")
+            logger.debug(f"Step 4a: query_text: {query.query_text}")
+            logger.debug(f"Step 4b: query scope: {query.scope}")
+            logger.debug(f"Step 4c: query user_id: {query.user_id}")
+            logger.debug(f"Step 4d: query type: {query.query_type}")
 
             # Check connection status and attempt to connect if necessary
             # The first time the service runs, self.graph_db.db will be None.
@@ -125,7 +126,7 @@ class QueryProcessingService:
                         query.query_text,
                         "Failed to connect to knowledge graph.")
 
-            logger.info(f"graph db name: {self.graph_db.db}")
+            logger.debug(f"graph db name: {self.graph_db.db}")
 
             # COMMENTED FOR DEBUG
             graph_context = await self._query_knowledge_graph(
@@ -133,21 +134,21 @@ class QueryProcessingService:
 
             ##################################################
 
-            # logger.info(f"Step 4e: graph_context: {graph_context[:250]}")
+            # logger.debug(f"Step 4e: graph_context: {graph_context[:250]}")
 
             #graph_context2 = {'entities': ['double helix', 'DNA structure']}
-            # logger.info(f"Step 4e II: graph_context: {graph_context}")
-            logger.info("Step 5: Generate answer using LLM")
+            # logger.debug(f"Step 4e II: graph_context: {graph_context}")
+            logger.debug("Step 5: Generate answer using LLM")
             # Step 5: Generate answer using LLM
             answer = await self._generate_answer(query.query_text, context,
                                                  graph_context,
                                                  query.query_type)
 
-            logger.info("Step 6: Extract citations from the answer")
+            logger.debug("Step 6: Extract citations from the answer")
             # Step 6: Extract citations from the answer
             citations = await self._extract_citations(answer, relevant_papers)
 
-            logger.info("Step 7: Create response")
+            logger.debug("Step 7: Create response")
             # Step 7: Create response
             response = QueryResponse(
                 query_id=
@@ -195,10 +196,13 @@ class QueryProcessingService:
             query_embedding,
             top_k=top_k,
             namespace=user_id,
-            filter={"is_public": [True,
-                                  False]}  # Get both public and private papers
+            filter={"metadata.is_public":
+                    [True, False]}  # Get both public and private papers
         )
         results.extend(user_results)
+
+        logger.debug(
+            f"inside _search_relevant_papers: private found {len(results)}")
 
         # If scope includes shared or public, search in those namespaces too
         if scope in [
@@ -211,6 +215,8 @@ class QueryProcessingService:
                                                          namespace="public")
             results.extend(public_results)
 
+        logger.debug(
+            f"inside _search_relevant_papers: pub found {len(results)}")
         # Remove duplicates and sort by score
         seen_ids = set()
         unique_results = []
@@ -222,6 +228,9 @@ class QueryProcessingService:
                 seen_ids.add(doc_id)
                 unique_results.append(result)
 
+        logger.debug(
+            f"inside _search_relevant_papers: unique found {len(unique_results)}"
+        )
         return unique_results[:top_k]
 
     async def _build_context(self, relevant_papers: List[Dict[str, Any]],
@@ -533,13 +542,13 @@ class QueryProcessingService:
     #         formatted_triples.append(triple)
 
     #     # 6. Cleaned up logging for verification
-    #     logger.info("--- Knowledge Graph Context Triples (Snippet) ---")
-    #     logger.info(
+    #     logger.debug("--- Knowledge Graph Context Triples (Snippet) ---")
+    #     logger.debug(
     #         f"Generated {len(formatted_triples)} triples. Resolved labels for {len(resolved_nodes)} nodes."
     #     )
     #     for triple in formatted_triples[:3]:  # Log a few for verification
-    #         logger.info(triple)
-    #     logger.info("-------------------------------------------------")
+    #         logger.debug(triple)
+    #     logger.debug("-------------------------------------------------")
 
     #     return "\n".join(formatted_triples)
 
@@ -625,13 +634,13 @@ class QueryProcessingService:
             formatted_triples.append(triple)
 
         # 6. Cleaned up logging for verification
-        logger.info("--- Knowledge Graph Context Triples (Snippet) ---")
-        logger.info(
+        logger.debug("--- Knowledge Graph Context Triples (Snippet) ---")
+        logger.debug(
             f"Generated {len(formatted_triples)} triples. Resolved labels for {len(resolved_nodes)} nodes."
         )
         for triple in formatted_triples[:20]:
-            logger.info(triple)
-        logger.info("-------------------------------------------------")
+            logger.debug(triple)
+        logger.debug("-------------------------------------------------")
 
         return "\n".join(formatted_triples)
 
@@ -654,8 +663,8 @@ class QueryProcessingService:
             # Construct the full ArangoDB _id (e.g., nodes_concept/key)
             # Ensure 'entity_node.type' is correctly set to 'concept', 'paper', etc.
 
-            logger.info(f"entity_node: {entity_node}")
-            logger.info(f"entity_node_ID: {entity_node.id}")
+            logger.debug(f"entity_node: {entity_node}")
+            logger.debug(f"entity_node_ID: {entity_node.id}")
             # if "/" not in entity_node:
             #     final_start_node_id = f"nodes_{entity_node.type}/{entity_node.id}"
             # else:
@@ -671,7 +680,7 @@ class QueryProcessingService:
             #     # If it is just the short key, reconstruct the full ID.
             #     final_start_node_id = f"nodes_{entity_node.type}/{start_node_id}"
 
-            logger.info(
+            logger.debug(
                 f"Traversing graph starting from node: {final_start_node_id}")
 
             try:
@@ -717,7 +726,7 @@ class QueryProcessingService:
     #         start_node_id = f"nodes_{entity_node.type}/{entity_node.id}"
     #         # start_node_id = f"entities/{entity_node.id}"
 
-    #         logger.info(
+    #         logger.debug(
     #             f"Traversing graph starting from node: {start_node_id}")
 
     #         result = await self.graph_db.traverse(start_node_id=start_node_id,
@@ -757,7 +766,7 @@ class QueryProcessingService:
             # respected them by using a scope-aware AQL (which we assume is handled).
             # The ArangoDB traverse method is simpler and just returns raw nodes/edges.
 
-            logger.info(
+            logger.debug(
                 f"Traversing graph starting from node: {start_node_id}")
 
             result = await self.graph_db.traverse(start_node_id=start_node_id,

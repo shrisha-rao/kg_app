@@ -14,9 +14,9 @@ import os
 import logging
 from src.config import settings
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 # or for uvicorn:
-logging.getLogger("uvicorn").setLevel(logging.DEBUG)
+# logging.getLogger("uvicorn").setLevel(logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 

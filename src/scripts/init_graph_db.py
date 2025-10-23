@@ -74,9 +74,9 @@ class GraphDBInitializer:
 
                 if not collections:
                     self.graph_db.db.create_collection(collection_name)
-                    logger.info(f"Created node collection: {collection_name}")
+                    logger.debug(f"Created node collection: {collection_name}")
                 else:
-                    logger.info(
+                    logger.debug(
                         f"Node collection already exists: {collection_name}")
 
             except Exception as e:
@@ -110,11 +110,11 @@ class GraphDBInitializer:
                 if not collections:
                     self.graph_db.db.create_collection(collection_name,
                                                        edge=True)
-                    logger.info(
+                    logger.debug(
                         f"Created edge collection: {collection_name} - {description}"
                     )
                 else:
-                    logger.info(
+                    logger.debug(
                         f"Edge collection already exists: {collection_name}")
 
             except Exception as e:
@@ -128,7 +128,7 @@ class GraphDBInitializer:
 
     #         # 1. Force Deletion of Existing Graph (to clear outdated definitions)
     #         if self.graph_db.db.has_graph(graph_name):
-    #             logger.info(
+    #             logger.debug(
     #                 f"Graph already exists: {graph_name}. Deleting and recreating to ensure correct definitions."
     #             )
     #             self.graph_db.db.delete_graph(graph_name)
@@ -179,7 +179,7 @@ class GraphDBInitializer:
 
     #         # 3. Create the graph
     #         self.graph_db.db.create_graph(graph_name, edge_definitions)
-    #         logger.info(f"Created knowledge graph: {graph_name}")
+    #         logger.debug(f"Created knowledge graph: {graph_name}")
 
     #     except Exception as e:
     #         logger.error(f"Error creating knowledge graph: {e}")
@@ -192,13 +192,13 @@ class GraphDBInitializer:
 
         # 1. FORCE DELETE (MANDATORY FIX)
         if db_handler.has_graph(GRAPH_NAME):
-            logger.info(
+            logger.debug(
                 f"Graph '{GRAPH_NAME}' already exists. Attempting to delete before recreation."
             )
         try:
             # Drop and recreate is the safest way to update definitions
             db_handler.delete_graph(GRAPH_NAME, ignore_missing=True)
-            logger.info(f"Deleted old graph '{GRAPH_NAME}'.")
+            logger.debug(f"Deleted old graph '{GRAPH_NAME}'.")
         except Exception as e:
             # If deletion fails, we log the error but allow the creation to attempt,
             # though it will likely fail with ERR 1921.
@@ -243,7 +243,7 @@ class GraphDBInitializer:
 
         # 4. Create or Replace the Named Graph
         if db_handler.has_graph(GRAPH_NAME):
-            logger.info(
+            logger.debug(
                 f"Graph '{GRAPH_NAME}' already exists. Attempting to update definitions."
             )
 
@@ -252,7 +252,7 @@ class GraphDBInitializer:
             # but dropping is the most robust fix for missing collections.
             try:
                 db_handler.delete_graph(GRAPH_NAME)
-                logger.info(f"Deleted old graph '{GRAPH_NAME}'.")
+                logger.debug(f"Deleted old graph '{GRAPH_NAME}'.")
             except Exception as e:
                 logger.error(f"Failed to delete graph: {e}")
                 return
@@ -269,7 +269,7 @@ class GraphDBInitializer:
 
     #         # Check if graph already exists
     #         if self.graph_db.db.has_graph(graph_name):
-    #             logger.info(f"Graph already exists: {graph_name}")
+    #             logger.debug(f"Graph already exists: {graph_name}")
     #             return
 
     #         # Define edge collections for the graph
@@ -318,7 +318,7 @@ class GraphDBInitializer:
 
     #         # Create the graph
     #         self.graph_db.db.create_graph(graph_name, edge_definitions)
-    #         logger.info(f"Created knowledge graph: {graph_name}")
+    #         logger.debug(f"Created knowledge graph: {graph_name}")
 
     #     except Exception as e:
     #         logger.error(f"Error creating knowledge graph: {e}")
@@ -368,7 +368,7 @@ class GraphDBInitializer:
                     try:
                         collection.add_persistent_index(
                             fields=index_config["fields"])
-                        logger.info(
+                        logger.debug(
                             f"Created index on {col_info['name']} for fields: {index_config['fields']}"
                         )
                     except Exception as e:
@@ -388,7 +388,7 @@ class GraphDBInitializer:
                     try:
                         collection.add_persistent_index(
                             fields=index_config["fields"])
-                        logger.info(
+                        logger.debug(
                             f"Created index on {col_info['name']} for fields: {index_config['fields']}"
                         )
                     except Exception as e:

@@ -162,7 +162,11 @@ class FileProcessingService:
             if self.is_mock_mode:
                 # Mock embedding vector
                 logger.info("Mock: Generating embedding_vector")
-                embedding_vector = [0.1] * settings.embedding_dimension
+                #embedding_vector = [0.1] * settings.embedding_dimension
+
+                embeddings = await self.llm.generate_embeddings([text])
+                embedding_vector = embeddings[0] if embeddings else []
+
                 logger.info(
                     f"Mock: Generated embedding vector of length {len(embedding_vector)}"
                 )
@@ -216,7 +220,8 @@ class FileProcessingService:
             ####
 
             if self.is_mock_mode:
-                logger.info("Mock: attempting to store in vector db")
+                logger.info("Mock: attempting to store in vector db DB")
+
             else:
                 logger.debug("Not Mock: attempting to store in vector db")
 
@@ -229,8 +234,9 @@ class FileProcessingService:
                 }],
                 namespace=user_id)
             #
-            #stats = await self.vector_db.get_index_stats()
-            # logger.info(f"Vector DB stats after private  upsert: {stats}")
+            if self.is_mock_mode:
+                stats = await self.vector_db.get_index_stats()
+                logger.info(f"Vector DB stats after private  upsert: {stats}")
 
             if self.is_mock_mode:
                 logger.info("Mock: attempting to create Paper model")
@@ -452,7 +458,7 @@ class FileProcessingService:
                                    },
                                    type=entity.type)
 
-                logger.info(f"Upserting public entity {i}: {entity_node_id}")
+                logger.debug(f"Upserting public entity {i}: {entity_node_id}")
                 await self.graph_db.upsert_node(entity_node)
                 entity_key_map[(entity.text, False, i)] = entity_node_id
 
@@ -470,7 +476,7 @@ class FileProcessingService:
                                 },
                                 type="contains")
 
-                logger.info(f"Creating edge from paper to entity: {edge_id}")
+                logger.debug(f"Creating edge from paper to entity: {edge_id}")
                 await self.graph_db.upsert_edge(relation)
 
             # Store private entities
@@ -496,7 +502,7 @@ class FileProcessingService:
                     },
                     type=entity.type)
 
-                logger.info(f"Upserting private entity {i}: {entity_node_id}")
+                logger.debug(f"Upserting private entity {i}: {entity_node_id}")
                 await self.graph_db.upsert_node(entity_node)
                 entity_key_map[(entity.text, True, i)] = entity_node_id
 
@@ -516,7 +522,7 @@ class FileProcessingService:
                                 },
                                 type="contains")
 
-                logger.info(
+                logger.debug(
                     f"Creating edge from paper to private entity: {edge_id}")
                 await self.graph_db.upsert_edge(relation)
 
@@ -571,7 +577,7 @@ class FileProcessingService:
                                      },
                                      type=sanitized_relationship_type)
 
-                logger.info(f"Creating entity relation edge {i}: {edge_id}")
+                logger.debug(f"Creating entity relation edge {i}: {edge_id}")
                 await self.graph_db.upsert_edge(relation_edge)
 
             logger.info(

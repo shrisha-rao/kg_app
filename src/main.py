@@ -24,10 +24,11 @@ if FIRESTORE_EMULATOR_HOST:
     os.environ["FIRESTORE_EMULATOR_HOST"] = FIRESTORE_EMULATOR_HOST
     os.environ[
         "GCLOUD_PROJECT"] = PROJECT_ID  # Set project as environment variable
-    db = firestore.Client(project=PROJECT_ID)
+    #db = firestore.Client(project=PROJECT_ID)
 else:
+    pass
     # Production: use default credentials
-    db = firestore.Client(project=PROJECT_ID)
+    #db = firestore.Client(project=PROJECT_ID)
 
 # Redis client
 # cache = redis.Redis(host=REDIS_HOST, port=REDIS_PORT)

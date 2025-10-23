@@ -435,11 +435,11 @@ class ArangoDBService(GraphDBService):
             RETURN {{vertex: vertex, edge: edge}}
             """
 
-            logger.info("x" * 51)
-            logger.info("x" * 51)
-            logger.info(f"{query}")
-            logger.info("x" * 51)
-            logger.info("x" * 51)
+            logger.debug("x" * 51)
+            logger.debug("x" * 51)
+            logger.debug(f"{query}")
+            logger.debug("x" * 51)
+            logger.debug("x" * 51)
 
             start_time = datetime.now()
             cursor = self.db.aql.execute(query)
