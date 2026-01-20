@@ -36,6 +36,35 @@ docker compose up web
 go to : http://0.0.0.0:8000/docs#/
 
 
+## Architecture
+```mermaid
+flowchart TD
+    User[Researcher/User] --> API[FastAPI Backend]
+    
+    subgraph Backend [Application Layer]
+        API --> Service[Processing Services]
+        Service --> LLM[LLM Integration]
+    end
+    
+    subgraph GCP [Google Cloud Platform]
+        Storage[Cloud Storage]
+        AI[Vertex AI LLMs]
+        VectorDB[Vertex AI<br>Matching Engine]
+        GraphDB[ArangoDB Graph]
+    end
+    
+    Service --> Storage
+    LLM --> AI
+    Service --> VectorDB
+    Service --> GraphDB
+    
+    VectorDB --> Graph[Knowledge Graph]
+    GraphDB --> Graph
+    
+    Graph --> Q&A[Query & Insights]
+    Q&A --> User
+```
+
 
 ## Current Implementation Status
 
