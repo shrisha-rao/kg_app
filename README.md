@@ -1,10 +1,26 @@
-# Research Knowledge Graph Application
+# Research Knowledge Graph Engine
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![Google Cloud](https://img.shields.io/badge/Google-Cloud-orange)
+![Status](https://img.shields.io/badge/status-alpha-yellow)
 
 ## Overview
+A scalable, cloud-native application that helps researchers unlock insights from their publication libraries.
 
-A scalable, cloud-native application for researchers to upload and manage publication libraries, create knowledge graphs, and use LLMs to answer questions about their research corpus. Built with Python, FastAPI, and deployed on Google Cloud Platform (GCP).
+Turn your papers into a queryable knowledge base. This tool processes research documents, uses Large Language Models (LLMs) to extract structured knowledge (entities & relationships), builds a dynamic Knowledge Graph, and enables semantic querying over your entire corpus.
 
+ ## ✨ Features
 
+    📄 Document Processing: Upload and manage libraries of research papers (PDF, etc.).
+
+    🧠 AI-Powered Extraction: Leverage LLMs to identify key entities (e.g., methods, materials) and their relationships.
+
+    🕸️ Knowledge Graph Construction: Automatically builds and visualizes a connected graph of scientific concepts.
+
+    ❓ Intelligent Q&A: Ask complex, natural language questions about the research in your uploaded papers.
+
+    ☁️ Cloud-Native & Scalable: Designed for the cloud (GCP) with a FastAPI backend for high performance.
+
+## 🛠️ Tech Stack: Python | FastAPI | LLMs | Graph Database | Google Cloud Platform (GCP)
 
 ## Doker RUN 
 
