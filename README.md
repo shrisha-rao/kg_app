@@ -20,8 +20,6 @@ Turn your papers into a queryable knowledge base. This tool processes research d
 
     ☁️ Cloud-Native & Scalable: Designed for the cloud (GCP) with a FastAPI backend for high performance.
 
-## 🛠️ Tech Stack: Python | FastAPI | LLMs | Graph Database | Google Cloud Platform (GCP)
-
 ## Doker RUN 
 
 ```bash
