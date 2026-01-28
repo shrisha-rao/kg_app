@@ -1,4 +1,4 @@
-# Research Knowledge Graph Engine
+# Research Knowledge Graph Engine for eDiscovery
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Google Cloud](https://img.shields.io/badge/Google-Cloud-orange)
 ![Status](https://img.shields.io/badge/status-alpha-yellow)
