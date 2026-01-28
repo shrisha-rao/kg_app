@@ -39,7 +39,7 @@ go to : http://0.0.0.0:8000/docs#/
 ## Architecture
 ```mermaid
 flowchart TD
-    User[Researcher/User] --> API[FastAPI Backend]
+    User[User] --> API[FastAPI Backend]
     
     subgraph Backend [Application Layer]
         API --> Service[Processing Services]
