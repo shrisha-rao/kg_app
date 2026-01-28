@@ -4,19 +4,19 @@
 ![Status](https://img.shields.io/badge/status-alpha-yellow)
 
 ## Overview
-A scalable, cloud-native application that helps researchers unlock insights from their publication libraries.
+A deep-tech SaaS platform that uses automated knowledge graphs to revolutionize the electronic discovery (eDiscovery) process for legal and compliance investigations.
 
-Turn your papers into a queryable knowledge base. This tool processes research documents, uses Large Language Models (LLMs) to extract structured knowledge (entities & relationships), builds a dynamic Knowledge Graph, and enables semantic querying over your entire corpus.
+Turn your corpus of text(pdf, emails, chats, etc,,) into a queryable knowledge base. This tool processes  documents, uses Large Language Models (LLMs) to extract structured knowledge (entities & relationships), builds a dynamic Knowledge Graph, and enables semantic querying over your entire corpus.
 
  ## ✨ Features
 
-    📄 Document Processing: Upload and manage libraries of research papers (PDF, etc.).
+    📄 Document Processing: Upload and manage documents (PDF, emails, etc.).
 
-    🧠 AI-Powered Extraction: Leverage LLMs to identify key entities (e.g., methods, materials) and their relationships.
+    🧠 AI-Powered Extraction: Leverage LLMs to identify key entities (e.g., people, dates, organizations, monetary figures) and their relationships.
 
-    🕸️ Knowledge Graph Construction: Automatically builds and visualizes a connected graph of scientific concepts.
+    🕸️ Knowledge Graph Construction: Automatically infers and visualizes a semantic relationships.
 
-    ❓ Intelligent Q&A: Ask complex, natural language questions about the research in your uploaded papers.
+    ❓ Intelligent Q&A and Discovery: Ask complex, natural language questions and retrive the "smoking gun".
 
     ☁️ Cloud-Native & Scalable: Designed for the cloud (GCP) with a FastAPI backend for high performance.
 
@@ -285,7 +285,7 @@ research-kg-app/
 - `POST /auth/logout`: Logout endpoint
 
 ### Papers Management
-- `POST /papers/upload`: Upload a research paper
+- `POST /papers/upload`: Upload a pdf
 - `GET /papers/`: Get user's papers
 - `GET /papers/{paper_id}`: Get paper details
 - `PUT /papers/{paper_id}`: Update paper metadata
