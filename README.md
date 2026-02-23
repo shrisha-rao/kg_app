@@ -1,24 +1,10 @@
-# eDiscovery Knowledge Graph Engine 
-![Python](https://img.shields.io/badge/python-3.9%2B-blue)
-![Google Cloud](https://img.shields.io/badge/Google-Cloud-orange)
-![Status](https://img.shields.io/badge/status-alpha-yellow)
+# Research Knowledge Graph Application
 
 ## Overview
-A deep-tech SaaS platform that uses automated knowledge graphs to revolutionize the electronic discovery (eDiscovery) process for legal and compliance investigations.
 
-Turn your corpus of text(pdf, emails, chats, etc,,) into a queryable knowledge base. This tool processes  documents, uses Large Language Models (LLMs) to extract structured knowledge (entities & relationships), builds a dynamic Knowledge Graph, and enables semantic querying over your entire corpus.
+A scalable, cloud-native application for researchers to upload and manage publication libraries, create knowledge graphs, and use LLMs to answer questions about their research corpus. Built with Python, FastAPI, and deployed on Google Cloud Platform (GCP).
 
- ## ✨ Features
 
-    📄 Document Processing: Upload and manage documents (PDF, emails, etc.).
-
-    🧠 AI-Powered Extraction: Leverage LLMs to identify key entities (e.g., people, dates, organizations, monetary figures) and their relationships.
-
-    🕸️ Knowledge Graph Construction: Automatically infers and visualizes a semantic relationships.
-
-    ❓ Intelligent Q&A and Discovery: Ask complex, natural language questions and retrive the "smoking gun".
-
-    ☁️ Cloud-Native & Scalable: Designed for the cloud (GCP) with a FastAPI backend for high performance.
 
 ## Doker RUN 
 
@@ -35,35 +21,6 @@ docker compose up web
 ### TEST APP wih API access 
 go to : http://0.0.0.0:8000/docs#/
 
-
-## Architecture
-```mermaid
-flowchart TD
-    User[User] --> API[FastAPI Backend]
-    
-    subgraph Backend [Application Layer]
-        API --> Service[Processing Services]
-        Service --> LLM[LLM Integration]
-    end
-    
-    subgraph GCP [Google Cloud Platform]
-        Storage[Cloud Storage]
-        AI[Vertex AI LLMs]
-        VectorDB[Vertex AI<br>Matching Engine]
-        GraphDB[ArangoDB Graph]
-    end
-    
-    Service --> Storage
-    LLM --> AI
-    Service --> VectorDB
-    Service --> GraphDB
-    
-    VectorDB --> Graph[Knowledge Graph]
-    GraphDB --> Graph
-    
-    Graph --> Q&A[Query & Insights]
-    Q&A --> User
-```
 
 
 ## Current Implementation Status
@@ -285,7 +242,7 @@ research-kg-app/
 - `POST /auth/logout`: Logout endpoint
 
 ### Papers Management
-- `POST /papers/upload`: Upload a pdf
+- `POST /papers/upload`: Upload a research paper
 - `GET /papers/`: Get user's papers
 - `GET /papers/{paper_id}`: Get paper details
 - `PUT /papers/{paper_id}`: Update paper metadata
@@ -314,6 +271,7 @@ research-kg-app/
 
 ## License
 
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Support
 
